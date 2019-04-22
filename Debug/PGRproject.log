@@ -1,6 +1,2 @@
-﻿  CCamera.cpp
-  CObject.cpp
-c:\users\pavel\source\repos\pgrproject\pgrproject\objectloader.h(92): warning C4018: <: signed/unsigned – neshoda
-  PGRproject.cpp
-  Generování kódu...
+﻿  CObject.cpp
   PGRproject.vcxproj -> C:\Users\Pavel\source\repos\PGRproject\Debug\PGRproject.exe

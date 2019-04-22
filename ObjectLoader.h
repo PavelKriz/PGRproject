@@ -92,7 +92,7 @@ bool objectLoader(const char * path, std::vector<float> & returnVector) {
 		returnNormals.push_back(normal);
 	}
 
-	for (int i = 0; i < returnVertices.size(); ++i) {
+	for (unsigned int i = 0; i < returnVertices.size(); ++i) {
 		returnVector.push_back(returnVertices[i].x);
 		returnVector.push_back(returnVertices[i].y);
 		returnVector.push_back(returnVertices[i].z);
