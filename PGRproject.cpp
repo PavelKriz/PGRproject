@@ -97,9 +97,7 @@ void init(std::vector<CObject> & objects) {
 	}
 
 	//UNIFORM
-	camera.cameraMatrixPos = glGetUniformLocation(shaderProgram, "viewM");
-	camera.eyePosPos = glGetUniformLocation(shaderProgram, "eyePos");
-	camera.frontPos = glGetUniformLocation(shaderProgram, "eyeDirection");
+	camera.init(shaderProgram);
 
 	CHECK_GL_ERROR();
 
@@ -116,15 +114,7 @@ void draw() {
 	
 	light.draw();
 
-	glUniformMatrix4fv(camera.cameraMatrixPos, 1, GL_FALSE, glm::value_ptr(camera.GetViewProjection(time)));
-
-	glm::vec3 actualPosTemp = camera.getPosition();
-	glUniform3f(camera.eyePosPos, actualPosTemp.x, actualPosTemp.y, actualPosTemp.z);
-
-	glm::vec3 actualFrontTemp = camera.getDirection();
-	glUniform3f(camera.frontPos, actualFrontTemp.x, actualFrontTemp.y, actualFrontTemp.z);
-
-
+	camera.draw(time);
 
 	//glActiveTexture(GL_TEXTURE0);
 	for (auto & it : objects) {

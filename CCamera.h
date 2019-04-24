@@ -46,12 +46,13 @@ class CCamera {
 	glm::vec3 vPositionNext;	//!< budouci pozice kamery jestlize je pohled v prechodu 
 	glm::vec3 vFrontNext;	//!< budouci smer pohledu kamery jestlize je pohled v prechodu
 	glm::vec3 vUpNext;	//!< budouci up vektor pohledu kamery jestlize je pohled v prechodu
-public:
-	float yaw;	//<! otoceni kamery, podle toho( jeste s pitchem) se ve free kamere urcuje smer pohledu
-	float pitch; //<! naklon kamery, podle toho( jeste s yawem) se ve free kamere urcuje smer pohledu
+
 	uint32_t cameraMatrixPos;	//!< id/umisteni matice projekce v shaderech
 	GLuint eyePosPos;
 	GLuint frontPos;
+public:
+	float yaw;	//<! otoceni kamery, podle toho( jeste s pitchem) se ve free kamere urcuje smer pohledu
+	float pitch; //<! naklon kamery, podle toho( jeste s yawem) se ve free kamere urcuje smer pohledu
 
 private:
 	//! recalculate Yaw Pitch
@@ -77,6 +78,8 @@ public:
 		pohne pohled dopredu
 		pohne pohled dopredu
 	*/
+	void init(GLuint shaders);
+	void draw(double time);
 	void CameraMoveForward();
 	//! Pohyb dozadu
 	/*!

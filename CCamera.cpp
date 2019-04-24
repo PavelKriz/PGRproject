@@ -25,6 +25,21 @@ CCamera::CCamera(const glm::vec3 & toPosition, float fov, float aspect, float zN
 	vUp = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
+void CCamera::init(GLuint shaders) {
+	cameraMatrixPos = glGetUniformLocation(shaders, "viewM");
+	eyePosPos = glGetUniformLocation(shaders, "eyePos");
+	frontPos = glGetUniformLocation(shaders, "eyeDirection");
+	CHECK_GL_ERROR();
+}
+
+void CCamera::draw(double time) {
+	glUniformMatrix4fv(cameraMatrixPos, 1, GL_FALSE, glm::value_ptr(this->GetViewProjection(time)));
+	glUniform3f(eyePosPos, vActualPos.x, vActualPos.y, vActualPos.z);
+	glUniform3f(frontPos, vActualFront.x, vActualFront.y, vActualFront.z);
+	CHECK_GL_ERROR();
+}
+
+
 void CCamera::CameraMoveForward()
 {
 	if (state == FREE) { vPosition += cameraSpeed * vFront; }

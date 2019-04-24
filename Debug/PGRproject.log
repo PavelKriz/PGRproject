@@ -1,4 +1,5 @@
-﻿  CLighting.cpp
+﻿  CCamera.cpp
+  CLighting.cpp
   PGRproject.cpp
   Generování kódu...
   PGRproject.vcxproj -> C:\Users\Pavel\source\repos\PGRproject\Debug\PGRproject.exe
