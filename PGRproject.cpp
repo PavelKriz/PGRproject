@@ -7,11 +7,15 @@
 
 //================================================MY INCLUDE================================================
 #include "parametry.h"
+#include "CLighting.h"
 #include "CCamera.h"
 #include "CObject.h"
 
 //================================================CAMERA================================================
 CCamera camera(glm::vec3(0.0f,0.0f,3.0f), 70.0f, (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.01f, 1000.0f, basicCameraSpeed);	//!< Instance kamery ve svete aplikace
+
+//================================================CAMERA================================================
+CLighting light(glm::vec3(3.0,1.0,0.0), maximumNumberOfPointLights);
 
 //================================================MOUSE================================================
 /*!
@@ -35,6 +39,7 @@ int frame = 0;	//!< citadlo pro vypocet fps
 std::vector<CObject> objects;	//!< obsahuje objekty ktere se zobrazuji
 
 //================================================PRINT ERROR================================================
+
 /**
   Prints error in format
   \param[in] message Message for error print
@@ -84,6 +89,8 @@ void init(std::vector<CObject> & objects) {
 		std::cout << "wasnt able to load shaders" << std::endl;
 	}
 
+	light.init(shaderProgram);
+
 	//INIT OBJEKTU
 	for (auto & it : objects) {
 		it.init(shaderProgram);
@@ -91,6 +98,8 @@ void init(std::vector<CObject> & objects) {
 
 	//UNIFORM
 	camera.cameraMatrixPos = glGetUniformLocation(shaderProgram, "viewM");
+	camera.eyePosPos = glGetUniformLocation(shaderProgram, "eyePos");
+	camera.frontPos = glGetUniformLocation(shaderProgram, "eyeDirection");
 
 	CHECK_GL_ERROR();
 
@@ -104,8 +113,18 @@ void draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(shaderProgram);
+	
+	light.draw();
 
 	glUniformMatrix4fv(camera.cameraMatrixPos, 1, GL_FALSE, glm::value_ptr(camera.GetViewProjection(time)));
+
+	glm::vec3 actualPosTemp = camera.getPosition();
+	glUniform3f(camera.eyePosPos, actualPosTemp.x, actualPosTemp.y, actualPosTemp.z);
+
+	glm::vec3 actualFrontTemp = camera.getDirection();
+	glUniform3f(camera.frontPos, actualFrontTemp.x, actualFrontTemp.y, actualFrontTemp.z);
+
+
 
 	//glActiveTexture(GL_TEXTURE0);
 	for (auto & it : objects) {
@@ -226,6 +245,9 @@ void onKey(unsigned char key, int, int) {
 		break;
 	case secondViewKey:
 		camera.changeViewType(LOCK_TWO, time);
+		break;
+	case flashLightOnOff:
+		light.enableDisableFlashLight();
 		break;
 	}
 }

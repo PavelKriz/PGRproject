@@ -20,19 +20,21 @@ CCamera::CCamera(const glm::vec3 & toPosition, float fov, float aspect, float zN
 	state = FREE;
 	nextState = FREE;
 	mPerspective = glm::perspective(fov, aspect, zNear, zFar);
-	vPosition = toPosition;
-	vFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	vActualPos = vPosition = toPosition;
+	vActualFront = vFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	vUp = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
 void CCamera::CameraMoveForward()
 {
 	if (state == FREE) { vPosition += cameraSpeed * vFront; }
+	vActualPos = vPosition;
 }
 
 void CCamera::CameraMoveBackward()
 {
 	if (state == FREE) { vPosition -= cameraSpeed * vFront; }
+	vActualPos = vPosition;
 }
 
 void CCamera::CameraMoveUp()
@@ -41,6 +43,7 @@ void CCamera::CameraMoveUp()
 	glm::vec3 right = glm::normalize(glm::cross(vFront, vUp));
 	glm::vec3 up = glm::normalize(glm::cross(vFront, right));
 	vPosition -= up * cameraSpeed;
+	vActualPos = vPosition;
 }
 
 void CCamera::CameraMoveDown()
@@ -49,22 +52,25 @@ void CCamera::CameraMoveDown()
 	glm::vec3 right = glm::normalize(glm::cross(vFront, vUp));
 	glm::vec3 up = glm::normalize(glm::cross(vFront, right));
 	vPosition += up * cameraSpeed;
+	vActualPos = vPosition;
 }
 
 void CCamera::CameraMoveLeft()
 {
 	if (state == FREE) { vPosition -= glm::normalize(glm::cross(vFront, vUp)) * cameraSpeed; }
+	vActualPos = vPosition;
 }
 
 void CCamera::CameraMoveRight()
 {
 	if (state == FREE) { vPosition += glm::normalize(glm::cross(vFront, vUp)) * cameraSpeed; }
+	vActualPos = vPosition;
 }
 
 void CCamera::setFront(const glm::vec3 & toFront)
 {
 	if (state == FREE) {
-		vFront = toFront;
+		vActualFront = vFront = toFront;
 	}
 }
 
@@ -88,7 +94,7 @@ void CCamera::changeViewType(viewState which, double time)
 		state = TRANSITION;
 		nextState = LOCK_ONE;
 
-		vPositionNext = glm::vec3(1.901f, 1.2524f, -0.3343f);
+		vPositionNext = glm::vec3(1.901f * 5.0f, 1.2524f * 5.5f, -0.3343f * 5.0f);
 		vFrontNext = glm::vec3(-0.7499f, -0.6494f, 0.1255f);
 		vUpNext = glm::vec3(0.0f, 1.0f, 0.0f);
 		break;
@@ -99,7 +105,7 @@ void CCamera::changeViewType(viewState which, double time)
 		state = TRANSITION;
 		nextState = LOCK_TWO;
 
-		vPositionNext = glm::vec3(-1.41f, -0.72f, 1.63f);
+		vPositionNext = glm::vec3(-1.41f * 5.0f, -0.72f* 3.0f, 1.63f* 5.0f);
 		vFrontNext = glm::vec3(0.65f, 0.22f, -0.71f);
 		vUpNext = glm::vec3(0.0f, 1.0f, 0.0f);
 		break;
@@ -120,14 +126,14 @@ glm::mat4 CCamera::GetViewProjection(double time)
 
 		 if (alpha > 1.0f) {
 			 alpha = 1.0f;
-			 vPosition = vPositionNext;
-			 vFront = vFrontNext;
+			 vActualPos = vPosition = vPositionNext;
+			 vActualFront = vFront = vFrontNext;
 			 vUp = vUpNext;
 
 			 state = nextState;
 		 }
-		 tempPos = glm::mix(vPosition, vPositionNext, alpha);
-		 tempFront = glm::mix(vFront, vFrontNext, alpha);
+		 vActualPos = tempPos = glm::mix(vPosition, vPositionNext, alpha);
+		 vActualFront = tempFront = glm::mix(vFront, vFrontNext, alpha);
 		 tempUp = glm::mix(vUp, vUpNext, alpha);
 		 return mPerspective * glm::lookAt(tempPos, tempPos + tempFront, vUp);
 	 case LOCK_ONE:
@@ -139,3 +145,12 @@ glm::mat4 CCamera::GetViewProjection(double time)
 
 	 return mPerspective * glm::lookAt(vPosition, vPosition + vFront, vUp);
  }
+
+
+glm::vec3 CCamera::getPosition() {
+	return vActualPos;
+}
+
+glm::vec3 CCamera::getDirection() {
+	return vActualFront;
+}

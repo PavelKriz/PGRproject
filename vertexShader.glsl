@@ -1,13 +1,19 @@
-#version 140
-in vec3 position;
-in vec2 textureCoord;
+#version 330
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec3 vertexShaderNormal;
+layout(location = 2) in vec2 textureCoord;
 out vec2 ShadertextureCoord;
+out vec3 normal;
+out vec3 FragPos;
 
 uniform mat4  viewM;
 
 void main() {
-	vec3 center = vec3(0.0, 0.0, 0.0);
 	mat4 translateDown = mat4(vec4(1.0,0.0,0.0,0.0), vec4(0.0,1.0,0.0,0.0), vec4(0.0,0.0,1.0,0.0),vec4(0.0,-0.4,0.0,1.0));
-	gl_Position =  viewM * translateDown * vec4(mix(center, position, 0.2), 1.0); // move and scale
+	normal = mat3(transpose(inverse(translateDown))) * vertexShaderNormal; 
+	vec3 center = vec3(0.0, 0.0, 0.0);
+	vec4 position = translateDown * vec4(mix(center, position, 1.0), 1.0);
+	gl_Position =  viewM * position;
+	FragPos = position.xyz;
 	ShadertextureCoord = textureCoord;
 }

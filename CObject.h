@@ -23,9 +23,11 @@ class CObject {
 	unsigned int countOfVertices;	//!< pocet vrcholu (pro kazdy polygon jsou tri), nepocitaji se jako identicke
 	GLuint arrayBuffer;	//!< id  bufferu s daty
 	GLuint vao;	//!< id vertex array pro objekt
+	GLuint positionLoc;
 	GLuint texturePos;	//!< id/pozice textur 
 	GLuint textureCoordsPos;	//!< id atributu texturovych souradnic v saderu
 	GLuint textureSamplerPos;	//!< id sampleru textury v shaderu
+	GLuint normalPos;	//!< pozice normal v shaderu
 	std::string textureName;	//!< nazev textury objektu
 public:
 	//! Konstruktor

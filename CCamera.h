@@ -38,6 +38,8 @@ class CCamera {
 
 	glm::mat4 mPerspective;	//!< matice pro perspektivu, nastavi se na zacatku
 
+	glm::vec3 vActualPos;
+	glm::vec3 vActualFront;
 	glm::vec3 vPosition;	//!< pozice kamery
 	glm::vec3 vFront;	//!< smer pohledu kamery
 	glm::vec3 vUp;	//!< up vektor kamery
@@ -48,6 +50,8 @@ public:
 	float yaw;	//<! otoceni kamery, podle toho( jeste s pitchem) se ve free kamere urcuje smer pohledu
 	float pitch; //<! naklon kamery, podle toho( jeste s yawem) se ve free kamere urcuje smer pohledu
 	uint32_t cameraMatrixPos;	//!< id/umisteni matice projekce v shaderech
+	GLuint eyePosPos;
+	GLuint frontPos;
 
 private:
 	//! recalculate Yaw Pitch
@@ -118,4 +122,14 @@ public:
 		\return matice projekce
 	*/
 	glm::mat4 GetViewProjection(double time);
+	/*!
+		vrati pozici divaka
+		\return vektor pozice divaka
+	*/
+	glm::vec3 getPosition();
+	/*!
+		vrati smer pohledu divaka
+		\return vektor smeru pozice divaka
+	*/
+	glm::vec3 getDirection();
 };

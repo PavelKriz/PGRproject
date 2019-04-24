@@ -14,16 +14,24 @@ CObject::CObject(std::string fileName, std::string toTextureName)
 
 void CObject::init(GLuint shaderProgram)
 {
+
 	glGenBuffers(1, &arrayBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, arrayBuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeOfVertices, &vertices[0], GL_STATIC_DRAW);
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
-	GLint positionLoc = glGetAttribLocation(shaderProgram, "position");
+
+	positionLoc = 0;
 	glEnableVertexAttribArray(positionLoc);
 	glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), 0);
 
+	//NORMALY
+	normalPos = 1;
+	//normalPos = glGetAttribLocation(shaderProgram, "vertexShaderNormal");
+	glEnableVertexAttribArray(normalPos);
+	glVertexAttribPointer(normalPos, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+	CHECK_GL_ERROR();
 
 	//OBRAZEK
 	texturePos = pgr::createTexture(textureName, true);
@@ -37,10 +45,11 @@ void CObject::init(GLuint shaderProgram)
 	glUseProgram(shaderProgram);
 	glUniform1i(textureSamplerPos, 0);
 
-
-	textureCoordsPos = glGetAttribLocation(shaderProgram, "textureCoord");
+	textureCoordsPos = 2;
 	glVertexAttribPointer(textureCoordsPos, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(textureCoordsPos);
+
+
 
 	CHECK_GL_ERROR();
 }
