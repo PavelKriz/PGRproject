@@ -18,6 +18,14 @@
 	Umi objekty nacist nasledovne je inicializovat do bufferu a potom je vykreslovat
 */
 class CObject {
+public:
+	enum EObjectType {
+		STATIC = 1,
+		SKYBOX = 2
+	};
+private:
+	EObjectType objectType;
+	unsigned int objectTypePos;
 	std::vector<float>  vertices;	//!< pole s vrcholy ulozenymi ve floatech
 	unsigned int sizeOfVertices;	//!< velikost bufferu, pocet jeho floatu
 	unsigned int countOfVertices;	//!< pocet vrcholu (pro kazdy polygon jsou tri), nepocitaji se jako identicke
@@ -36,7 +44,7 @@ public:
 	\param[in] fileName soubor s vrcholy
 	\param[in] toTextureName jmeno souboru s texturami
 	*/
-	CObject(std::string fileName, std::string toTextureName);
+	CObject(EObjectType toType, std::string fileName, std::string toTextureName);
 	//! Inicializace
 	/*!
 	incializuje objekt, nahraje jeho textury a vrcholy

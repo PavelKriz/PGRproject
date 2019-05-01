@@ -263,8 +263,9 @@ int main(int argc, char** argv) {
 	if (!pgr::initialize(pgr::OGL_VER_MAJOR, pgr::OGL_VER_MINOR))
 		pgr::dieWithError("pgr init failed, required OpenGL not supported?");
 
-	objects.push_back(CObject("ananas.obj","ananas4k.png"));
-	objects.push_back(CObject("pizza.obj", "pizza2kb.png"));
+	objects.push_back(CObject(CObject::EObjectType::STATIC , "ananas.obj" , "ananas4k.png"));
+	objects.push_back(CObject(CObject::EObjectType::STATIC, "pizza.obj" , "pizza2kb.png"));
+	objects.push_back(CObject(CObject::EObjectType::SKYBOX , "spaceBox.obj" , "bigSpaceNoSun.jpg"));
 	init(objects);
 	std::cout << "zacatek programu!" << std::endl;
 

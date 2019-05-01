@@ -60,6 +60,7 @@ private:
 	 Kdyz je prechod z statickeho pohledu na dynamicky. Tak je potreba znovu vypocist spravny yaw a pitch,
 	 jelikoz ve statickych pohledech je pouzit jen front vektor pro smer kamery, zatimco ve free kamere se front vektor vytvari prave z yawu a pitche
 	*/
+	void checkPosition();
 	void recalculateYawPitch();
 public:
 	//! Konstruktor

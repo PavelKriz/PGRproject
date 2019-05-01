@@ -1,5 +1,12 @@
 #include "CCamera.h"
 
+void CCamera::checkPosition() {
+	glm::vec3 center(0.0f,0.0f,0.0f);
+	float distance = glm::distance(center, vPosition);
+	if (distance > 20.0f) {
+		vPosition = -0.9f * vPosition;
+	}
+}
 
 void CCamera::recalculateYawPitch()
 {
@@ -133,6 +140,12 @@ glm::mat4 CCamera::GetViewProjection(double time)
 	 glm::vec3 tempPos;
 	 glm::vec3 tempFront;
 	 glm::vec3 tempUp;
+
+	 checkPosition();
+	 /*
+	 std::cout	<< "Position: x: " << vPosition.x << "y: " << vPosition.y << "z: " << vPosition.z 
+				<< "Distance: " << glm::distance(glm::vec3(0.0f,0.0f,0.0f), vPosition) <<std::endl;
+				*/
 	 switch (state) {
 	 case FREE:
 		 return mPerspective * glm::lookAt(vPosition, vPosition + vFront, vUp);

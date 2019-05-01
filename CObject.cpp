@@ -3,8 +3,9 @@
 
 
 
-CObject::CObject(std::string fileName, std::string toTextureName)
+CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName)
 {
+	objectType = toType;
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
 	textureName = toTextureName;
@@ -33,6 +34,10 @@ void CObject::init(GLuint shaderProgram)
 	glVertexAttribPointer(normalPos, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
 	CHECK_GL_ERROR();
 
+	//UNIFORM
+	objectTypePos = glGetUniformLocation(shaderProgram, "objectType");
+
+
 	//OBRAZEK
 	texturePos = pgr::createTexture(textureName, true);
 	if (texturePos == 0) {
@@ -56,6 +61,12 @@ void CObject::init(GLuint shaderProgram)
 
 void CObject::draw()
 {
+	if (objectType == SKYBOX) {
+		glUniform1i(objectTypePos, 2);
+	}
+	else {
+		glUniform1i(objectTypePos, 1);
+	}
 	glBindTexture(GL_TEXTURE_2D, texturePos);
 	glBindVertexArray(vao);
 

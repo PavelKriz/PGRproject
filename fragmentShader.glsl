@@ -6,6 +6,7 @@ uniform vec3 sunDirection;
 uniform int flashlight;
 uniform int countOflights;
 uniform vec3 lights[6];
+uniform int objectType;
 out vec4 color;
 uniform vec3 eyePos;
 uniform vec3 eyeDirection;
@@ -67,18 +68,20 @@ float pointPhong(vec3 lightPointPos){
 void main() {
 	vec3 lightColor = vec3(1.0,0.9,0.9);
 
-	vec3 lightning = vec3(0.0,0.0,0.0);
-	if(flashlight > 0) {
-		lightning += flashlighPhong() * lightColor;
-		lightning += directionPhong() * 0.3 * lightColor;
-		for(int i = 0; i < countOflights; ++i){
-			lightning += pointPhong(lights[i]);
-		}
+	if( objectType == 2){ 
+		color =  texture(MTexture, ShadertextureCoord);
 	} else {
-		lightning += directionPhong() * 1.2  * lightColor;
+		vec3 lightning = vec3(0.0,0.0,0.0);
+		if(flashlight > 0) {
+			lightning += flashlighPhong() * lightColor;
+			lightning += directionPhong() * 0.3 * lightColor;
+			for(int i = 0; i < countOflights; ++i){
+				lightning += pointPhong(lights[i]);
+			}
+		} else {
+			lightning += directionPhong() * 1.2  * lightColor;
+		}
+
+		color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);
 	}
-
-	color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);
-	
-
 }

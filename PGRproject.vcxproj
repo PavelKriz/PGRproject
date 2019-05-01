@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="ananas4k.png" />
+    <Image Include="bigSpaceNoSun.jpg" />
     <Image Include="pizza2kb.png" />
   </ItemGroup>
   <ItemGroup>

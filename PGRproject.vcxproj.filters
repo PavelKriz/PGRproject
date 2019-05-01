@@ -55,6 +55,9 @@
     <Image Include="pizza2kb.png">
       <Filter>Soubory zdrojů</Filter>
     </Image>
+    <Image Include="bigSpaceNoSun.jpg">
+      <Filter>Soubory zdrojů</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertexShader.glsl">
