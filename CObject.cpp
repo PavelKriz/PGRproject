@@ -64,6 +64,9 @@ void CObject::draw()
 	if (objectType == SKYBOX) {
 		glUniform1i(objectTypePos, 2);
 	}
+	else if (objectType == ANANAS) {
+		glUniform1i(objectTypePos, 3);
+	}
 	else {
 		glUniform1i(objectTypePos, 1);
 	}

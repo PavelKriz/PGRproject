@@ -21,7 +21,8 @@ class CObject {
 public:
 	enum EObjectType {
 		STATIC = 1,
-		SKYBOX = 2
+		SKYBOX = 2,
+		ANANAS = 3,
 	};
 private:
 	EObjectType objectType;
