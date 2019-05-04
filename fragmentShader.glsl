@@ -4,6 +4,7 @@ in vec3 normal;
 in vec3 FragPos;
 in vec3 cameraFragPos;
 in vec3 outCenter;
+in vec3 centerLookFragPos;
 
 uniform vec3 sunDirection;
 uniform int flashlight;
@@ -18,6 +19,7 @@ uniform sampler2D MTexture;
 float ambient = 0.5;
 float specularStrength = 0.8;
 float diffuseStrength = 0.8;
+vec3 lightColor = vec3(1.0,0.9,0.9);
 
 float getFlashlight(){
 	vec3 lightDir = normalize(eyePos - FragPos);
@@ -67,24 +69,42 @@ float pointPhong( vec3 lightPointPos){
 	return (diffuse + ambient  + specular) * attenuation;
 }
 
-float ananasPhong( vec3 lightPointPos){
-	vec3 normalizedNormal = normalize(normal);
-	vec3 lightDir = normalize(lightPointPos - FragPos);
-	float diffuse = max(dot(normalizedNormal, lightDir), 0.0)  * diffuseStrength ;
+float  ananasPhong( vec3 lightPointPos){
+	float distance =length(vec3(0.0,0.0,0.0) - FragPos);
+	distance -= 0.7;
+	float attenuation = 1.0 / (0.6 * distance +  distance * distance * distance); 
+	return attenuation ;
+}
 
-	vec3 viewDir = normalize(eyePos - FragPos);
-	vec3 reflectDir = reflect(-lightDir, normal);  
-	float specular = pow(max(dot(viewDir, reflectDir), 0.0), 128) * specularStrength;
-	float distance    = length(lightPointPos - FragPos);
-	distance -= 1.0;
-	float attenuation = 1.0 / ( 1.0 * distance * distance); 
+float lightFog(vec3 objPos){
+	float objDist = length(FragPos - objPos);
+	if(objectType != 3){
+		if(objDist > 10){
+			vec3 ananasDirection = normalize(eyePos - objPos);
+			vec3 fragDirection = normalize(eyePos - FragPos);
+			vec3 ananasLightDir = normalize(objPos - FragPos);
+			float spotAngle = max(0.0f, dot(ananasDirection,fragDirection));
 
-	return (diffuse + ambient  + specular) * attenuation;
+			float dist = length(eyePos - objPos);
+			if(dist < 10){
+				if(spotAngle > 0.95f * 0.95 * (dist/30 + 0.7)  ){
+					float viewable = max(dot(normalize(normal), ananasLightDir), 0.0) ;
+					return pow(spotAngle, floor(64/(10/dist))) ;
+				}
+			} else {
+				if(spotAngle > 0.95f * 0.95 *(1/(dist/(dist-0.29)) + 0.062)  ){
+					float viewable = max(dot(normalize(normal), ananasLightDir), 0.0) ;
+					return pow(spotAngle, 64) ;
+				}
+			}
+		} else {
+			return ananasPhong( vec3(0.0,FragPos.y * 1.2,0.0));
+		}
+	}
 }
 
 
 void main() {
-	vec3 lightColor = vec3(1.0,0.9,0.9);
 
 	if( objectType == 2){ 
 		color =  texture(MTexture, ShadertextureCoord);
@@ -103,31 +123,6 @@ void main() {
 		color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);
 	}
 
-	/*
-	if(objectType != 3){
-		if(cameraFragPos.z > outCenter.z){
-			if( cameraFragPos.x * cameraFragPos.x + cameraFragPos.y * cameraFragPos.x < 4 * 4);
-	}
-	*/
-
 	
-	if(objectType != 3){
-		if(cameraFragPos.z > outCenter.z){
-			vec3 ananasDirection = normalize(eyePos - vec3(0.0,0.0,0.0));
-			vec3 fragDirection = normalize(eyePos - FragPos);
-			vec3 ananasLightDir = normalize(vec3(0.0,0.0,0.0) - FragPos);
-			float spotAngle = max(0.0f, dot(ananasDirection,fragDirection));
-
-			float dist = length(eyePos - vec3(0.0,0.0,0.0));
-			//spotAngle > 0.95f /** (1/(dist/(dist-0.29)) + 0.062*/)
-			//* (sin((dist+20)/25) + 0.065)
-			if(spotAngle > 0.95f * 0.95 *(1/(dist/(dist-0.29)) + 0.062)  ){
-				float viewable = max(dot(normalize(normal), ananasLightDir), 0.0) ;
-				color += vec4(lightColor,1.0) *pow(spotAngle, 64) ;
-			}
-		} else {
-			color += ananasPhong( vec3(0.0,0.0,0.0));
-		}
-	}
-	
+		color += vec4(lightColor, 1.0) * lightFog(vec3(0.0,0.0,0.0));	
 }

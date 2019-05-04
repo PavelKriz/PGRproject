@@ -50,6 +50,7 @@ class CCamera {
 	uint32_t cameraMatrixPos;	//!< id/umisteni matice projekce v shaderech
 	GLuint eyePosPos;
 	GLuint frontPos;
+	GLuint centerLookPos;
 public:
 	float yaw;	//<! otoceni kamery, podle toho( jeste s pitchem) se ve free kamere urcuje smer pohledu
 	float pitch; //<! naklon kamery, podle toho( jeste s yawem) se ve free kamere urcuje smer pohledu
