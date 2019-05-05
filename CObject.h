@@ -31,6 +31,8 @@ private:
 	glm::mat4 translateScale;
 	glm::mat4 rotationM;
 	glm::mat4 ananasDirRotation;
+	unsigned int skyboxSunTexture;
+	unsigned int skyboxTexSamplerPos;
 	float ananasPieceRotation;
 	EObjectType objectType;
 	unsigned int objectTypePos;

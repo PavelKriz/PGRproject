@@ -255,8 +255,8 @@ int main(int argc, char** argv) {
 	if (!pgr::initialize(pgr::OGL_VER_MAJOR, pgr::OGL_VER_MINOR))
 		pgr::dieWithError("pgr init failed, required OpenGL not supported?");
 
-	scene.addAnanas("ananas.obj", "ananas4k.png");
 	scene.addSkybox("spaceBox.obj", "bigSpaceNoSun.jpg");
+	scene.addAnanas("ananas.obj", "ananas4k.png");
 	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png",glm::vec3(-3.0f, 1.0f, 0.0f));
 	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(3.0f, 1.0f, 0.0f));
 	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(0.0f, 1.0f, 3.0f));

@@ -83,7 +83,7 @@ void CObject::init(GLuint shaderProgram)
 	if (texturePos == 0) {
 		pgr::dieWithError("Texture loading failed.");
 	}
-	//glActiveTexture(GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturePos);
 	textureSamplerPos = glGetUniformLocation(shaderProgram, "MTexture");
 
@@ -93,6 +93,20 @@ void CObject::init(GLuint shaderProgram)
 	textureCoordsPos = 2;
 	glVertexAttribPointer(textureCoordsPos, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(textureCoordsPos);
+
+	if (objectType == SKYBOX) {
+		skyboxSunTexture = pgr::createTexture("sunInSpace.png", true);
+		if (skyboxSunTexture == 0) {
+			pgr::dieWithError("Texture loading failed.");
+		}
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, skyboxSunTexture);
+		skyboxTexSamplerPos = glGetUniformLocation(shaderProgram, "skyboxSun");
+
+		glUseProgram(shaderProgram);
+		glUniform1i(skyboxTexSamplerPos, 1);
+
+	}
 
 
 
@@ -113,9 +127,15 @@ void CObject::draw()
 	else {
 		glUniform1i(objectTypePos, 1);
 	}
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturePos);
-	glBindVertexArray(vao);
 
+	if (objectType == SKYBOX) {
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, skyboxSunTexture);
+	}
+
+	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, countOfVertices);
 }
 

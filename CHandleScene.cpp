@@ -45,6 +45,7 @@ const glm::vec3 p4 = glm::vec3(0.0f, -0.2f, 2.5f);
 const glm::vec3 p3 = glm::vec3(0.0f, 2.0f, 2.5f);
 const glm::vec3 p2 = glm::vec3(0.0f, 2.0f, 1.5f);
 const glm::vec3 p1 = glm::vec3(0.0f, 0.7f, 0.7f);
+
 void CHandleScene::draw(float time)
 {
 	static float startTime;
@@ -60,7 +61,7 @@ void CHandleScene::draw(float time)
 	}
 
 
-	light.draw();
+	light.draw(time);
 	for (auto & it : objects) {
 		it.draw();
 	}

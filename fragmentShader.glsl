@@ -14,7 +14,10 @@ uniform int objectType;
 out vec4 color;
 uniform vec3 eyePos;
 uniform vec3 eyeDirection;
+
 uniform sampler2D MTexture;
+uniform sampler2D skyboxSun;
+uniform float sunAlpha;
 
 float ambient = 0.5;
 float specularStrength = 0.8;
@@ -108,6 +111,17 @@ void main() {
 
 	if( objectType == 2){ 
 		color =  texture(MTexture, ShadertextureCoord);
+
+		vec2 tmpCoords = vec2(ShadertextureCoord.x + sunAlpha, ShadertextureCoord.y);
+		if(tmpCoords.x > 1.0f){
+			tmpCoords.x -= 1.0f;
+		}
+
+		vec4 tmpColor = texture(skyboxSun, tmpCoords);
+		if(tmpColor.x > 0.01){
+			color += tmpColor;
+		}
+
 	} else {
 		vec3 lightning = vec3(0.0,0.0,0.0);
 		if(flashlight > 0) {
@@ -124,5 +138,5 @@ void main() {
 	}
 
 	
-		color += vec4(lightColor, 1.0) * lightFog(vec3(0.0,0.0,0.0));	
+	color += vec4(lightColor, 1.0) * lightFog(vec3(0.0,0.0,0.0));	
 }
