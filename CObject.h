@@ -23,6 +23,7 @@ public:
 		STATIC = 1,
 		SKYBOX = 2,
 		ANANAS = 3,
+		ANANAS_PIECE = 4
 	};
 private:
 	EObjectType objectType;

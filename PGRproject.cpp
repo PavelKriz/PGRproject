@@ -7,15 +7,14 @@
 
 //================================================MY INCLUDE================================================
 #include "parametry.h"
-#include "CLighting.h"
-#include "CCamera.h"
-#include "CObject.h"
+#include "CHandleScene.h"
 
 //================================================CAMERA================================================
 CCamera camera(glm::vec3(0.0f,0.0f,3.0f), 70.0f, (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.01f, 1000.0f, basicCameraSpeed);	//!< Instance kamery ve svete aplikace
 
-//================================================CAMERA================================================
-CLighting light(glm::vec3(3.0,1.0,0.0), maximumNumberOfPointLights);
+//================================================SCENE================================================
+
+CHandleScene scene(maximumNumberOfPointLights);
 
 //================================================MOUSE================================================
 /*!
@@ -35,8 +34,6 @@ double time = 0.5;	//!< cas od zacatku programu
 double fps = 0;	//!< informace o poctu fps
 int frame = 0;	//!< citadlo pro vypocet fps
 
-//================================================OBJECTS================================================
-std::vector<CObject> objects;	//!< obsahuje objekty ktere se zobrazuji
 
 //================================================PRINT ERROR================================================
 
@@ -77,7 +74,7 @@ bool loadShaders() {
 	main init of program
 	initializes buffers, textures, etc.
 */
-void init(std::vector<CObject> & objects) {
+void init() {
 	mouseData.inUsing = false;
 
 
@@ -89,12 +86,9 @@ void init(std::vector<CObject> & objects) {
 		std::cout << "wasnt able to load shaders" << std::endl;
 	}
 
-	light.init(shaderProgram);
+	//INIT OBEJEKTU A SVETEL
+	scene.init(shaderProgram);
 
-	//INIT OBJEKTU
-	for (auto & it : objects) {
-		it.init(shaderProgram);
-	}
 
 	//UNIFORM
 	camera.init(shaderProgram);
@@ -112,14 +106,12 @@ void draw() {
 
 	glUseProgram(shaderProgram);
 	
-	light.draw();
+
 
 	camera.draw(time);
 
 	//glActiveTexture(GL_TEXTURE0);
-	for (auto & it : objects) {
-		it.draw();
-	}
+	scene.draw();
 
 	CHECK_GL_ERROR();
 	glutSwapBuffers();
@@ -237,7 +229,7 @@ void onKey(unsigned char key, int, int) {
 		camera.changeViewType(LOCK_TWO, time);
 		break;
 	case flashLightOnOff:
-		light.enableDisableFlashLight();
+		scene.enableDisableFlashLight();
 		break;
 	}
 }
@@ -263,10 +255,11 @@ int main(int argc, char** argv) {
 	if (!pgr::initialize(pgr::OGL_VER_MAJOR, pgr::OGL_VER_MINOR))
 		pgr::dieWithError("pgr init failed, required OpenGL not supported?");
 
-	objects.push_back(CObject(CObject::EObjectType::ANANAS , "ananas.obj" , "ananas4k.png"));
-	objects.push_back(CObject(CObject::EObjectType::STATIC, "pizza.obj" , "pizza2kb.png"));
-	objects.push_back(CObject(CObject::EObjectType::SKYBOX , "spaceBox.obj" , "bigSpaceNoSun.jpg"));
-	init(objects);
+	scene.addAnanas("ananas.obj", "ananas4k.png");
+	scene.addSkybox("spaceBox.obj", "bigSpaceNoSun.jpg");
+	scene.addStatic("pizza.obj", "pizza2kb.png");
+
+	init();
 	std::cout << "zacatek programu!" << std::endl;
 
 	glutMainLoop();

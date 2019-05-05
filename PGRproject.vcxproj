@@ -126,12 +126,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CHandleScene.cpp" />
     <ClCompile Include="CLighting.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="PGRproject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CHandleScene.h" />
     <ClInclude Include="CLighting.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="ObjectLoader.h" />
