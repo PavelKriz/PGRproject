@@ -26,6 +26,8 @@ public:
 		ANANAS_PIECE = 4
 	};
 private:
+	glm::vec3 objectPosition;
+	glm::mat4 transform;
 	EObjectType objectType;
 	unsigned int objectTypePos;
 	std::vector<float>  vertices;	//!< pole s vrcholy ulozenymi ve floatech
@@ -34,11 +36,13 @@ private:
 	GLuint arrayBuffer;	//!< id  bufferu s daty
 	GLuint vao;	//!< id vertex array pro objekt
 	GLuint positionLoc;
+	unsigned int transformMatrixPos;
 	GLuint texturePos;	//!< id/pozice textur 
 	GLuint textureCoordsPos;	//!< id atributu texturovych souradnic v saderu
 	GLuint textureSamplerPos;	//!< id sampleru textury v shaderu
 	GLuint normalPos;	//!< pozice normal v shaderu
 	std::string textureName;	//!< nazev textury objektu
+	void setTransformMatrix();
 public:
 	//! Konstruktor
 	/*!
@@ -52,6 +56,7 @@ public:
 	incializuje objekt, nahraje jeho textury a vrcholy
 	\param[in] shaderProgram pro to aby mohl nabindovat objekty s promenymi v shaderech
 	*/
+	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
 	void init(GLuint shaderProgram);
 	//! Vykresleni souboru
 	/*!

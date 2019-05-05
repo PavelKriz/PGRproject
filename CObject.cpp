@@ -1,16 +1,42 @@
 #include "CObject.h"
 #include "ObjectLoader.h"
 
-
+void CObject::setTransformMatrix()
+{
+	transform[3].x = objectPosition.x;
+	transform[3].y = objectPosition.y;
+	transform[3].z = objectPosition.z;
+	if (objectType == ANANAS_PIECE) {
+		transform[0].x = 0.1f;
+		transform[1].y = 0.1f;
+		transform[2].z = 0.1f;
+	}
+}
 
 CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName)
 {
+	objectPosition = glm::vec3(0.0f,0.0f,0.0f);
+	transform = glm::mat4(1.0f);
 	objectType = toType;
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
 	textureName = toTextureName;
 	sizeOfVertices = vertices.size() * sizeof(float);
 	countOfVertices = vertices.size() / 8;
+	setTransformMatrix();
+}
+
+CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition)
+{
+	objectPosition = toDefaultPosition;
+	transform = glm::mat4(1.0f);
+	objectType = toType;
+	vertices = std::vector<float>();
+	objectLoader(fileName.c_str(), vertices);
+	textureName = toTextureName;
+	sizeOfVertices = vertices.size() * sizeof(float);
+	countOfVertices = vertices.size() / 8;
+	setTransformMatrix();
 }
 
 void CObject::init(GLuint shaderProgram)
@@ -36,6 +62,7 @@ void CObject::init(GLuint shaderProgram)
 
 	//UNIFORM
 	objectTypePos = glGetUniformLocation(shaderProgram, "objectType");
+	transformMatrixPos = glGetUniformLocation(shaderProgram, "transform");
 
 
 	//OBRAZEK
@@ -61,6 +88,9 @@ void CObject::init(GLuint shaderProgram)
 
 void CObject::draw()
 {
+
+	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(transform));
+
 	if (objectType == SKYBOX) {
 		glUniform1i(objectTypePos, 2);
 	}

@@ -64,6 +64,9 @@
     <Image Include="bigSpaceNoSun.jpg">
       <Filter>Soubory zdrojů</Filter>
     </Image>
+    <Image Include="ananasPiece.png">
+      <Filter>Soubory zdrojů</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertexShader.glsl">

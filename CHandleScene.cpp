@@ -18,12 +18,19 @@ void CHandleScene::init(unsigned int shaders)
 	for (auto & it : objects) {
 		it.init(shaders);
 	}
+	for (auto & it : ananasPieces) {
+		it.init(shaders);
+	}
 }
 
 void CHandleScene::draw()
 {
 	light.draw();
 	for (auto & it : objects) {
+		it.draw();
+	}
+
+	for (auto & it : ananasPieces) {
 		it.draw();
 	}
 }
