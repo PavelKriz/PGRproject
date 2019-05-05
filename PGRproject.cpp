@@ -111,7 +111,7 @@ void draw() {
 	camera.draw(time);
 
 	//glActiveTexture(GL_TEXTURE0);
-	scene.draw();
+	scene.draw(time);
 
 	CHECK_GL_ERROR();
 	glutSwapBuffers();

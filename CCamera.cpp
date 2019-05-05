@@ -3,7 +3,6 @@
 void CCamera::checkPosition() {
 	glm::vec3 center(0.0f,0.0f,0.0f);
 	float distance = glm::distance(center, vPosition);
-	std::cout << distance << std::endl;
 	if (distance > 20.0f) {
 		vPosition = -0.9f * vPosition;
 	}

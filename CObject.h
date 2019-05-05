@@ -27,7 +27,11 @@ public:
 	};
 private:
 	glm::vec3 objectPosition;
-	glm::mat4 transform;
+	glm::vec3 vFront;
+	glm::mat4 translateScale;
+	glm::mat4 rotationM;
+	glm::mat4 ananasDirRotation;
+	float ananasPieceRotation;
 	EObjectType objectType;
 	unsigned int objectTypePos;
 	std::vector<float>  vertices;	//!< pole s vrcholy ulozenymi ve floatech
@@ -42,6 +46,8 @@ private:
 	GLuint textureSamplerPos;	//!< id sampleru textury v shaderu
 	GLuint normalPos;	//!< pozice normal v shaderu
 	std::string textureName;	//!< nazev textury objektu
+
+	void initTransformMatrix();
 	void setTransformMatrix();
 public:
 	//! Konstruktor
@@ -63,4 +69,6 @@ public:
 	vykresli objekt podle informaci co ma
 	*/
 	void draw();
+	void changePosition(const glm::vec3 & newPos);
+	void rotate(float angle);
 };
