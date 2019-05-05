@@ -58,13 +58,15 @@ public:
 	\param[in] fileName soubor s vrcholy
 	\param[in] toTextureName jmeno souboru s texturami
 	*/
+	CObject() {}
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName);
+	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
+	CObject(CObject * image);
 	//! Inicializace
 	/*!
 	incializuje objekt, nahraje jeho textury a vrcholy
 	\param[in] shaderProgram pro to aby mohl nabindovat objekty s promenymi v shaderech
 	*/
-	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
 	void init(GLuint shaderProgram);
 	//! Vykresleni souboru
 	/*!

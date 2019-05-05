@@ -111,7 +111,7 @@ void draw() {
 	camera.draw(time);
 
 	//glActiveTexture(GL_TEXTURE0);
-	scene.draw(time);
+	scene.draw(shaderProgram,time);
 
 	CHECK_GL_ERROR();
 	glutSwapBuffers();
@@ -257,9 +257,9 @@ int main(int argc, char** argv) {
 
 	scene.addSkybox("spaceBox.obj", "bigSpaceNoSun.jpg");
 	scene.addAnanas("ananas.obj", "ananas4k.png");
-	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png",glm::vec3(-3.0f, 1.0f, 0.0f));
+/*	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png",glm::vec3(-3.0f, 1.0f, 0.0f));
 	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(3.0f, 1.0f, 0.0f));
-	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(0.0f, 1.0f, 3.0f));
+	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(0.0f, 1.0f, 3.0f));*/
 	scene.addStatic("pizza.obj", "pizza2kb.png");
 
 	init();

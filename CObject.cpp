@@ -52,6 +52,30 @@ CObject::CObject(EObjectType toType, std::string fileName, std::string toTexture
 	initTransformMatrix();
 }
 
+CObject::CObject(CObject * image) {
+	objectPosition = image->objectPosition;
+	translateScale = glm::mat4(1.0f);
+	vFront = glm::vec3();
+	ananasDirRotation = glm::mat4(1.0f);
+	objectType = image->objectType;
+	vertices = image->vertices;
+	textureName = image->textureName;
+	sizeOfVertices = vertices.size() * sizeof(float);
+	countOfVertices = vertices.size() / 8;
+	initTransformMatrix();
+	arrayBuffer = image->arrayBuffer;
+	positionLoc = image->positionLoc;
+	normalPos = image->normalPos;
+	objectTypePos = image->objectTypePos;
+	transformMatrixPos = image->transformMatrixPos;
+	texturePos = image->texturePos;
+	textureSamplerPos = image->textureSamplerPos;
+	textureCoordsPos = image->textureCoordsPos;
+	skyboxSunTexture = image->skyboxSunTexture;
+	skyboxTexSamplerPos = image->skyboxTexSamplerPos;
+	vao = image->vao;
+}
+
 void CObject::init(GLuint shaderProgram)
 {
 
@@ -113,10 +137,16 @@ void CObject::init(GLuint shaderProgram)
 	CHECK_GL_ERROR();
 }
 
+
+
+
+
 void CObject::draw()
 {
 
 	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(rotationM * translateScale * ananasDirRotation));
+
+	CHECK_GL_ERROR();
 
 	if (objectType == SKYBOX) {
 		glUniform1i(objectTypePos, 2);
@@ -127,16 +157,29 @@ void CObject::draw()
 	else {
 		glUniform1i(objectTypePos, 1);
 	}
+
+	CHECK_GL_ERROR();
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturePos);
+
+	CHECK_GL_ERROR();
 
 	if (objectType == SKYBOX) {
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, skyboxSunTexture);
 	}
 
+	CHECK_GL_ERROR();
+
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, countOfVertices);
+
+	if (vao > 1000) {
+		sin(5);
+	}
+
+	CHECK_GL_ERROR();
 }
 
 

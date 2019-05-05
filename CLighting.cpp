@@ -41,15 +41,14 @@ void CLighting::init(GLuint shaders) {
 
 
 bool sunStart;
-void CLighting::draw(float time) {
-	static float startTime;
+void CLighting::draw(double time) {
+	static double startTime;
 	if (sunStart) {
 		sunStart = false;
 		startTime = time;
 	}
 
-	sunAlpha = (time - startTime)/60;
-	std::cout << sunAlpha << std::endl;
+	sunAlpha = (float)(time - startTime)/60;
 	if (sunAlpha > 1.0f) {
 		sunAlpha = 0.0f;
 		startTime = time;
@@ -57,8 +56,6 @@ void CLighting::draw(float time) {
 	}
 	setSunDirectionVector();
 
-
-	std::cout << sunDirection.x << "\t" << sunDirection.y << "\t" << sunDirection.z << std::endl;
 	glUniform3f(sunDirectionPos, sunDirection.x, sunDirection.y, sunDirection.z);
 	glUniform1i(flashlightPos, flashlight);
 	//POZOR MAXIMALNI POCET SVETEL SE MUSI MENIT V SHADERU

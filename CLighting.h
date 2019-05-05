@@ -22,7 +22,7 @@ public:
 	CLighting( glm::vec3 defaultSunDirection, unsigned int setMaxOfPointLights);
 	~CLighting();
 	void init(GLuint shaders);
-	void draw(float time);
+	void draw(double time);
 	//nastavit smerove
 	bool setDirectionLight(glm::vec3 Position);
 	//nastaveni reflektoru
