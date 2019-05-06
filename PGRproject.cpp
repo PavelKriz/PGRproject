@@ -10,7 +10,7 @@
 #include "CHandleScene.h"
 
 //================================================CAMERA================================================
-CCamera camera(glm::vec3(0.0f,0.0f,3.0f), 70.0f, (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.01f, 1000.0f, basicCameraSpeed);	//!< Instance kamery ve svete aplikace
+CCamera camera(glm::vec3(0.0f,1.0f,10.0f), 70.0f, (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.01f, 1000.0f, basicCameraSpeed);	//!< Instance kamery ve svete aplikace
 
 //================================================SCENE================================================
 
@@ -122,8 +122,25 @@ void draw() {
 /**
 	Used for capture if is mouse clicked
 */
-void mouseClick(int, int, int , int) {
+void mouseClick(int button, int state, int x, int y) {
+	int id = 0;
+	static int lastx;
+	static int lasty;
+	if (state == GLUT_DOWN) {
+		lastx = x;
+		lasty = y;
+	}
+
+	if (state == GLUT_UP) {
+		if ( lastx -2 <  x && x < lastx + 2 && lasty - 2 < y && y < lasty + 2) {
+			glReadPixels(x, WINDOW_HEIGHT - 1 - y, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_BYTE, &id);
+			std::cout << "KLIKNUTO NA OBJEKT S ID" << id << std::endl;
+			scene.objectEcho(id, time);
+		}
+	}
+	
 	mouseData.inUsing = false;
+	
 }
 
 //================================================MOUSE MOVE================================================
@@ -260,7 +277,7 @@ int main(int argc, char** argv) {
 /*	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png",glm::vec3(-3.0f, 1.0f, 0.0f));
 	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(3.0f, 1.0f, 0.0f));
 	scene.addAnanasPiece("ananasPiece.obj", "ananasPiece.png", glm::vec3(0.0f, 1.0f, 3.0f));*/
-	scene.addStatic("pizza.obj", "pizza2kb.png");
+	scene.addPizza("pizza.obj", "pizza2kb.png");
 
 	init();
 	std::cout << "zacatek programu!" << std::endl;

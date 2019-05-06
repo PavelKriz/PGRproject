@@ -18,6 +18,10 @@ uniform vec3 eyeDirection;
 uniform sampler2D MTexture;
 uniform sampler2D skyboxSun;
 uniform float sunAlpha;
+uniform int explosionAlpha;
+
+//ENDTASK potreba udelat zde nejakou intovou alfu ktera bude blikat mezi framy
+//ENDTASK pridat velikost jednoho bloku 
 
 float ambient = 0.5;
 float specularStrength = 0.8;
@@ -121,7 +125,9 @@ void main() {
 		if(tmpColor.x > 0.01){
 			color += tmpColor;
 		}
-
+	} else if (objectType == 5){
+		float imageSize = 0.25;
+		e
 	} else {
 		vec3 lightning = vec3(0.0,0.0,0.0);
 		if(flashlight > 0) {
@@ -137,6 +143,7 @@ void main() {
 		color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);
 	}
 
-	
-	color += vec4(lightColor, 1.0) * lightFog(vec3(0.0,0.0,0.0));	
+	if(objectType != 5){
+		color += vec4(lightColor, 1.0) * lightFog(vec3(0.0,0.0,0.0));
+	}
 }

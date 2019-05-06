@@ -20,10 +20,12 @@
 class CObject {
 public:
 	enum EObjectType {
-		STATIC = 1,
+		UNKNOWN = 0,
+		PIZZA = 1,
 		SKYBOX = 2,
 		ANANAS = 3,
-		ANANAS_PIECE = 4
+		ANANAS_PIECE = 4,
+		EXPLOSION = 5
 	};
 private:
 	glm::vec3 objectPosition;
@@ -34,7 +36,6 @@ private:
 	unsigned int skyboxSunTexture;
 	unsigned int skyboxTexSamplerPos;
 	float ananasPieceRotation;
-	EObjectType objectType;
 	unsigned int objectTypePos;
 	std::vector<float>  vertices;	//!< pole s vrcholy ulozenymi ve floatech
 	unsigned int sizeOfVertices;	//!< velikost bufferu, pocet jeho floatu
@@ -48,6 +49,9 @@ private:
 	GLuint textureSamplerPos;	//!< id sampleru textury v shaderu
 	GLuint normalPos;	//!< pozice normal v shaderu
 	std::string textureName;	//!< nazev textury objektu
+	unsigned int explosionAlphaPos;
+	int explosionAlpha;
+	EObjectType objectType;
 
 	void initTransformMatrix();
 	void setTransformMatrix();
@@ -58,10 +62,11 @@ public:
 	\param[in] fileName soubor s vrcholy
 	\param[in] toTextureName jmeno souboru s texturami
 	*/
-	CObject() {}
+	CObject() : objectType(UNKNOWN){}
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName);
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
 	CObject(CObject * image);
+	EObjectType getType() { return objectType; }
 	//! Inicializace
 	/*!
 	incializuje objekt, nahraje jeho textury a vrcholy
@@ -75,4 +80,7 @@ public:
 	void draw();
 	void changePosition(const glm::vec3 & newPos);
 	void rotate(float angle);
+	void constRotate() { rotationM = glm::rotate(glm::mat4(1.0f), glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0)) * rotationM; }
+	const glm::mat4 & getRotationM() { return rotationM; }
+	void setTexFrame(int frame) { explosionAlpha = frame; return; }
 };

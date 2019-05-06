@@ -22,42 +22,43 @@ void CObject::setTransformMatrix()
 }
 
 
-CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName)
+CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName) :objectType(toType)
 {
 	objectPosition = glm::vec3(0.0f,0.0f,0.0f);
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
 	ananasDirRotation = glm::mat4(1.0f);
-	objectType = toType;
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
 	textureName = toTextureName;
 	sizeOfVertices = vertices.size() * sizeof(float);
 	countOfVertices = vertices.size() / 8;
 	initTransformMatrix();
+	rotationM = glm::mat4(1.0f);
+	explosionAlpha = 0;
 }
 
-CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition)
+CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition) :objectType(toType)
 {
 	objectPosition = toDefaultPosition;
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
 	ananasDirRotation = glm::mat4(1.0f);
-	objectType = toType;
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
 	textureName = toTextureName;
 	sizeOfVertices = vertices.size() * sizeof(float);
 	countOfVertices = vertices.size() / 8;
 	initTransformMatrix();
+	rotationM = glm::mat4(1.0f);
+	explosionAlpha = 0;
 }
 
-CObject::CObject(CObject * image) {
+CObject::CObject(CObject * image) :objectType(image->objectType) {
 	objectPosition = image->objectPosition;
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
 	ananasDirRotation = glm::mat4(1.0f);
-	objectType = image->objectType;
 	vertices = image->vertices;
 	textureName = image->textureName;
 	sizeOfVertices = vertices.size() * sizeof(float);
@@ -73,7 +74,10 @@ CObject::CObject(CObject * image) {
 	textureCoordsPos = image->textureCoordsPos;
 	skyboxSunTexture = image->skyboxSunTexture;
 	skyboxTexSamplerPos = image->skyboxTexSamplerPos;
+	explosionAlphaPos = image->explosionAlphaPos;
 	vao = image->vao;
+	explosionAlpha = 0;
+	rotationM = glm::mat4(1.0f);
 }
 
 void CObject::init(GLuint shaderProgram)
@@ -99,7 +103,8 @@ void CObject::init(GLuint shaderProgram)
 
 	//UNIFORM
 	objectTypePos = glGetUniformLocation(shaderProgram, "objectType");
-	transformMatrixPos = glGetUniformLocation(shaderProgram, "transform");
+	explosionAlphaPos = glGetUniformLocation(shaderProgram, "explosionAlpha");
+
 
 
 	//OBRAZEK
@@ -143,8 +148,8 @@ void CObject::init(GLuint shaderProgram)
 
 void CObject::draw()
 {
-
 	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(rotationM * translateScale * ananasDirRotation));
+	glUniform1i(explosionAlphaPos, explosionAlpha);
 
 	CHECK_GL_ERROR();
 
@@ -153,6 +158,12 @@ void CObject::draw()
 	}
 	else if (objectType == ANANAS) {
 		glUniform1i(objectTypePos, 3);
+	}
+	else if (objectType == ANANAS_PIECE) {
+		glUniform1i(objectTypePos, 4);
+	}
+	else if (objectType == EXPLOSION) {
+		glUniform1i(objectTypePos, 5);
 	}
 	else {
 		glUniform1i(objectTypePos, 1);
@@ -194,12 +205,19 @@ void CObject::changePosition(const glm::vec3 & newPos) {
 }
 
 void CObject::rotate(float angle) {
-	std::cout << angle << std::endl;
-	rotationM = glm::rotate(glm::mat4(),glm::radians(angle), glm::vec3(0.0f,1.0f,0.0f));
-	std::cout << rotationM[0].x << "\t" << rotationM[1].x << "\t" << rotationM[2].x << "\t" << rotationM[3].x << std::endl;
-	std::cout << rotationM[0].y << "\t" << rotationM[1].y << "\t" << rotationM[2].y << "\t" << rotationM[3].y << std::endl;
-	std::cout << rotationM[0].z << "\t" << rotationM[1].z << "\t" << rotationM[2].z << "\t" << rotationM[3].z << std::endl;
-	std::cout << rotationM[0].w << "\t" << rotationM[1].w << "\t" << rotationM[2].w << "\t" << rotationM[3].w << std::endl;
+	if (objectType == PIZZA) {
+		if (angle < 0.5f) {
+			rotationM = glm::rotate(glm::mat4(1.0f), glm::radians(1.0f),glm::vec3(0.0,1.0,0.0)) * rotationM;
+		}
+	}
+	else {
+		std::cout << angle << std::endl;
+		rotationM = glm::rotate(glm::mat4(), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+		std::cout << rotationM[0].x << "\t" << rotationM[1].x << "\t" << rotationM[2].x << "\t" << rotationM[3].x << std::endl;
+		std::cout << rotationM[0].y << "\t" << rotationM[1].y << "\t" << rotationM[2].y << "\t" << rotationM[3].y << std::endl;
+		std::cout << rotationM[0].z << "\t" << rotationM[1].z << "\t" << rotationM[2].z << "\t" << rotationM[3].z << std::endl;
+		std::cout << rotationM[0].w << "\t" << rotationM[1].w << "\t" << rotationM[2].w << "\t" << rotationM[3].w << std::endl;
 
-	std::cout << std::endl;
+		std::cout << std::endl;
+	}
 }

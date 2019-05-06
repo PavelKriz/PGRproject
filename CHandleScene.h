@@ -1,11 +1,12 @@
 #pragma once
 #include<vector>
 #include<math.h>
+#include<deque>
 #include "CLighting.h"
 #include "CCamera.h"
 #include "CObject.h"
 
-const int ANANASPIECES_MAX_COUNT = 10;
+const int ANANASPIECES_MAX_COUNT = 20;
 
 class CHandleScene
 {
@@ -18,19 +19,35 @@ class CHandleScene
 		glm::vec3 p4;
 		glm::vec3 p3;
 	};
+
+	struct SExplosion {
+		CObject explosion;
+		double startTime;
+		int frame;
+	};
+	bool pizzaRotation;
 	int aCounter;
 	std::vector<CObject> objects;
+	std::deque<SExplosion> explosions;
 	CObject referencePiece;
+	CObject referenceExplosion;
 	SAnanasPiece ananasPieces[ANANASPIECES_MAX_COUNT];
 	CLighting light;
+
+
 	double rand0812();
 	glm::vec3 cubicBezier(float u, const glm::vec3 & cp1, const glm::vec3 & cp2, const glm::vec3 & cp3, const glm::vec3 & cp4);
 	void setBezierAlfa(SAnanasPiece * piece,double time);
+	void handleExplosions(double time);
+	void bornExplosion(float angle, double time);
+	void bornAnanasPiece(double time);
+	void killAnanasPiece(SAnanasPiece * piece);
 	void checkLife(SAnanasPiece * piece, double time);
 	void handleLife(unsigned int shaderProgram, double time);
 public:
 	CHandleScene(unsigned int maxCountOfLights);
 	~CHandleScene();
+	void objectEcho(int id, double time);
 	void init(unsigned int shaders);
 	void draw(unsigned int shaders, double time);
 	
@@ -39,7 +56,7 @@ public:
 	/*void addAnanasPiece(std::string toModel, std::string toTexture, glm::vec3 toPosition) {
 		ananasPieces.push_back(CObject(CObject::EObjectType::ANANAS_PIECE, toModel, toTexture,toPosition));
 	}*/
-	void addStatic(std::string toModel, std::string toTexture) { objects.push_back(CObject(CObject::EObjectType::STATIC, toModel, toTexture)); }
+	void addPizza(std::string toModel, std::string toTexture) { objects.push_back(CObject(CObject::EObjectType::PIZZA, toModel, toTexture)); }
 	void enableDisableFlashLight() { light.enableDisableFlashLight(); }
 };
 
