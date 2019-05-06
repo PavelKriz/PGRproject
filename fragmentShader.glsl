@@ -26,7 +26,10 @@ uniform int explosionAlpha;
 float ambient = 0.5;
 float specularStrength = 0.8;
 float diffuseStrength = 0.8;
+float amplifie = 1.0;
 vec3 lightColor = vec3(1.0,0.9,0.9);
+
+
 
 float getFlashlight(){
 	vec3 lightDir = normalize(eyePos - FragPos);
@@ -64,7 +67,7 @@ float directionPhong(){
 
 float pointPhong( vec3 lightPointPos){
 	vec3 normalizedNormal = normalize(normal);
-	vec3 lightDir = normalize(lightPointPos - FragPos);
+	vec3 lightDir = normalize(FragPos - lightPointPos );
 	float diffuse = max(dot(normalizedNormal, lightDir), 0.0)  * diffuseStrength ;
 
 	vec3 viewDir = normalize(eyePos - FragPos);
@@ -72,8 +75,7 @@ float pointPhong( vec3 lightPointPos){
 	float specular = pow(max(dot(viewDir, reflectDir), 0.0), 128) * specularStrength;
 	float distance    = length(lightPointPos - FragPos);
 	float attenuation = 1.0 / (0.5 * distance + 0.5 *distance * distance); 
-
-	return (diffuse + ambient  + specular) * attenuation;
+	return (diffuse + specular) * attenuation;
 }
 
 float  ananasPhong( vec3 lightPointPos){
@@ -111,21 +113,7 @@ float lightFog(vec3 objPos){
 }
 
 
-void main() {
-
-	if( objectType == 2){ 
-		color =  texture(MTexture, ShadertextureCoord);
-
-		vec2 tmpCoords = vec2(ShadertextureCoord.x + sunAlpha, ShadertextureCoord.y);
-		if(tmpCoords.x > 1.0f){
-			tmpCoords.x -= 1.0f;
-		}
-
-		vec4 tmpColor = texture(skyboxSun, tmpCoords);
-		if(tmpColor.x > 0.01){
-			color += tmpColor;
-		}
-	} else if (objectType == 5){
+vec4 explosion(){
 		float iSize = 0.25;
 		float xC  = ShadertextureCoord.x;
 		float yC  = ShadertextureCoord.y;
@@ -134,32 +122,101 @@ void main() {
 		xC += (explosionAlpha % 4) * iSize;
 		float tmp = explosionAlpha / 4;
 		yC += floor(tmp) * iSize;
-		color = texture(MTexture, vec2(xC,yC));
+		return texture(MTexture, vec2(xC,yC));
+
+}
+
+vec4 skybox(){
+	vec4 ret =  texture(MTexture, ShadertextureCoord);
+
+	vec2 tmpCoords = vec2(ShadertextureCoord.x + sunAlpha, ShadertextureCoord.y);
+	if(tmpCoords.x > 1.0f){
+		tmpCoords.x -= 1.0f;
+	}
+
+	vec4 tmpColor = texture(skyboxSun, tmpCoords);
+	if(tmpColor.x > 0.01){
+		ret += tmpColor;
+	}
+	return ret;
+}
+
+void setupSKYBOX(){
+	ambient = 0.5;
+	specularStrength = 0.8;
+	diffuseStrength = 0.8;
+	amplifie = 1.0;
+}
+
+void setupPIZZA(){
+	ambient = 0.5;
+	specularStrength = 0.3;
+	diffuseStrength = 0.4;
+	amplifie = 1.0;
+}
+
+void setupANANAS(){
+	ambient = 0.5;
+	specularStrength = 0.8;
+	diffuseStrength = 1.0;
+	amplifie = 1.0;
+}
+
+void setupANANAS_PIECE(){
+	ambient = 0.5;
+	specularStrength = 0.8;
+	diffuseStrength = 0.8;
+	amplifie = 1.0;
+}
+
+void setupEXPLOSION(){
+	ambient = 0.5;
+	specularStrength = 0.8;
+	diffuseStrength = 0.8;
+	amplifie = 1.0;
+}
+
+
+
+void main() {
+	switch (objectType){
+		case 1:
+			setupPIZZA();
+			break;
+		case 2:
+			setupSKYBOX();
+			break;
+		case 3:
+			setupANANAS();
+			break;
+		case 4:
+			setupANANAS_PIECE();
+			break;
+		case 5:
+			setupEXPLOSION();
+			break;
+		default:
+			break;
+	}
+	if( objectType == 2){ 
+		color = skybox();
+	} else if (objectType == 5){
+		color = explosion();
 	} else {
 		vec3 lightning = vec3(0.0,0.0,0.0);
 		if(flashlight > 0) {
-			lightning += flashlighPhong() * lightColor;
-			lightning += directionPhong() * 0.5 * lightColor;
-			for(int i = 0; i < countOflights; ++i){
-				lightning += pointPhong( lights[i]) * 0.2;
-			}
-		} else {
-			if(objectType == 3 ){
-				lightning += directionPhong() * 1.2  * lightColor;
-				for(int i = 0; i < countOflights; ++i){
-					lightning += pointPhong( lights[i]) * 0.2;
-				}
-			} else {
-				lightning += directionPhong() * 0.8  * lightColor;
-				for(int i = 0; i < countOflights; ++i){
-					lightning += pointPhong( lights[i]) * 0.2;
-				}
-			}
+			lightning += flashlighPhong() * lightColor;	
+		} 
+
+		lightning += directionPhong()  * lightColor;
+		for(int i = 0; i < countOflights; ++i){
+			lightning += pointPhong( lights[i]) * 0.2;
 		}
 
 		color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);
 	}
 
+	//ananas light fog
 	if(objectType != 5){
 		color += vec4(lightColor, 1.0) * lightFog(vec3(0.0,0.0,0.0));
 	}

@@ -32,7 +32,7 @@ private:
 	glm::vec3 vFront;
 	glm::mat4 translateScale;
 	glm::mat4 rotationM;
-	glm::mat4 ananasDirRotation;
+	glm::mat4 inModelRotation;
 	unsigned int skyboxSunTexture;
 	unsigned int skyboxTexSamplerPos;
 	float ananasPieceRotation;

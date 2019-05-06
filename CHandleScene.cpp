@@ -88,6 +88,9 @@ void CHandleScene::bornAnanasPiece(double time)
 {
 	float rotationAngle;
 	int index = aCounter % ANANASPIECES_MAX_COUNT;
+	if (ananasPieces[index].light != -1 && aCounter >= ANANASPIECES_MAX_COUNT) {
+		light.endLightPoint(ananasPieces[index].light);
+	}
 	ananasPieces[index].piece = CObject(&(referencePiece));
 	ananasPieces[index].alive = true;
 	ananasPieces[index].move = true;

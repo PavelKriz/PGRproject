@@ -4,4 +4,7 @@ c:\users\pavel\source\repos\pgrproject\pgrproject\chandlescene.cpp(80): warning 
           [
               T=float
           ]
+  CObject.cpp
+  PGRproject.cpp
+  Generování kódu...
   PGRproject.vcxproj -> C:\Users\Pavel\source\repos\PGRproject\Debug\PGRproject.exe

@@ -14,7 +14,7 @@ uniform mat4 centerLookM;
 uniform mat4  viewM;
 
 void main() {
-	mat4 translateDown = mat4(vec4(1.0,0.0,0.0,0.0), vec4(0.0,1.0,0.0,0.0), vec4(0.0,0.0,1.0,0.0),vec4(0.0,-0.4,0.0,1.0));
+	mat4 translateDown = mat4(vec4(1.0,0.0,0.0,0.0), vec4(0.0,1.0,0.0,0.0), vec4(0.0,0.0,1.0,0.0),vec4(0.0,-0.4,0.0,1.0)); 
 	normal = mat3(transpose(inverse(translateDown))) * vertexShaderNormal; 
 	vec3 center = vec3(0.0, 0.0, 0.0);
 	vec4 locPosition = transform * translateDown * vec4(mix(center, position, 1.0), 1.0);

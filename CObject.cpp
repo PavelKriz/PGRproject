@@ -32,7 +32,7 @@ CObject::CObject(EObjectType toType, std::string fileName, std::string toTexture
 	objectPosition = glm::vec3(0.0f,0.0f,0.0f);
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
-	ananasDirRotation = glm::mat4(1.0f);
+	inModelRotation = glm::mat4(1.0f);
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
 	textureName = toTextureName;
@@ -48,7 +48,7 @@ CObject::CObject(EObjectType toType, std::string fileName, std::string toTexture
 	objectPosition = toDefaultPosition;
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
-	ananasDirRotation = glm::mat4(1.0f);
+	inModelRotation = glm::mat4(1.0f);
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
 	textureName = toTextureName;
@@ -63,7 +63,7 @@ CObject::CObject(CObject * image) :objectType(image->objectType) {
 	objectPosition = image->objectPosition;
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
-	ananasDirRotation = glm::mat4(1.0f);
+	inModelRotation = glm::mat4(1.0f);
 	vertices = image->vertices;
 	textureName = image->textureName;
 	sizeOfVertices = vertices.size() * sizeof(float);
@@ -154,7 +154,7 @@ void CObject::init(GLuint shaderProgram)
 
 void CObject::draw()
 {
-	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(rotationM * translateScale * ananasDirRotation));
+	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(rotationM * translateScale * inModelRotation));
 
 	CHECK_GL_ERROR();
 
@@ -203,7 +203,7 @@ void CObject::draw()
 void CObject::changePosition(const glm::vec3 & newPos) {
 	if (objectType == ANANAS_PIECE) {
 		vFront = normalize(newPos - objectPosition);
-		ananasDirRotation = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f) - vFront, glm::vec3(0.0f, 1.0f, 0.0f))
+		inModelRotation = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f) - vFront, glm::vec3(0.0f, 1.0f, 0.0f))
 			* glm::rotate(glm::mat4(1.0), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 		objectPosition = newPos;
 		setTransformMatrix();
@@ -211,7 +211,7 @@ void CObject::changePosition(const glm::vec3 & newPos) {
 }
 
 void CObject::modelRotate(){
-	ananasDirRotation = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f) - glm::normalize(glm::vec3(0.0f, 0.7f, 0.7f)), glm::vec3(0.0f, 1.0f, 0.0f))
+	inModelRotation = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f) - glm::normalize(glm::vec3(0.0f, 0.7f, 0.7f)), glm::vec3(0.0f, 1.0f, 0.0f))
 		/** glm::rotate(glm::mat4(1.0), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f))*/;
 }
 
