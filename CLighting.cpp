@@ -10,7 +10,7 @@ void CLighting::setSunDirectionVector() {
 	sunDirection.z = 0.0f;
 }
 
-void CLighting::getPointLights() {
+void CLighting::handlePointLights() {
 	pointLights.clear();
 	for (int i = 0; i < pointLightsPositions.size(); ++i) {
 		if (isFree[i].first == false) {
@@ -49,15 +49,15 @@ int CLighting::addPointLight(glm::vec3 position){
 	}
 	return -1;
 }
-void CLighting::udpate(int id, glm::vec3 position){
+void CLighting::updatePointLight(int id, glm::vec3 position){
 	pointLightsPositions[id].first = position;
 }
 
-void CLighting::udpate(int id, float angle) {
+void CLighting::updatePointLight(int id, float angle) {
 	pointLightsPositions[id].second = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)) * pointLightsPositions[id].second;
 }
 
-void CLighting::endLightPoint(int id){
+void CLighting::endPointLight(int id){
 	isFree[id].first = true;
 }
 
@@ -97,7 +97,7 @@ void CLighting::draw(double time) {
 	}
 	setSunDirectionVector();
 
-	getPointLights();
+	handlePointLights();
 
 	glUniform3f(sunDirectionPos, sunDirection.x, sunDirection.y, sunDirection.z);
 	glUniform1i(flashlightPos, flashlight);

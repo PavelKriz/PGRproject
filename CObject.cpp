@@ -132,8 +132,6 @@ void CObject::init(GLuint shaderProgram)
 
 	}
 
-
-
 	CHECK_GL_ERROR();
 }
 
@@ -144,8 +142,6 @@ void CObject::init(GLuint shaderProgram)
 void CObject::draw()
 {
 	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(inWorldRotation * translateScale * inModelRotation));
-
-	CHECK_GL_ERROR();
 
 	if (objectType == SKYBOX) {
 		glUniform1i(objectTypePos, 2);
@@ -164,19 +160,13 @@ void CObject::draw()
 		glUniform1i(objectTypePos, 1);
 	}
 
-	CHECK_GL_ERROR();
-
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturePos);
-
-	CHECK_GL_ERROR();
 
 	if (objectType == SKYBOX) {
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, skyboxSunTexture);
 	}
-
-	CHECK_GL_ERROR();
 
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, countOfVertices);
@@ -204,19 +194,11 @@ void CObject::changePosition(const glm::vec3 & newPos) {
 }
 
 void CObject::modelRotate(){
-	inModelRotation = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f) - glm::normalize(glm::vec3(0.0f, 0.7f, 0.7f)), glm::vec3(0.0f, 1.0f, 0.0f))
-		/** glm::rotate(glm::mat4(1.0), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f))*/;
+	inModelRotation = glm::lookAt(	glm::vec3(0.0f, 0.0f, 0.0f),
+									glm::vec3(0.0f, 0.0f, 0.0f) - glm::normalize(glm::vec3(0.0f, 0.7f, 0.7f)),
+									glm::vec3(0.0f, 1.0f, 0.0f) );
 }
 
 void CObject::rotate(float angle) {
-	
-		//std::cout << angle << std::endl;
 		inWorldRotation = glm::rotate(glm::mat4(), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)) * inWorldRotation;
-		/*
-		std::cout << inWorldRotation[0].x << "\t" << inWorldRotation[1].x << "\t" << inWorldRotation[2].x << "\t" << inWorldRotation[3].x << std::endl;
-		std::cout << inWorldRotation[0].y << "\t" << inWorldRotation[1].y << "\t" << inWorldRotation[2].y << "\t" << inWorldRotation[3].y << std::endl;
-		std::cout << inWorldRotation[0].z << "\t" << inWorldRotation[1].z << "\t" << inWorldRotation[2].z << "\t" << inWorldRotation[3].z << std::endl;
-		std::cout << inWorldRotation[0].w << "\t" << inWorldRotation[1].w << "\t" << inWorldRotation[2].w << "\t" << inWorldRotation[3].w << std::endl;
-		std::cout << std::endl;
-		*/
 }

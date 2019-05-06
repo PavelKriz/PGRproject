@@ -89,6 +89,6 @@ public:
 	void modelRotate();
 	void rotate(float angle);
 	void constRotate() { inWorldRotation = glm::rotate(glm::mat4(1.0f), glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0)) * inWorldRotation; }
-	const glm::mat4 & getRotationM() { return inWorldRotation; }
+	const glm::mat4 & getWorldRotation() { return inWorldRotation; }
 	void setTexFrame(int frame) { explosionAlpha = frame; return; }
 };

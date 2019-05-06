@@ -1,5 +1,7 @@
 ﻿  CHandleScene.cpp
-  CObject.cpp
+  CLighting.cpp
+c:\users\pavel\source\repos\pgrproject\pgrproject\clighting.cpp(15): warning C4018: <: signed/unsigned – neshoda
+c:\users\pavel\source\repos\pgrproject\pgrproject\clighting.cpp(69): warning C4018: <: signed/unsigned – neshoda
   PGRproject.cpp
   Generování kódu...
   PGRproject.vcxproj -> C:\Users\Pavel\source\repos\PGRproject\Debug\PGRproject.exe

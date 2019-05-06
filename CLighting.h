@@ -9,8 +9,10 @@ class CLighting
 {
 	GLuint shaderProgram;
 	unsigned int sunDirectionPos;
+	unsigned int maxOfPointLights;
 	glm::vec3 sunDirection;
 	float sunAlpha;
+	unsigned int sunAlphaPos;
 	unsigned int flashlightPos;
 	int flashlight;
 	unsigned int pointLightsPos;
@@ -18,25 +20,21 @@ class CLighting
 	std::vector<float> pointLights;
 	std::vector<std::pair<glm::vec3,glm::mat4 >> pointLightsPositions;
 	std::vector<std::pair<bool, int>> isFree;
-	unsigned int maxOfPointLights;
-	unsigned int sunAlphaPos;
+
 	void setSunDirectionVector();
-	void getPointLights();
+	void handlePointLights();
  public:
 	CLighting( glm::vec3 defaultSunDirection, unsigned int setMaxOfPointLights);
 	~CLighting();
 
 	int addPointLight(glm::vec3 position);
-	void udpate(int id, glm::vec3 position);
-	void udpate(int id, float angle);
-	void endLightPoint(int id);
+	void updatePointLight(int id, glm::vec3 position);
+	void updatePointLight(int id, float angle);
+	void endPointLight(int id);
 
 	void init(GLuint shaders);
 	void draw(double time);
-	//nastavit smerove
-	bool setDirectionLight(glm::vec3 Position);
 	//nastaveni reflektoru
 	bool enableDisableFlashLight();
-	//pridani/aktualizace bodoveho
 };
 

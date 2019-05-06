@@ -89,7 +89,7 @@ void CHandleScene::bornAnanasPiece(double time)
 	float rotationAngle;
 	int index = aCounter % ANANASPIECES_MAX_COUNT;
 	if (ananasPieces[index].light != -1 && aCounter >= ANANASPIECES_MAX_COUNT) {
-		light.endLightPoint(ananasPieces[index].light);
+		light.endPointLight(ananasPieces[index].light);
 	}
 	ananasPieces[index].piece = CObject(&(referencePiece));
 	ananasPieces[index].alive = true;
@@ -107,7 +107,7 @@ void CHandleScene::bornAnanasPiece(double time)
 
 	ananasPieces[index].light = light.addPointLight(ananasPieces[index].piece.getPosition());
 	if (ananasPieces[index].light != -1) {
-		light.udpate(ananasPieces[index].light, rotationAngle);
+		light.updatePointLight(ananasPieces[index].light, rotationAngle);
 	}
 	std::cout << "ID vracene " << ananasPieces[index].light << std::endl;
 	bornExplosion(rotationAngle, time);
@@ -119,7 +119,7 @@ void CHandleScene::bornAnanasPiece(double time)
 void CHandleScene::killAnanasPiece(SAnanasPiece * piece)
 {
 	if (piece->light != -1) {
-		light.endLightPoint(piece->light);
+		light.endPointLight(piece->light);
 	}
 	piece->light = -1;
 	piece->alive = false;
@@ -137,7 +137,7 @@ void CHandleScene::handleLife(unsigned int shaderProgram, double time) {
 		for (auto &it : objects) {
 			if (it.getType() == CObject::EObjectType::PIZZA) {
 				it.constRotate();
-				tmpRotation = it.getRotationM();
+				tmpRotation = it.getWorldRotation();
 			}
 		}
 	}
@@ -155,14 +155,14 @@ void CHandleScene::handleLife(unsigned int shaderProgram, double time) {
 			//glm::vec3 tmp = cubicBezier(ananasPieces[i].u, p1, p2, p3, p4);
 			ananasPieces[i].piece.changePosition(tmp);
 			if (ananasPieces[i].light != -1) {
-				light.udpate(ananasPieces[i].light, tmp);
+				light.updatePointLight(ananasPieces[i].light, tmp);
 			}
 		}
 		else {
 			if (pizzaRotation) {
 				ananasPieces[i].piece.constRotate();
 				if (ananasPieces[i].light != -1) {
-					light.udpate(ananasPieces[i].light, 0.5f);
+					light.updatePointLight(ananasPieces[i].light, 0.5f);
 				}
 			}
 		}
