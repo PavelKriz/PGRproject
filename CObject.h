@@ -49,6 +49,7 @@ private:
 	GLuint normalPos;	//!< pozice normal v shaderu
 	std::string textureName;	//!< nazev textury objektu
 
+	std::string secondTexture;
 	unsigned int explosionAlphaPos;
 	int explosionAlpha;
 	unsigned int skyboxSunTexture;
@@ -56,6 +57,7 @@ private:
 
 	void initTransformMatrix();
 	void setTransformMatrix();
+	void defaultConstructor(EObjectType toType, std::string fileName, std::string toTextureName);
 public:
 	//! Konstruktor
 	/*!
@@ -64,8 +66,17 @@ public:
 	\param[in] toTextureName jmeno souboru s texturami
 	*/
 	CObject() : objectType(UNKNOWN) {}
-	CObject(EObjectType toType, std::string fileName, std::string toTextureName);
-	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
+	CObject(EObjectType toType, std::string fileName, std::string toTextureName) { defaultConstructor(toType, fileName, toTextureName); }
+	CObject(EObjectType toType, std::string fileName, std::string toTextureName, std::string toSecondTexture) {
+		if (toType == SKYBOX) {
+			secondTexture = toSecondTexture;
+		}
+		defaultConstructor(toType, fileName, toTextureName);
+	}
+	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition) {
+		defaultConstructor(toType, fileName, toTextureName);
+		objectPosition = toDefaultPosition;
+	}
 	CObject(CObject * image);
 	EObjectType getType() { return objectType; }
 	const glm::vec3 & getPosition() { return objectPosition; }

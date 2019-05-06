@@ -16,25 +16,10 @@ void CObject::setTransformMatrix()
 }
 
 
-CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName) : objectType(toType)
+void CObject::defaultConstructor(EObjectType toType, std::string fileName, std::string toTextureName)
 {
+	objectType = toType;
 	objectPosition = glm::vec3(0.0f,0.0f,0.0f);
-	translateScale = glm::mat4(1.0f);
-	vFront = glm::vec3();
-	inModelRotation = glm::mat4(1.0f);
-	vertices = std::vector<float>();
-	objectLoader(fileName.c_str(), vertices);
-	textureName = toTextureName;
-	sizeOfVertices = vertices.size() * sizeof(float);
-	countOfVertices = vertices.size() / 8;
-	initTransformMatrix();
-	inWorldRotation = glm::mat4(1.0f);
-	explosionAlpha = 0;
-}
-
-CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition) : objectType(toType)
-{
-	objectPosition = toDefaultPosition;
 	translateScale = glm::mat4(1.0f);
 	vFront = glm::vec3();
 	inModelRotation = glm::mat4(1.0f);
@@ -119,7 +104,7 @@ void CObject::init(GLuint shaderProgram)
 	glEnableVertexAttribArray(textureCoordsPos);
 
 	if (objectType == SKYBOX) {
-		skyboxSunTexture = pgr::createTexture("sunInSpace.png", true);
+		skyboxSunTexture = pgr::createTexture(secondTexture.c_str(), true);
 		if (skyboxSunTexture == 0) {
 			pgr::dieWithError("Texture loading failed.");
 		}

@@ -5,18 +5,30 @@
 #include "CCamera.h"
 #include "CObject.h"
 
+const std::string pizzaOBJ = "pizza.obj";
+const std::string pizzaTEX = "pizza2kb.png";
+const std::string skyboxOBJ = "spaceBox.obj";
+const std::string skyboxTEX = "bigSpaceNoSun.jpg";
+const std::string skyboxTEX2 = "sunInSpace.png";
+const std::string ananasOBJ = "ananas.obj";
+const std::string ananasTEX = "ananas4k.png"; 
+const std::string ananasPieceOBJ = "ananasPiece.obj";
+const std::string ananasPieceTEX = "ananasPiece.png";
+const std::string explosionOBJ = "explosion.obj";
+const std::string explosionTEX = "explosion2.png";
+
 const int ANANASPIECES_MAX_COUNT = 20;
 
 class CHandleScene
 {
 	struct SAnanasPiece {
-		int light;
-		bool alive;
-		float angle;
 		CObject piece;
+		bool alive;
 		bool move;
+		int pointLightId;
+		float angle;
 		double startTime;
-		float u;
+		float bezierT;
 		glm::vec3 p4;
 		glm::vec3 p3;
 	};
@@ -24,28 +36,28 @@ class CHandleScene
 	struct SExplosion {
 		CObject explosion;
 		double startTime;
-		int frame;
 	};
+
 	bool pizzaRotation;
 	int aCounter;
+	CLighting light;
 	std::vector<CObject> objects;
 	std::vector<SExplosion> explosions;
+	SAnanasPiece ananasPieces[ANANASPIECES_MAX_COUNT];
 	CObject referencePiece;
 	CObject referenceExplosion;
-	SAnanasPiece ananasPieces[ANANASPIECES_MAX_COUNT];
-	CLighting light;
 
 
 	double rand0812();
-	glm::vec3 cubicBezier(float u, const glm::vec3 & cp1, const glm::vec3 & cp2, const glm::vec3 & cp3, const glm::vec3 & cp4);
+	glm::vec3 cubicBezier(float bezierT, const glm::vec3 & cp1, const glm::vec3 & cp2, const glm::vec3 & cp3, const glm::vec3 & cp4);
 	void setBezierAlfa(SAnanasPiece * piece,double time);
 	void handleExplosions(double time);
-	void bornExplosion(float angle, double time);
+	void bornExplosionOnAnanas(float angle, double time);
 	void bornExplosionOnPizza(float angle, double time, glm::vec3  position);
 	void bornAnanasPiece(double time);
 	void killAnanasPiece(SAnanasPiece * piece);
-	void checkLife(SAnanasPiece * piece, double time);
-	void handleLife(unsigned int shaderProgram, double time);
+	void checkAnanasLife(SAnanasPiece * piece, double time);
+	void handleGameLife(unsigned int shaderProgram, double time);
 public:
 	CHandleScene(unsigned int maxCountOfLights);
 	~CHandleScene();
@@ -53,12 +65,14 @@ public:
 	void init(unsigned int shaders);
 	void draw(unsigned int shaders, double time);
 	
-	void addSkybox(std::string toModel, std::string toTexture) { objects.push_back(CObject(CObject::EObjectType::SKYBOX, toModel, toTexture)); }
-	void addAnanas(std::string toModel, std::string toTexture) { objects.push_back(CObject(CObject::EObjectType::ANANAS, toModel, toTexture)); }
-	/*void addAnanasPiece(std::string toModel, std::string toTexture, glm::vec3 toPosition) {
-		ananasPieces.push_back(CObject(CObject::EObjectType::ANANAS_PIECE, toModel, toTexture,toPosition));
-	}*/
-	void addPizza(std::string toModel, std::string toTexture) { objects.push_back(CObject(CObject::EObjectType::PIZZA, toModel, toTexture)); }
+	void addObjects() {
+		objects.push_back(CObject(CObject::EObjectType::PIZZA, pizzaOBJ, pizzaTEX));
+		objects.push_back(CObject(CObject::EObjectType::SKYBOX, skyboxOBJ, skyboxTEX, skyboxTEX2));
+		objects.push_back(CObject(CObject::EObjectType::ANANAS, ananasOBJ, ananasTEX));
+		referencePiece = CObject(CObject::EObjectType::ANANAS_PIECE, ananasPieceOBJ, ananasPieceTEX, glm::vec3(-3.0f, 1.0f, 0.0f));
+		referenceExplosion = CObject(CObject::EObjectType::EXPLOSION, explosionOBJ, explosionTEX, glm::vec3(0.0f, 0.75f, 0.75f));
+	}
+
 	void enableDisableFlashLight() { light.enableDisableFlashLight(); }
 };
 

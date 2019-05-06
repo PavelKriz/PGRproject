@@ -30,15 +30,15 @@ glm::vec3 CHandleScene::cubicBezier(float u, const glm::vec3 & cp1, const glm::v
 
 void CHandleScene::setBezierAlfa(SAnanasPiece * piece, double time) {
 
-	float u = (float)(time - piece->startTime) / 2;
-	if (u >= 0.999f) {
-		u = 0.999f;
+	float bezierT = (float)(time - piece->startTime) / 2;
+	if (bezierT >= 0.999f) {
+		bezierT = 0.999f;
 		if (piece->alive) {
 			bornExplosionOnPizza(piece->angle, time, piece->p4);
 		}
 		piece->move = false;
 	}
-	piece->u = u;
+	piece->bezierT = bezierT;
 }
 
 void CHandleScene::handleExplosions(double time) {
@@ -61,11 +61,10 @@ void CHandleScene::handleExplosions(double time) {
 	explosions = toStay;
 }
 
-void CHandleScene::bornExplosion(float angle, double time) {
+void CHandleScene::bornExplosionOnAnanas(float angle, double time) {
 	SExplosion tmp;
 	tmp.explosion = CObject(&(referenceExplosion));
 	tmp.startTime = time;
-	tmp.frame = 0;
 	explosions.push_back(tmp);
 	explosions.back().explosion.rotate(angle);
 	explosions.back().explosion.modelRotate();
@@ -76,7 +75,6 @@ void CHandleScene::bornExplosionOnPizza(float angle, double time, glm::vec3  pos
 	SExplosion tmp;
 	tmp.explosion = CObject(&(referenceExplosion));
 	tmp.startTime = time;
-	tmp.frame = 0;
 	explosions.push_back(tmp);
 	position.y += 0.1f;
 	explosions.back().explosion.changePosition(position);
@@ -88,8 +86,8 @@ void CHandleScene::bornAnanasPiece(double time)
 {
 	float rotationAngle;
 	int index = aCounter % ANANASPIECES_MAX_COUNT;
-	if (ananasPieces[index].light != -1 && aCounter >= ANANASPIECES_MAX_COUNT) {
-		light.endPointLight(ananasPieces[index].light);
+	if (ananasPieces[index].pointLightId != -1 && aCounter >= ANANASPIECES_MAX_COUNT) {
+		light.endPointLight(ananasPieces[index].pointLightId);
 	}
 	ananasPieces[index].piece = CObject(&(referencePiece));
 	ananasPieces[index].alive = true;
@@ -105,12 +103,12 @@ void CHandleScene::bornAnanasPiece(double time)
 	//std::cout << ananasPieces[index].p4.x << " " << ananasPieces[index].p4.y
 	//	<< " " << ananasPieces[index].p4.z << std::endl;
 
-	ananasPieces[index].light = light.addPointLight(ananasPieces[index].piece.getPosition());
-	if (ananasPieces[index].light != -1) {
-		light.updatePointLight(ananasPieces[index].light, rotationAngle);
+	ananasPieces[index].pointLightId = light.addPointLight(ananasPieces[index].piece.getPosition());
+	if (ananasPieces[index].pointLightId != -1) {
+		light.updatePointLight(ananasPieces[index].pointLightId, rotationAngle);
 	}
-	std::cout << "ID vracene " << ananasPieces[index].light << std::endl;
-	bornExplosion(rotationAngle, time);
+	std::cout << "ID vracene " << ananasPieces[index].pointLightId << std::endl;
+	bornExplosionOnAnanas(rotationAngle, time);
 	//ENDTASK zalozit novy objekt vybuch a dat mu spravny smer pohledu 
 
 	++aCounter;
@@ -118,20 +116,20 @@ void CHandleScene::bornAnanasPiece(double time)
 
 void CHandleScene::killAnanasPiece(SAnanasPiece * piece)
 {
-	if (piece->light != -1) {
-		light.endPointLight(piece->light);
+	if (piece->pointLightId != -1) {
+		light.endPointLight(piece->pointLightId);
 	}
-	piece->light = -1;
+	piece->pointLightId = -1;
 	piece->alive = false;
 }
 
-void CHandleScene::checkLife(SAnanasPiece * piece, double time) {
+void CHandleScene::checkAnanasLife(SAnanasPiece * piece, double time) {
 	if ((time - piece->startTime) > 20.0f) {
 		killAnanasPiece(piece);
 	}
 }
 
-void CHandleScene::handleLife(unsigned int shaderProgram, double time) {
+void CHandleScene::handleGameLife(unsigned int shaderProgram, double time) {
 	glm::mat4 tmpRotation;
 	if (pizzaRotation) {
 		for (auto &it : objects) {
@@ -150,23 +148,23 @@ void CHandleScene::handleLife(unsigned int shaderProgram, double time) {
 	for (int i = 0; i < aCounter && i < ANANASPIECES_MAX_COUNT; ++i) {
 		if (ananasPieces[i].move) {
 			setBezierAlfa(&(ananasPieces[i]), time);
-			glm::vec3 tmp = cubicBezier(ananasPieces[i].u, p1, p2,
+			glm::vec3 tmp = cubicBezier(ananasPieces[i].bezierT, p1, p2,
 				ananasPieces[i].p3, ananasPieces[i].p4);
-			//glm::vec3 tmp = cubicBezier(ananasPieces[i].u, p1, p2, p3, p4);
+			//glm::vec3 tmp = cubicBezier(ananasPieces[i].bezierT, p1, p2, p3, p4);
 			ananasPieces[i].piece.changePosition(tmp);
-			if (ananasPieces[i].light != -1) {
-				light.updatePointLight(ananasPieces[i].light, tmp);
+			if (ananasPieces[i].pointLightId != -1) {
+				light.updatePointLight(ananasPieces[i].pointLightId, tmp);
 			}
 		}
 		else {
 			if (pizzaRotation) {
 				ananasPieces[i].piece.constRotate();
-				if (ananasPieces[i].light != -1) {
-					light.updatePointLight(ananasPieces[i].light, 0.5f);
+				if (ananasPieces[i].pointLightId != -1) {
+					light.updatePointLight(ananasPieces[i].pointLightId, 0.5f);
 				}
 			}
 		}
-		checkLife(&(ananasPieces[i]), time);
+		checkAnanasLife(&(ananasPieces[i]), time);
 	}
 
 }
@@ -218,15 +216,13 @@ void CHandleScene::init(unsigned int shaders)
 		it.init(shaders);
 	}
 
-	referencePiece = CObject(CObject::EObjectType::ANANAS_PIECE, "ananasPiece.obj", "ananasPiece.png", glm::vec3(-3.0f, 1.0f, 0.0f));
 	referencePiece.init(shaders);
-	referenceExplosion = CObject(CObject::EObjectType::EXPLOSION, "explosion.obj", "explosion2.png",glm::vec3(0.0f, 0.75f, 0.75f));
 	referenceExplosion.init(shaders);
 }
 
 void CHandleScene::draw(unsigned int shaders, double time)
 {
-	handleLife(shaders,time);
+	handleGameLife(shaders,time);
 	handleExplosions(time);
 
 	light.draw(time);
