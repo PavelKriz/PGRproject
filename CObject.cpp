@@ -6,17 +6,6 @@ void CObject::initTransformMatrix()
 	translateScale[3].x = objectPosition.x;
 	translateScale[3].y = objectPosition.y;
 	translateScale[3].z = objectPosition.z;
-	if (objectType == ANANAS_PIECE) {
-		translateScale[0].x = 0.1f;
-		translateScale[1].y = 0.1f;
-		translateScale[2].z = 0.1f;
-	}
-	else if (objectType == EXPLOSION) {
-		translateScale[0].x = 0.3f;
-		translateScale[1].y = 0.3f;
-		translateScale[2].z = 0.3f;
-	}
-
 }
 
 void CObject::setTransformMatrix()
@@ -27,7 +16,7 @@ void CObject::setTransformMatrix()
 }
 
 
-CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName) :objectType(toType)
+CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName) : objectType(toType)
 {
 	objectPosition = glm::vec3(0.0f,0.0f,0.0f);
 	translateScale = glm::mat4(1.0f);
@@ -39,11 +28,11 @@ CObject::CObject(EObjectType toType, std::string fileName, std::string toTexture
 	sizeOfVertices = vertices.size() * sizeof(float);
 	countOfVertices = vertices.size() / 8;
 	initTransformMatrix();
-	rotationM = glm::mat4(1.0f);
+	inWorldRotation = glm::mat4(1.0f);
 	explosionAlpha = 0;
 }
 
-CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition) :objectType(toType)
+CObject::CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition) : objectType(toType)
 {
 	objectPosition = toDefaultPosition;
 	translateScale = glm::mat4(1.0f);
@@ -55,7 +44,7 @@ CObject::CObject(EObjectType toType, std::string fileName, std::string toTexture
 	sizeOfVertices = vertices.size() * sizeof(float);
 	countOfVertices = vertices.size() / 8;
 	initTransformMatrix();
-	rotationM = glm::mat4(1.0f);
+	inWorldRotation = glm::mat4(1.0f);
 	explosionAlpha = 0;
 }
 
@@ -70,7 +59,7 @@ CObject::CObject(CObject * image) :objectType(image->objectType) {
 	countOfVertices = vertices.size() / 8;
 	initTransformMatrix();
 	arrayBuffer = image->arrayBuffer;
-	positionLoc = image->positionLoc;
+	vertexAtribPointerPos = image->vertexAtribPointerPos;
 	normalPos = image->normalPos;
 	objectTypePos = image->objectTypePos;
 	transformMatrixPos = image->transformMatrixPos;
@@ -82,7 +71,7 @@ CObject::CObject(CObject * image) :objectType(image->objectType) {
 	explosionAlphaPos = image->explosionAlphaPos;
 	vao = image->vao;
 	explosionAlpha = 0;
-	rotationM = glm::mat4(1.0f);
+	inWorldRotation = glm::mat4(1.0f);
 }
 
 void CObject::init(GLuint shaderProgram)
@@ -95,9 +84,9 @@ void CObject::init(GLuint shaderProgram)
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
-	positionLoc = 0;
-	glEnableVertexAttribArray(positionLoc);
-	glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), 0);
+	vertexAtribPointerPos = 0;
+	glEnableVertexAttribArray(vertexAtribPointerPos);
+	glVertexAttribPointer(vertexAtribPointerPos, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), 0);
 
 	//NORMALY
 	normalPos = 1;
@@ -154,7 +143,7 @@ void CObject::init(GLuint shaderProgram)
 
 void CObject::draw()
 {
-	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(rotationM * translateScale * inModelRotation));
+	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(inWorldRotation * translateScale * inModelRotation));
 
 	CHECK_GL_ERROR();
 
@@ -208,6 +197,10 @@ void CObject::changePosition(const glm::vec3 & newPos) {
 		objectPosition = newPos;
 		setTransformMatrix();
 	}
+	else {
+		objectPosition = newPos;
+		setTransformMatrix();
+	}
 }
 
 void CObject::modelRotate(){
@@ -218,12 +211,12 @@ void CObject::modelRotate(){
 void CObject::rotate(float angle) {
 	
 		//std::cout << angle << std::endl;
-		rotationM = glm::rotate(glm::mat4(), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)) * rotationM;
+		inWorldRotation = glm::rotate(glm::mat4(), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)) * inWorldRotation;
 		/*
-		std::cout << rotationM[0].x << "\t" << rotationM[1].x << "\t" << rotationM[2].x << "\t" << rotationM[3].x << std::endl;
-		std::cout << rotationM[0].y << "\t" << rotationM[1].y << "\t" << rotationM[2].y << "\t" << rotationM[3].y << std::endl;
-		std::cout << rotationM[0].z << "\t" << rotationM[1].z << "\t" << rotationM[2].z << "\t" << rotationM[3].z << std::endl;
-		std::cout << rotationM[0].w << "\t" << rotationM[1].w << "\t" << rotationM[2].w << "\t" << rotationM[3].w << std::endl;
+		std::cout << inWorldRotation[0].x << "\t" << inWorldRotation[1].x << "\t" << inWorldRotation[2].x << "\t" << inWorldRotation[3].x << std::endl;
+		std::cout << inWorldRotation[0].y << "\t" << inWorldRotation[1].y << "\t" << inWorldRotation[2].y << "\t" << inWorldRotation[3].y << std::endl;
+		std::cout << inWorldRotation[0].z << "\t" << inWorldRotation[1].z << "\t" << inWorldRotation[2].z << "\t" << inWorldRotation[3].z << std::endl;
+		std::cout << inWorldRotation[0].w << "\t" << inWorldRotation[1].w << "\t" << inWorldRotation[2].w << "\t" << inWorldRotation[3].w << std::endl;
 		std::cout << std::endl;
 		*/
 }

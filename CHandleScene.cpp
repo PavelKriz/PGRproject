@@ -69,6 +69,7 @@ void CHandleScene::bornExplosion(float angle, double time) {
 	explosions.push_back(tmp);
 	explosions.back().explosion.rotate(angle);
 	explosions.back().explosion.modelRotate();
+	explosions.back().explosion.setScale(0.3f);
 }
 
 void CHandleScene::bornExplosionOnPizza(float angle, double time, glm::vec3  position) {
@@ -77,11 +78,10 @@ void CHandleScene::bornExplosionOnPizza(float angle, double time, glm::vec3  pos
 	tmp.startTime = time;
 	tmp.frame = 0;
 	explosions.push_back(tmp);
-	position.y += 0.1;
-	explosions.back().explosion.setPosition(position);
+	position.y += 0.1f;
+	explosions.back().explosion.changePosition(position);
 	explosions.back().explosion.rotate(angle);
 	explosions.back().explosion.setScale(0.5f);
-
 }
 
 void CHandleScene::bornAnanasPiece(double time)
@@ -101,6 +101,7 @@ void CHandleScene::bornAnanasPiece(double time)
 	ananasPieces[index].p3 = p3;
 	ananasPieces[index].p4.z *= (float)rand0812();
 	ananasPieces[index].p3.z = ananasPieces[index].p4.z;
+	ananasPieces[index].piece.setScale(0.1f);
 	//std::cout << ananasPieces[index].p4.x << " " << ananasPieces[index].p4.y
 	//	<< " " << ananasPieces[index].p4.z << std::endl;
 

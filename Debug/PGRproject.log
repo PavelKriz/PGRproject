@@ -1,9 +1,4 @@
 ﻿  CHandleScene.cpp
-c:\users\pavel\source\repos\pgrproject\pgrproject\chandlescene.cpp(80): warning C4305: +=: zkrácení z: double na: T
-          with
-          [
-              T=float
-          ]
   CObject.cpp
   PGRproject.cpp
   Generování kódu...

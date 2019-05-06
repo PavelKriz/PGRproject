@@ -28,30 +28,31 @@ public:
 		EXPLOSION = 5
 	};
 private:
+	unsigned int objectTypePos;
+	EObjectType objectType;
 	glm::vec3 objectPosition;
 	glm::vec3 vFront;
 	glm::mat4 translateScale;
-	glm::mat4 rotationM;
+	glm::mat4 inWorldRotation;
 	glm::mat4 inModelRotation;
-	unsigned int skyboxSunTexture;
-	unsigned int skyboxTexSamplerPos;
-	float ananasPieceRotation;
-	unsigned int objectTypePos;
+	//float ananasPieceRotation;
 	std::vector<float>  vertices;	//!< pole s vrcholy ulozenymi ve floatech
 	unsigned int sizeOfVertices;	//!< velikost bufferu, pocet jeho floatu
 	unsigned int countOfVertices;	//!< pocet vrcholu (pro kazdy polygon jsou tri), nepocitaji se jako identicke
 	GLuint arrayBuffer;	//!< id  bufferu s daty
 	GLuint vao;	//!< id vertex array pro objekt
-	GLuint positionLoc;
+	GLuint vertexAtribPointerPos;
 	unsigned int transformMatrixPos;
 	GLuint texturePos;	//!< id/pozice textur 
 	GLuint textureCoordsPos;	//!< id atributu texturovych souradnic v saderu
 	GLuint textureSamplerPos;	//!< id sampleru textury v shaderu
 	GLuint normalPos;	//!< pozice normal v shaderu
 	std::string textureName;	//!< nazev textury objektu
+
 	unsigned int explosionAlphaPos;
 	int explosionAlpha;
-	EObjectType objectType;
+	unsigned int skyboxSunTexture;
+	unsigned int skyboxTexSamplerPos;
 
 	void initTransformMatrix();
 	void setTransformMatrix();
@@ -62,12 +63,18 @@ public:
 	\param[in] fileName soubor s vrcholy
 	\param[in] toTextureName jmeno souboru s texturami
 	*/
-	CObject() : objectType(UNKNOWN){}
+	CObject() : objectType(UNKNOWN) {}
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName);
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
 	CObject(CObject * image);
 	EObjectType getType() { return objectType; }
 	const glm::vec3 & getPosition() { return objectPosition; }
+	void changePosition(const glm::vec3 & newPos);
+	void setScale(float scale){
+		translateScale[0].x = scale;
+		translateScale[1].y = scale;
+		translateScale[2].z = scale;
+	}
 	//! Inicializace
 	/*!
 	incializuje objekt, nahraje jeho textury a vrcholy
@@ -79,16 +86,9 @@ public:
 	vykresli objekt podle informaci co ma
 	*/
 	void draw();
-	void changePosition(const glm::vec3 & newPos);
 	void modelRotate();
 	void rotate(float angle);
-	void constRotate() { rotationM = glm::rotate(glm::mat4(1.0f), glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0)) * rotationM; }
-	void setScale(float scale){
-		translateScale[0].x = scale;
-		translateScale[1].y = scale;
-		translateScale[2].z = scale;
-	}
-	void setPosition(glm::vec3 position) { objectPosition = position; setTransformMatrix(); }
-	const glm::mat4 & getRotationM() { return rotationM; }
+	void constRotate() { inWorldRotation = glm::rotate(glm::mat4(1.0f), glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0)) * inWorldRotation; }
+	const glm::mat4 & getRotationM() { return inWorldRotation; }
 	void setTexFrame(int frame) { explosionAlpha = frame; return; }
 };
