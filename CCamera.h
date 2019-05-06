@@ -14,25 +14,25 @@
 #include<pgr.h>
 #include<iostream>
 
-/*!
-ruzne stavy kamery
-*/
-enum viewState{
-	TRANSITION,	//!< state between other states
-	FREE,	//!< free camera state
-	LOCK_ONE,	//!< first lock camera state
-	LOCK_TWO	//!< second lock camera state
-};
-
-
 //!  CCamera class, controls the view
 /*!
 	Camera class, controls the view
 	Handles view init and view updating according to keyboard actions and mouse movement. It provide projection matrix.
 */
 class CCamera {
-	viewState state;	//!< represent view method
-	viewState nextState;	//!< represent next view method
+public:
+	/*!
+	states of camera
+	*/
+	enum EViewState {
+		TRANSITION,	//!< state between other states
+		FREE,	//!< free camera state
+		LOCK_ONE,	//!< first lock camera state
+		LOCK_TWO	//!< second lock camera state
+	};
+private:
+	EViewState state;	//!< represent view method
+	EViewState nextState;	//!< represent next view method
 	double transitionBaseTime;	//!< startTime of generic action
 	float cameraSpeed;	//!< camera speed
 
@@ -113,7 +113,7 @@ public:
 		\param[in] which defines wanted state
 		\param[in] time information about time from start of program
 	*/
-	void changeViewType(viewState which, double time);
+	void changeViewType(EViewState which, double time);
 	//! getter for view projection
 	/*!
 		according to camera state it return projection matrix

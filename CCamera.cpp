@@ -96,7 +96,7 @@ void CCamera::setFront(const glm::vec3 & toFront)
 	}
 }
 
-void CCamera::changeViewType(viewState which, double time)
+void CCamera::changeViewType(EViewState which, double time)
 {
 	switch (which) {
 	case FREE:

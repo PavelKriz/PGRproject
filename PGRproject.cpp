@@ -233,13 +233,13 @@ void onKey(unsigned char key, int, int) {
 		camera.CameraMoveDown();
 		break;
 	case freeCameraKey:
-		camera.changeViewType(FREE, time);
+		camera.changeViewType(CCamera::EViewState::FREE, time);
 		break;
 	case firstViewKey:
-		camera.changeViewType(LOCK_ONE, time);
+		camera.changeViewType(CCamera::EViewState::LOCK_ONE, time);
 		break;
 	case secondViewKey:
-		camera.changeViewType(LOCK_TWO, time);
+		camera.changeViewType(CCamera::EViewState::LOCK_TWO, time);
 		break;
 	case flashLightOnOff:
 		scene.enableDisableFlashLight();
