@@ -3,9 +3,9 @@
  * \file       CCamera.h
  * \author     Pavel Kriz
  * \date       22/04/2019
- * \brief      Obstarava pohled do sveta v aplikaci
+ * \brief      Handles view
  *
- *  Zajistuje inicializaci pohledu. Jeho aktualizaci, podle klaves ale take podporuje pohyb pomoci mysi. Poskytuje matici projekce a tim pohled. 
+ *	Handles view init and view updating according to keyboard actions and mouse movement. It provide projection matrix.
  *
 */
 //----------------------------------------------------------------------------------------
@@ -18,42 +18,41 @@
 ruzne stavy kamery
 */
 enum viewState{
-	TRANSITION,	//!< prechod mezi pohledy
-	FREE,	//!< volny pohled 
-	LOCK_ONE,	//!< prvni staticky pohled
-	LOCK_TWO	//!< druhy staticky pohled
+	TRANSITION,	//!< state between other states
+	FREE,	//!< free camera state
+	LOCK_ONE,	//!< first lock camera state
+	LOCK_TWO	//!< second lock camera state
 };
 
 
 //!  CCamera class, controls the view
 /*!
 	Camera class, controls the view
-	Ovlada pohled kamery pomoci matice kamery. (vytvari tedy matici projekce)
+	Handles view init and view updating according to keyboard actions and mouse movement. It provide projection matrix.
 */
 class CCamera {
-	viewState state;	//!< jakym zpusobem se zrovna kamera chova
-	viewState nextState;	//!< znaci stav do ktereho se prejde, je li kamera v prechodu
-	double transitionBaseTime;	//!< zakladni cas pro mereni delky doby prechodu
-	float cameraSpeed;	//!< rychlost pohybu kamery
+	viewState state;	//!< represent view method
+	viewState nextState;	//!< represent next view method
+	double transitionBaseTime;	//!< startTime of generic action
+	float cameraSpeed;	//!< camera speed
 
-	glm::mat4 mPerspective;	//!< matice pro perspektivu, nastavi se na zacatku
+	glm::mat4 mPerspective;	//!< perspective matrix, it is initialised in the beginning
 
-	glm::vec3 vActualPos;
-	glm::vec3 vActualFront;
-	glm::vec3 vPosition;	//!< pozice kamery
-	glm::vec3 vFront;	//!< smer pohledu kamery
-	glm::vec3 vUp;	//!< up vektor kamery
-	glm::vec3 vPositionNext;	//!< budouci pozice kamery jestlize je pohled v prechodu 
-	glm::vec3 vFrontNext;	//!< budouci smer pohledu kamery jestlize je pohled v prechodu
-	glm::vec3 vUpNext;	//!< budouci up vektor pohledu kamery jestlize je pohled v prechodu
+	glm::vec3 vActualPos;	//!< actual position, even in transition
+	glm::vec3 vActualFront;	//!< actual front, even in transition
+	glm::vec3 vPosition;	//!< camera last positition, in transition represents old positition
+	glm::vec3 vFront;	//!< camera last front, in transition represents old front
+	glm::vec3 vUp;	//!< camera last up, in transition represents old up
+	glm::vec3 vPositionNext;	//!< camera next positition, in transition represents future positition
+	glm::vec3 vFrontNext;	//!< camera next front, in transition represents future front
+	glm::vec3 vUpNext;	//!< camera next up, in transition represents future up
 
-	uint32_t cameraMatrixPos;	//!< id/umisteni matice projekce v shaderech
-	GLuint eyePosPos;
-	GLuint frontPos;
-	GLuint centerLookPos;
-public:
-	float yaw;	//<! otoceni kamery, podle toho( jeste s pitchem) se ve free kamere urcuje smer pohledu
-	float pitch; //<! naklon kamery, podle toho( jeste s yawem) se ve free kamere urcuje smer pohledu
+	uint32_t cameraMatrixPos;	//!< id of camera projectin matrix in shaders
+	GLuint eyePosPos;	//!< id of camera position vector in shaders
+	GLuint frontPos;	//!< id of camera fron vector in shaders
+public:	
+	float yaw;	//!< yaw of camera, with this (and with pitch) is in free camera calculated vfront
+	float pitch; //!< pitch of camera, with this (and with yaw) is in free camera calculated vfront
 
 private:
 	//! recalculate Yaw Pitch
@@ -61,80 +60,64 @@ private:
 	 Kdyz je prechod z statickeho pohledu na dynamicky. Tak je potreba znovu vypocist spravny yaw a pitch,
 	 jelikoz ve statickych pohledech je pouzit jen front vektor pro smer kamery, zatimco ve free kamere se front vektor vytvari prave z yawu a pitche
 	*/
-	void checkPosition();
 	void recalculateYawPitch();
-public:
-	//! Konstruktor
+	//! check and get free camera in allowed area
 	/*!
-	inicalizuje instanci kamery - nastavi zakladni potrebne parametry
-	\param[in] toPosition urci pocatecni pozici kamery
-	\param[in] fov	urci field of view kamery
-	\param[in] aspect informace o aspect ratio vykreslovaciho okna
-	\param[in] zNear zbuffer near vzdalenost vykreslovani
-	\param[in] zFar zbuffer far vzdalenost vykreslovani
-	\param[in] toSpead urci zakladni rychlost kamery
+	 it checks whether is camera in camera allowed area (globe around center in distance 20),
+	 if it isnt, than it teleport camera to other side of globe
+	*/
+	void checkPosition();
+public:
+	//! Constructor
+	/*!
+	inicialize camera
+	\param[in] toPosition position of camera in beginning
+	\param[in] fov	set field of camera view
+	\param[in] aspect information about screen aspect ratio 
+	\param[in] zNear zbuffer near distance
+	\param[in] zFar zbuffer far distance
+	\param[in] toSpead set default camera speed
 	*/
 	CCamera(const glm::vec3 & toPosition, float fov, float aspect, float zNear, float zFar, const float toSpeed);
-	//! Pohyb dopredu
+	//! init camera in shaders
 	/*!
-		pohne pohled dopredu
-		pohne pohled dopredu
+		set camera uniforms in shader
 	*/
 	void init(GLuint shaders);
+	//! draw camera in shaders
+	/*!
+		set values of camera uniforms in shaders
+	*/
 	void draw(double time);
+	//! camera move forward
 	void CameraMoveForward();
-	//! Pohyb dozadu
-	/*!
-		pohne pohled dozadu
-	*/
+	//! camera move backward
 	void CameraMoveBackward();
-	//! Pohyb nahoru
-	/*!
-		pohne pohled nahoru
-	*/
+	//! camera move up
 	void CameraMoveUp();
-	//! Pohyb dolu
-	/*!
-		pohne pohled dolu
-	*/
+	//! camera move down
 	void CameraMoveDown();
-	//! Pohyb doleva
-	/*!
-		pohne pohled doleva
-	*/
+	//! camera move left
 	void CameraMoveLeft();
-	//! Pohyb doprava
-	/*!
-		pohne pohled doprava
-	*/
+	//! camera move right
 	void CameraMoveRight();
-	//! Zmena front vektoru
+	//! sets front
 	/*!
-		nastavi vektro podle toFront
-		\param[in] toFront podle tohoto nastavi front vektor
+		sets front of camera
+		\param[in] toFront is set as new front of camera
 	*/
 	void setFront(const glm::vec3 & toFront);
-	//! Zmena druhu pohledu
+	//! change view method
 	/*!
-		zmeni druh pohledu podle which
-		\param[in] which informace ktery stav pohledu je povazovan
-		\param[in] time informace o case od zacatku programu
+		changes view method(camera states)
+		\param[in] which defines wanted state
+		\param[in] time information about time from start of program
 	*/
 	void changeViewType(viewState which, double time);
-	//! Vyrobce matice projekce
+	//! getter for view projection
 	/*!
-		podle druhu pohledu nastavi matici projekce a vrati ji
-		\return matice projekce
+		according to camera state it return projection matrix
+		\return projection matrix
 	*/
 	glm::mat4 GetViewProjection(double time);
-	/*!
-		vrati pozici divaka
-		\return vektor pozice divaka
-	*/
-	glm::vec3 getPosition();
-	/*!
-		vrati smer pohledu divaka
-		\return vektor smeru pozice divaka
-	*/
-	glm::vec3 getDirection();
 };

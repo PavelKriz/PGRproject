@@ -6,7 +6,6 @@
 #include<pgr.h>
 
 //================================================MY INCLUDE================================================
-#include "parametry.h"
 #include "CHandleScene.h"
 
 //================================================CAMERA================================================
@@ -51,8 +50,8 @@ void  printError(const std::string & message) {
 */
 bool loadShaders() {
 	GLuint shaders[] = {
-		pgr::createShaderFromFile(GL_VERTEX_SHADER, vertexShader),
-		pgr::createShaderFromFile(GL_FRAGMENT_SHADER, fragmentShader),
+		pgr::createShaderFromFile(GL_VERTEX_SHADER, vertexShader.c_str()),
+		pgr::createShaderFromFile(GL_FRAGMENT_SHADER, fragmentShader.c_str()),
 		0
 	};
 	if (shaders[0] == 0 || shaders[1] == 0) {
@@ -304,7 +303,7 @@ int main(int argc, char** argv) {
 
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	glutCreateWindow(WINDOW_TITLE);
+	glutCreateWindow(WINDOW_TITLE.c_str());
 
 	/// nastaveni funkci v glutu
 	glutKeyboardFunc(onKey);

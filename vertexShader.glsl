@@ -6,11 +6,8 @@ out vec2 ShadertextureCoord;
 out vec3 normal;
 out vec3 FragPos;
 out vec3 cameraFragPos;
-out vec3 outCenter;
-out vec3 centerLookFragPos;
 
 uniform mat4 transform;
-uniform mat4 centerLookM;
 uniform mat4  viewM;
 
 void main() {
@@ -23,8 +20,5 @@ void main() {
 	FragPos = (transform * vec4(position,1.0)).xyz;
 	ShadertextureCoord = textureCoord;
 
-	vec4 tmp1 = centerLookM * vec4(position,1.0);
-	centerLookFragPos = tmp1.xyz;
-	vec4 tmp2 = viewM * vec4(center,1.0);
-	outCenter = tmp2.xyz;
+
 }

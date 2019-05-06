@@ -3,8 +3,6 @@ in vec2 ShadertextureCoord;
 in vec3 normal;
 in vec3 FragPos;
 in vec3 cameraFragPos;
-in vec3 outCenter;
-in vec3 centerLookFragPos;
 
 uniform vec3 sunDirection;
 uniform int flashlight;

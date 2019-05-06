@@ -1,9 +1,5 @@
 #include "CHandleScene.h"
 
-const glm::vec3 p4 = glm::vec3(0.0f, -0.23f, 2.5f);
-const glm::vec3 p3 = glm::vec3(0.0f, 2.0f, 2.5f);
-const glm::vec3 p2 = glm::vec3(0.0f, 2.0f, 1.5f);
-const glm::vec3 p1 = glm::vec3(0.0f, 0.7f, 0.7f);
 
 double CHandleScene::rand0812() {
 	double tmp = double(rand()) / (double(RAND_MAX) + 1.0);
@@ -34,7 +30,7 @@ void CHandleScene::setBezierAlfa(SAnanasPiece * piece, double time) {
 	if (bezierT >= 0.999f) {
 		bezierT = 0.999f;
 		if (piece->alive) {
-			bornExplosionOnPizza(piece->angle, time, piece->p4);
+			bornExplosionOnPizza(piece->angle, time, piece->bezierControlPoint4);
 		}
 		piece->move = false;
 	}
@@ -95,13 +91,13 @@ void CHandleScene::bornAnanasPiece(double time)
 	ananasPieces[index].startTime = time;
 	ananasPieces[index].piece.rotate(rotationAngle = (float)(std::rand() % 360));
 	ananasPieces[index].angle = rotationAngle;
-	ananasPieces[index].p4 = p4;
-	ananasPieces[index].p3 = p3;
-	ananasPieces[index].p4.z *= (float)rand0812();
-	ananasPieces[index].p3.z = ananasPieces[index].p4.z;
+	ananasPieces[index].bezierControlPoint4 = bezierControlPoint4;
+	ananasPieces[index].bezierControlPoint3 = bezierControlPoint3;
+	ananasPieces[index].bezierControlPoint4.z *= (float)rand0812();
+	ananasPieces[index].bezierControlPoint3.z = ananasPieces[index].bezierControlPoint4.z;
 	ananasPieces[index].piece.setScale(0.1f);
-	//std::cout << ananasPieces[index].p4.x << " " << ananasPieces[index].p4.y
-	//	<< " " << ananasPieces[index].p4.z << std::endl;
+	//std::cout << ananasPieces[index].bezierControlPoint4.x << " " << ananasPieces[index].bezierControlPoint4.y
+	//	<< " " << ananasPieces[index].bezierControlPoint4.z << std::endl;
 
 	ananasPieces[index].pointLightId = light.addPointLight(ananasPieces[index].piece.getPosition());
 	if (ananasPieces[index].pointLightId != -1) {
@@ -148,9 +144,9 @@ void CHandleScene::handleGameLife(unsigned int shaderProgram, double time) {
 	for (int i = 0; i < aCounter && i < ANANASPIECES_MAX_COUNT; ++i) {
 		if (ananasPieces[i].move) {
 			setBezierAlfa(&(ananasPieces[i]), time);
-			glm::vec3 tmp = cubicBezier(ananasPieces[i].bezierT, p1, p2,
-				ananasPieces[i].p3, ananasPieces[i].p4);
-			//glm::vec3 tmp = cubicBezier(ananasPieces[i].bezierT, p1, p2, p3, p4);
+			glm::vec3 tmp = cubicBezier(ananasPieces[i].bezierT, bezierControlPoint1, bezierControlPoint2,
+				ananasPieces[i].bezierControlPoint3, ananasPieces[i].bezierControlPoint4);
+			//glm::vec3 tmp = cubicBezier(ananasPieces[i].bezierT, bezierControlPoint1, bezierControlPoint2, bezierControlPoint3, bezierControlPoint4);
 			ananasPieces[i].piece.changePosition(tmp);
 			if (ananasPieces[i].pointLightId != -1) {
 				light.updatePointLight(ananasPieces[i].pointLightId, tmp);

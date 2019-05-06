@@ -36,13 +36,11 @@ void CCamera::init(GLuint shaders) {
 	cameraMatrixPos = glGetUniformLocation(shaders, "viewM");
 	eyePosPos = glGetUniformLocation(shaders, "eyePos");
 	frontPos = glGetUniformLocation(shaders, "eyeDirection");
-	centerLookPos = glGetUniformLocation(shaders, "centerLookM");
 	CHECK_GL_ERROR();
 }
 
 void CCamera::draw(double time) {
 	glUniformMatrix4fv(cameraMatrixPos, 1, GL_FALSE, glm::value_ptr(this->GetViewProjection(time)));
-	glUniformMatrix4fv(centerLookPos, 1, GL_FALSE, glm::value_ptr(glm::lookAt(vActualPos, vActualPos + glm::normalize(glm::vec3(0.0f,0.0f,0.0f) - vActualPos), vUp)));
 	glUniform3f(eyePosPos, vActualPos.x, vActualPos.y, vActualPos.z);
 	glUniform3f(frontPos, vActualFront.x, vActualFront.y, vActualFront.z);
 	CHECK_GL_ERROR();
@@ -177,10 +175,3 @@ glm::mat4 CCamera::GetViewProjection(double time)
  }
 
 
-glm::vec3 CCamera::getPosition() {
-	return vActualPos;
-}
-
-glm::vec3 CCamera::getDirection() {
-	return vActualFront;
-}

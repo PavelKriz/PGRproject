@@ -4,20 +4,7 @@
 #include "CLighting.h"
 #include "CCamera.h"
 #include "CObject.h"
-
-const std::string pizzaOBJ = "pizza.obj";
-const std::string pizzaTEX = "pizza2kb.png";
-const std::string skyboxOBJ = "spaceBox.obj";
-const std::string skyboxTEX = "bigSpaceNoSun.jpg";
-const std::string skyboxTEX2 = "sunInSpace.png";
-const std::string ananasOBJ = "ananas.obj";
-const std::string ananasTEX = "ananas4k.png"; 
-const std::string ananasPieceOBJ = "ananasPiece.obj";
-const std::string ananasPieceTEX = "ananasPiece.png";
-const std::string explosionOBJ = "explosion.obj";
-const std::string explosionTEX = "explosion2.png";
-
-const int ANANASPIECES_MAX_COUNT = 50;
+#include "parametry.h"
 
 class CHandleScene
 {
@@ -32,8 +19,8 @@ class CHandleScene
 		float angle;
 		double startTime;
 		float bezierT;
-		glm::vec3 p4;
-		glm::vec3 p3;
+		glm::vec3 bezierControlPoint4;
+		glm::vec3 bezierControlPoint3;
 	};
 
 	struct SExplosion {
