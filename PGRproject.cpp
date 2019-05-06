@@ -25,13 +25,13 @@ struct SMouse {
 	bool inUsing;
 };
 
-SMouse mouseData; //!< informace o pouzivani myse
+SMouse mouseData; //!< inforamtions about mouse using
 
 //================================================OTHER================================================
-GLuint shaderProgram = 0;	//!< Drzi id programu s nahranymi shadery
-double time = 0.5;	//!< cas od zacatku programu
-double fps = 0;	//!< informace o poctu fps
-int frame = 0;	//!< citadlo pro vypocet fps
+GLuint shaderProgram = 0;	//!< holds id of shaders
+double time = 0.5;	//!< time from beginning of program
+double fps = 0;	//!< information about fps
+int frame = 0;	//!< counter for calculating fps
 
 
 //================================================PRINT ERROR================================================
@@ -47,6 +47,7 @@ void  printError(const std::string & message) {
 //================================================LOAD SHADERS================================================
 /**
   Load shaders from constant strings vertexShader, fragmentShader (parameters of program).
+  \return true if shaders were loaded or false when they werent loaded
 */
 bool loadShaders() {
 	GLuint shaders[] = {
@@ -110,7 +111,7 @@ void draw() {
 	camera.draw(time);
 
 	//glActiveTexture(GL_TEXTURE0);
-	scene.draw(shaderProgram,time);
+	scene.draw(time);
 
 	CHECK_GL_ERROR();
 	glutSwapBuffers();
@@ -120,6 +121,10 @@ void draw() {
 //================================================MOUSE CLICK================================================
 /**
 	Used for capture if is mouse clicked
+	\param[in] button defines which mouse button was pressed
+	\param[in] state clicked(down) or end of clicked(up)
+	\param[in] x mouse coordinate
+	\param[in] y mouse coordinate
 */
 void mouseClick(int button, int state, int x, int y) {
 	int id = 0;
@@ -145,6 +150,9 @@ void mouseClick(int button, int state, int x, int y) {
 //================================================MOUSE MOVE================================================
 /**
 	recognize where is mouse, when mouse is clicked
+	it serve to move view around the world
+	\param[in] x mouse coordinate
+	\param[in] y mouse coordinate
 */
 void mouseClickMove( int xPos, int yPos)
 {
@@ -208,6 +216,7 @@ void onTimer(int) {
 //================================================ON KEY================================================
 /**
 	bind functions for keys
+	\param[in] key which key was pressed
 */
 void onKey(unsigned char key, int, int) {
 	switch (key) {
@@ -259,6 +268,10 @@ void onKey(unsigned char key, int, int) {
 	}
 }
 //================================================ON SPECIAL KEY================================================
+/**
+	bind functions for special keys
+	\param[in] key which key was pressed
+*/
 void onSpecialKey(int key, int, int){
 	switch (key) {
 	case crazyModKey1:
@@ -295,6 +308,9 @@ void onSpecialKey(int key, int, int){
 }
 
 //================================================MAIN================================================
+/**
+	main function of program
+*/
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 
@@ -324,14 +340,3 @@ int main(int argc, char** argv) {
 	glutMainLoop();
 	return 0;
 }
-
-
-
-
-
-// zeptat se na textury, co nejspis blbne
-// zeptat se na podivnosti s rotacnimi maticemi
-// ZEPTAT SE CO JE pgr::dieWithError a celkove jestli se da najit dokumentace k pgr
-// zeptat se na doxygen a nepodporu pro visual studio http://www.doxygen.nl/manual/docblocks.html
-// zeptat se na chybu s objloaderem
-// zeptat se na onTimer

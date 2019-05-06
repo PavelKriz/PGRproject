@@ -125,7 +125,7 @@ void CHandleScene::checkAnanasLife(SAnanasPiece * piece, double time) {
 	}
 }
 
-void CHandleScene::handleGameLife(unsigned int shaderProgram, double time) {
+void CHandleScene::handleGameLife( double time) {
 	glm::mat4 tmpRotation;
 	if (pizzaRotation) {
 		for (auto &it : objects) {
@@ -218,9 +218,9 @@ void CHandleScene::init(unsigned int shaders)
 	referenceExplosion.init(shaders);
 }
 
-void CHandleScene::draw(unsigned int shaders, double time)
+void CHandleScene::draw( double time)
 {
-	handleGameLife(shaders,time);
+	handleGameLife(time);
 	handleExplosions(time);
 
 	light.draw(time);
