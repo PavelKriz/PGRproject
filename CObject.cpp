@@ -11,6 +11,11 @@ void CObject::initTransformMatrix()
 		translateScale[1].y = 0.1f;
 		translateScale[2].z = 0.1f;
 	}
+	else if (objectType == EXPLOSION) {
+		translateScale[0].x = 0.3f;
+		translateScale[1].y = 0.3f;
+		translateScale[2].z = 0.3f;
+	}
 
 }
 
@@ -103,6 +108,7 @@ void CObject::init(GLuint shaderProgram)
 
 	//UNIFORM
 	objectTypePos = glGetUniformLocation(shaderProgram, "objectType");
+	transformMatrixPos = glGetUniformLocation(shaderProgram, "transform");
 	explosionAlphaPos = glGetUniformLocation(shaderProgram, "explosionAlpha");
 
 
@@ -149,7 +155,6 @@ void CObject::init(GLuint shaderProgram)
 void CObject::draw()
 {
 	glUniformMatrix4fv(transformMatrixPos, 1, GL_FALSE, glm::value_ptr(rotationM * translateScale * ananasDirRotation));
-	glUniform1i(explosionAlphaPos, explosionAlpha);
 
 	CHECK_GL_ERROR();
 
@@ -164,6 +169,7 @@ void CObject::draw()
 	}
 	else if (objectType == EXPLOSION) {
 		glUniform1i(objectTypePos, 5);
+		glUniform1i(explosionAlphaPos, explosionAlpha);
 	}
 	else {
 		glUniform1i(objectTypePos, 1);
@@ -204,20 +210,20 @@ void CObject::changePosition(const glm::vec3 & newPos) {
 	}
 }
 
+void CObject::modelRotate(){
+	ananasDirRotation = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f) - glm::normalize(glm::vec3(0.0f, 0.7f, 0.7f)), glm::vec3(0.0f, 1.0f, 0.0f))
+		/** glm::rotate(glm::mat4(1.0), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f))*/;
+}
+
 void CObject::rotate(float angle) {
-	if (objectType == PIZZA) {
-		if (angle < 0.5f) {
-			rotationM = glm::rotate(glm::mat4(1.0f), glm::radians(1.0f),glm::vec3(0.0,1.0,0.0)) * rotationM;
-		}
-	}
-	else {
-		std::cout << angle << std::endl;
-		rotationM = glm::rotate(glm::mat4(), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+	
+		//std::cout << angle << std::endl;
+		rotationM = glm::rotate(glm::mat4(), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)) * rotationM;
+		/*
 		std::cout << rotationM[0].x << "\t" << rotationM[1].x << "\t" << rotationM[2].x << "\t" << rotationM[3].x << std::endl;
 		std::cout << rotationM[0].y << "\t" << rotationM[1].y << "\t" << rotationM[2].y << "\t" << rotationM[3].y << std::endl;
 		std::cout << rotationM[0].z << "\t" << rotationM[1].z << "\t" << rotationM[2].z << "\t" << rotationM[3].z << std::endl;
 		std::cout << rotationM[0].w << "\t" << rotationM[1].w << "\t" << rotationM[2].w << "\t" << rotationM[3].w << std::endl;
-
 		std::cout << std::endl;
-	}
+		*/
 }

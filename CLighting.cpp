@@ -10,6 +10,18 @@ void CLighting::setSunDirectionVector() {
 	sunDirection.z = 0.0f;
 }
 
+void CLighting::getPointLights() {
+	pointLights.clear();
+	for (int i = 0; i < pointLightsPositions.size(); ++i) {
+		if (isFree[i].first == false) {
+			glm::vec3 tmp = (pointLightsPositions[i].second * glm::vec4(pointLightsPositions[i].first,1.0f));
+			pointLights.push_back(tmp.x);
+			pointLights.push_back(tmp.y);
+			pointLights.push_back(tmp.z);
+		}
+	}
+}
+
 CLighting::CLighting( glm::vec3 defaultSunDirection, unsigned int setMaxOfPointLights)
 {
 	sunDirection = defaultSunDirection;
@@ -22,14 +34,43 @@ CLighting::~CLighting()
 {
 }
 
+/*
 float points[] = {	-3.0f, 1.0f, 0.0f, 
 					3.0f, 1.0f, 0.0f,
 					0.0f, 1.0f, 3.0f };
+*/
+int CLighting::addPointLight(glm::vec3 position){
+	for (auto & it : isFree) {
+		if (it.first) {
+			it.first = false;
+			pointLightsPositions[it.second].second = glm::mat4(1.0f);
+			return it.second;
+		}
+	}
+	return -1;
+}
+void CLighting::udpate(int id, glm::vec3 position){
+	pointLightsPositions[id].first = position;
+}
+
+void CLighting::udpate(int id, float angle) {
+	pointLightsPositions[id].second = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)) * pointLightsPositions[id].second;
+}
+
+void CLighting::endLightPoint(int id){
+	isFree[id].first = true;
+}
 
 void CLighting::init(GLuint shaders) {
+	/*
 	for (int i = 0; i < 9; ++i) {
 		pointLights.push_back(points[i]);
+	}*/
+	for (int i = 0; i < maxOfPointLights; ++i) {
+		isFree.push_back(std::make_pair(true, i ));
+		pointLightsPositions.push_back(std::make_pair(glm::vec3(), glm::mat4(1.0f)));
 	}
+
 	shaderProgram = shaders;
 	sunDirectionPos = glGetUniformLocation(shaderProgram, "sunDirection");
 	flashlightPos = glGetUniformLocation(shaderProgram, "flashlight");
@@ -56,12 +97,17 @@ void CLighting::draw(double time) {
 	}
 	setSunDirectionVector();
 
+	getPointLights();
+
 	glUniform3f(sunDirectionPos, sunDirection.x, sunDirection.y, sunDirection.z);
 	glUniform1i(flashlightPos, flashlight);
 	//POZOR MAXIMALNI POCET SVETEL SE MUSI MENIT V SHADERU
 	glUniform1i(pointLightsCountPos, pointLights.size() / 3);
 	glUniform1f(sunAlphaPos, sunAlpha);
-	glUniform3fv(pointLightsPos, pointLights.size() / 3,&pointLights[0]);
+	if (pointLights.size() > 0) {
+		//std::cout << pointLights.size() / 3 << std::endl;
+		glUniform3fv(pointLightsPos, pointLights.size() / 3, &pointLights[0]);
+	}
 	CHECK_GL_ERROR();
 }
 

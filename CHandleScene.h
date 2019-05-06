@@ -1,7 +1,6 @@
 #pragma once
 #include<vector>
 #include<math.h>
-#include<deque>
 #include "CLighting.h"
 #include "CCamera.h"
 #include "CObject.h"
@@ -11,7 +10,9 @@ const int ANANASPIECES_MAX_COUNT = 20;
 class CHandleScene
 {
 	struct SAnanasPiece {
+		int light;
 		bool alive;
+		float angle;
 		CObject piece;
 		bool move;
 		double startTime;
@@ -28,7 +29,7 @@ class CHandleScene
 	bool pizzaRotation;
 	int aCounter;
 	std::vector<CObject> objects;
-	std::deque<SExplosion> explosions;
+	std::vector<SExplosion> explosions;
 	CObject referencePiece;
 	CObject referenceExplosion;
 	SAnanasPiece ananasPieces[ANANASPIECES_MAX_COUNT];
@@ -40,6 +41,7 @@ class CHandleScene
 	void setBezierAlfa(SAnanasPiece * piece,double time);
 	void handleExplosions(double time);
 	void bornExplosion(float angle, double time);
+	void bornExplosionOnPizza(float angle, double time, glm::vec3  position);
 	void bornAnanasPiece(double time);
 	void killAnanasPiece(SAnanasPiece * piece);
 	void checkLife(SAnanasPiece * piece, double time);

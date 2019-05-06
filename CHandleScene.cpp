@@ -8,7 +8,7 @@ const glm::vec3 p1 = glm::vec3(0.0f, 0.7f, 0.7f);
 double CHandleScene::rand0812() {
 	double tmp = double(rand()) / (double(RAND_MAX) + 1.0);
 	tmp = (tmp / 2.5) + 0.8;
-	std::cout << tmp << std::endl;
+	//std::cout << tmp << std::endl;
 	return tmp;
 }
 
@@ -33,21 +33,32 @@ void CHandleScene::setBezierAlfa(SAnanasPiece * piece, double time) {
 	float u = (float)(time - piece->startTime) / 2;
 	if (u >= 0.999f) {
 		u = 0.999f;
+		if (piece->alive) {
+			bornExplosionOnPizza(piece->angle, time, piece->p4);
+		}
 		piece->move = false;
 	}
 	piece->u = u;
 }
 
 void CHandleScene::handleExplosions(double time) {
-	for (auto it = explosions.begin(); it != explosions.end();) {
-		float live = (float)((*it).startTime - time) / 4;
-		if (live >= 1.0) {
-			explosions.erase(it);
-			continue;
-		}
+	int id = 0;
+	std::vector<SExplosion> toStay;
+	for (auto & it : explosions ) {
+		float live = (float)(time - it.startTime) * 2;
 		int frame = (int) floor(live * 16);
-		(*it).explosion.setTexFrame(frame);
+		it.explosion.setTexFrame(frame);
+
+
+		if (pizzaRotation) {
+			it.explosion.constRotate();
+		}
+		if (live < 1.0) {
+			toStay.push_back(it);
+		}
 	}
+
+	explosions = toStay;
 }
 
 void CHandleScene::bornExplosion(float angle, double time) {
@@ -55,31 +66,58 @@ void CHandleScene::bornExplosion(float angle, double time) {
 	tmp.explosion = CObject(&(referenceExplosion));
 	tmp.startTime = time;
 	tmp.frame = 0;
-	explosions.push_front(tmp);
-	explosions.front().explosion.rotate(angle);
+	explosions.push_back(tmp);
+	explosions.back().explosion.rotate(angle);
+	explosions.back().explosion.modelRotate();
+}
+
+void CHandleScene::bornExplosionOnPizza(float angle, double time, glm::vec3  position) {
+	SExplosion tmp;
+	tmp.explosion = CObject(&(referenceExplosion));
+	tmp.startTime = time;
+	tmp.frame = 0;
+	explosions.push_back(tmp);
+	position.y += 0.1;
+	explosions.back().explosion.setPosition(position);
+	explosions.back().explosion.rotate(angle);
+	explosions.back().explosion.setScale(0.5f);
+
 }
 
 void CHandleScene::bornAnanasPiece(double time)
 {
 	float rotationAngle;
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].piece = CObject(&(referencePiece));
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].alive = true;
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].move = true;
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].startTime = time;
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].piece.rotate(rotationAngle = (float)(std::rand() % 360));
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p4 = p4;
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p3 = p3;
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p4.z *= (float)rand0812();
-	ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p3.z = ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p4.z;
-	std::cout << ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p4.x << " " << ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p4.y
-		<< " " << ananasPieces[aCounter % ANANASPIECES_MAX_COUNT].p4.z << std::endl;
-	++aCounter;
+	int index = aCounter % ANANASPIECES_MAX_COUNT;
+	ananasPieces[index].piece = CObject(&(referencePiece));
+	ananasPieces[index].alive = true;
+	ananasPieces[index].move = true;
+	ananasPieces[index].startTime = time;
+	ananasPieces[index].piece.rotate(rotationAngle = (float)(std::rand() % 360));
+	ananasPieces[index].angle = rotationAngle;
+	ananasPieces[index].p4 = p4;
+	ananasPieces[index].p3 = p3;
+	ananasPieces[index].p4.z *= (float)rand0812();
+	ananasPieces[index].p3.z = ananasPieces[index].p4.z;
+	//std::cout << ananasPieces[index].p4.x << " " << ananasPieces[index].p4.y
+	//	<< " " << ananasPieces[index].p4.z << std::endl;
 
+	ananasPieces[index].light = light.addPointLight(ananasPieces[index].piece.getPosition());
+	if (ananasPieces[index].light != -1) {
+		light.udpate(ananasPieces[index].light, rotationAngle);
+	}
+	std::cout << "ID vracene " << ananasPieces[index].light << std::endl;
+	bornExplosion(rotationAngle, time);
 	//ENDTASK zalozit novy objekt vybuch a dat mu spravny smer pohledu 
+
+	++aCounter;
 }
 
 void CHandleScene::killAnanasPiece(SAnanasPiece * piece)
 {
+	if (piece->light != -1) {
+		light.endLightPoint(piece->light);
+	}
+	piece->light = -1;
 	piece->alive = false;
 }
 
@@ -112,10 +150,16 @@ void CHandleScene::handleLife(unsigned int shaderProgram, double time) {
 				ananasPieces[i].p3, ananasPieces[i].p4);
 			//glm::vec3 tmp = cubicBezier(ananasPieces[i].u, p1, p2, p3, p4);
 			ananasPieces[i].piece.changePosition(tmp);
+			if (ananasPieces[i].light != -1) {
+				light.udpate(ananasPieces[i].light, tmp);
+			}
 		}
 		else {
 			if (pizzaRotation) {
 				ananasPieces[i].piece.constRotate();
+				if (ananasPieces[i].light != -1) {
+					light.udpate(ananasPieces[i].light, 0.5f);
+				}
 			}
 		}
 		checkLife(&(ananasPieces[i]), time);
@@ -131,7 +175,7 @@ CHandleScene::CHandleScene(unsigned int maxCountOfLights) :light(glm::vec3(3.0, 
 	aCounter = 0;
 	pizzaRotation = true;
 	objects = std::vector<CObject>();
-	explosions = std::deque<SExplosion>();
+	explosions = std::vector<SExplosion>();
 }
 
 
@@ -172,7 +216,7 @@ void CHandleScene::init(unsigned int shaders)
 
 	referencePiece = CObject(CObject::EObjectType::ANANAS_PIECE, "ananasPiece.obj", "ananasPiece.png", glm::vec3(-3.0f, 1.0f, 0.0f));
 	referencePiece.init(shaders);
-	referenceExplosion = CObject(CObject::EObjectType::EXPLOSION, "explosion.obj", "explosionNumbers.png",glm::vec3(0.0f, 0.7f, 0.7f));
+	referenceExplosion = CObject(CObject::EObjectType::EXPLOSION, "explosion.obj", "explosion2.png",glm::vec3(0.0f, 0.75f, 0.75f));
 	referenceExplosion.init(shaders);
 }
 
@@ -186,11 +230,13 @@ void CHandleScene::draw(unsigned int shaders, double time)
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
 	int id = 0;
+	
 	for (auto & it : objects) {
 		glStencilFunc(GL_ALWAYS, (int) it.getType() , 255);
 		it.draw();
 		++id;
 	}
+	
 
 	id = 100;
 	for (int i = 0; i < aCounter && i < ANANASPIECES_MAX_COUNT; ++i) {
@@ -202,8 +248,12 @@ void CHandleScene::draw(unsigned int shaders, double time)
 	}
 	glDisable(GL_STENCIL_TEST);
 
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	for (auto & it : explosions) {
 		it.explosion.draw();
 	}
+	glDisable(GL_BLEND);
 	CHECK_GL_ERROR();
 }

@@ -67,6 +67,7 @@ public:
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition);
 	CObject(CObject * image);
 	EObjectType getType() { return objectType; }
+	const glm::vec3 & getPosition() { return objectPosition; }
 	//! Inicializace
 	/*!
 	incializuje objekt, nahraje jeho textury a vrcholy
@@ -79,8 +80,15 @@ public:
 	*/
 	void draw();
 	void changePosition(const glm::vec3 & newPos);
+	void modelRotate();
 	void rotate(float angle);
 	void constRotate() { rotationM = glm::rotate(glm::mat4(1.0f), glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0)) * rotationM; }
+	void setScale(float scale){
+		translateScale[0].x = scale;
+		translateScale[1].y = scale;
+		translateScale[2].z = scale;
+	}
+	void setPosition(glm::vec3 position) { objectPosition = position; setTransformMatrix(); }
 	const glm::mat4 & getRotationM() { return rotationM; }
 	void setTexFrame(int frame) { explosionAlpha = frame; return; }
 };

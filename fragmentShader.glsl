@@ -126,18 +126,35 @@ void main() {
 			color += tmpColor;
 		}
 	} else if (objectType == 5){
-		float imageSize = 0.25;
-		e
+		float iSize = 0.25;
+		float xC  = ShadertextureCoord.x;
+		float yC  = ShadertextureCoord.y;
+		xC = xC / 4;
+		yC = yC / 4;
+		xC += (explosionAlpha % 4) * iSize;
+		float tmp = explosionAlpha / 4;
+		yC += floor(tmp) * iSize;
+		color = texture(MTexture, vec2(xC,yC));
 	} else {
 		vec3 lightning = vec3(0.0,0.0,0.0);
 		if(flashlight > 0) {
 			lightning += flashlighPhong() * lightColor;
-			lightning += directionPhong() * 0.3 * lightColor;
+			lightning += directionPhong() * 0.5 * lightColor;
 			for(int i = 0; i < countOflights; ++i){
-				lightning += pointPhong( lights[i]);
+				lightning += pointPhong( lights[i]) * 0.2;
 			}
 		} else {
-			lightning += directionPhong() * 1.2  * lightColor;
+			if(objectType == 3 ){
+				lightning += directionPhong() * 1.2  * lightColor;
+				for(int i = 0; i < countOflights; ++i){
+					lightning += pointPhong( lights[i]) * 0.2;
+				}
+			} else {
+				lightning += directionPhong() * 0.8  * lightColor;
+				for(int i = 0; i < countOflights; ++i){
+					lightning += pointPhong( lights[i]) * 0.2;
+				}
+			}
 		}
 
 		color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);

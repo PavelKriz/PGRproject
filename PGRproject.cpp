@@ -134,7 +134,7 @@ void mouseClick(int button, int state, int x, int y) {
 	if (state == GLUT_UP) {
 		if ( lastx -2 <  x && x < lastx + 2 && lasty - 2 < y && y < lasty + 2) {
 			glReadPixels(x, WINDOW_HEIGHT - 1 - y, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_BYTE, &id);
-			std::cout << "KLIKNUTO NA OBJEKT S ID" << id << std::endl;
+			//std::cout << "KLIKNUTO NA OBJEKT S ID" << id << std::endl;
 			scene.objectEcho(id, time);
 		}
 	}

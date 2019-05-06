@@ -1,2 +1,7 @@
 ﻿  CHandleScene.cpp
+c:\users\pavel\source\repos\pgrproject\pgrproject\chandlescene.cpp(80): warning C4305: +=: zkrácení z: double na: T
+          with
+          [
+              T=float
+          ]
   PGRproject.vcxproj -> C:\Users\Pavel\source\repos\PGRproject\Debug\PGRproject.exe
