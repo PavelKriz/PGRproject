@@ -2,10 +2,11 @@
 /**
  * \file       CObject.h
  * \author     Pavel Kriz
- * \date       22/04/2019
- * \brief      Trida ktera predstavuje objekt ve svete
+ * \date       30/04/2019
+ * \brief      Represents object in 3d world
  *
- *  Umoznuje nacist objekt, inicializovat ho v programu a nasledne ho zobrazovat
+ *	Allows load object, init object in shaders and then render object
+ *
  *
 */
 //----------------------------------------------------------------------------------------
@@ -13,12 +14,15 @@
 #pragma once
 #include<pgr.h>
 
-//!  CObject class, ovlada a zpracovava objekt ve svete
+//!  Represents object in 3d world
 /*!
-	Umi objekty nacist nasledovne je inicializovat do bufferu a potom je vykreslovat
+	Allows load object, init object in shaders and then render object
 */
 class CObject {
 public:
+	/*!
+	types of object
+	*/
 	enum EObjectType {
 		UNKNOWN = 0,
 		PIZZA = 1,
@@ -28,78 +32,134 @@ public:
 		EXPLOSION = 5
 	};
 private:
-	unsigned int objectTypePos;
-	EObjectType objectType;
-	glm::vec3 objectPosition;
-	glm::vec3 vFront;
-	glm::mat4 translateScale;
-	glm::mat4 inWorldRotation;
-	glm::mat4 inModelRotation;
-	//float ananasPieceRotation;
-	std::vector<float>  vertices;	//!< pole s vrcholy ulozenymi ve floatech
-	unsigned int sizeOfVertices;	//!< velikost bufferu, pocet jeho floatu
-	unsigned int countOfVertices;	//!< pocet vrcholu (pro kazdy polygon jsou tri), nepocitaji se jako identicke
-	GLuint arrayBuffer;	//!< id  bufferu s daty
-	GLuint vao;	//!< id vertex array pro objekt
-	GLuint vertexAtribPointerPos;
-	unsigned int transformMatrixPos;
-	GLuint texturePos;	//!< id/pozice textur 
-	GLuint textureCoordsPos;	//!< id atributu texturovych souradnic v saderu
-	GLuint textureSamplerPos;	//!< id sampleru textury v shaderu
-	GLuint normalPos;	//!< pozice normal v shaderu
-	std::string textureName;	//!< nazev textury objektu
+	unsigned int objectTypePos;	//!< id(in shaders) of type of object
+	EObjectType objectType;	//!< type of object
+	glm::vec3 objectPosition;	//!< position of object 
+	glm::vec3 vFront;	//!< front vector of object
+	glm::mat4 translateScale;	//!< translate and scale matrix of object
+	glm::mat4 inWorldRotation;	//!< rotation matrix in world coordinates
+	glm::mat4 inModelRotation;	//!< rotation matrix in model coordinates
+	std::vector<float>  vertices;	//!< vertices of object
+	unsigned int sizeOfVertices;	//!< sizeof(vertices)
+	unsigned int countOfVertices;	//!< count of vertices (for each polygon are three vertices)
+	GLuint arrayBuffer;	//!< id of array buffer in shaders 
+	GLuint vao;	//!< id of vertex array in shaders
+	GLuint vertexAtribPointerPos;	//!< id of vertexAtribPointer location in shaders
+	unsigned int transformMatrixPos;	//!< id of transform matrix in shaders
+	GLuint texturePos;	//!< id of texture object
+	GLuint textureCoordsPos;	//!< id of texture coord atribute in shaders
+	GLuint textureSamplerPos;	//!< id of texture sampler in shaders
+	GLuint normalPos;	//!< id of normal atributes in shaders
 
-	std::string secondTexture;
-	unsigned int explosionAlphaPos;
-	int explosionAlpha;
-	unsigned int skyboxSunTexture;
-	unsigned int skyboxTexSamplerPos;
+	std::string textureName;	//!< name of texture image
+	std::string secondTexture;	//!< name of second texture image
+	int explosionAlpha;	//!< it is frame( modulo 16 ) of explosion animation
+	unsigned int explosionAlphaPos;	//!< id of explosionAlpha in shaders
+	unsigned int skyboxSunTexture;	//!< id of skybox sun texture
+	unsigned int skyboxTexSamplerPos;	//!<id of skybox sun texture sampler in shaders
 
+	 //! init transform matrix in the beginning of object
 	void initTransformMatrix();
+	//! sets transform matrix in the middle of object lifetime
 	void setTransformMatrix();
+	//! generic constructor code
+	/*!
+	\param[in] toType is type of object
+	\param[in] fileName	is name of file containing vertices
+	\param[in] toTextureName is name of image which contains texture
+	*/
 	void defaultConstructor(EObjectType toType, std::string fileName, std::string toTextureName);
 public:
-	//! Konstruktor
-	/*!
-	podle jmen souboru textury a souboru s vrcholy nacte a inicalizuje objekt
-	\param[in] fileName soubor s vrcholy
-	\param[in] toTextureName jmeno souboru s texturami
-	*/
+	//! Default Constructor makes empty object
 	CObject() : objectType(UNKNOWN) {}
+	//! Default non-empty constructor
+	/*!
+	\param[in] toType is type of object
+	\param[in] fileName	is name of file containing vertices
+	\param[in] toTextureName is name of image which contains texture
+	*/
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName) { defaultConstructor(toType, fileName, toTextureName); }
+	//! Two textures constructor
+	/*!
+	construct object with two textures
+	\param[in] toType is type of object
+	\param[in] fileName	is name of file containing vertices
+	\param[in] toTextureName is name of image which contains texture
+	\param[in] toSecondTexture is name of image which contains second texture
+	*/
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName, std::string toSecondTexture) {
 		if (toType == SKYBOX) {
 			secondTexture = toSecondTexture;
 		}
 		defaultConstructor(toType, fileName, toTextureName);
 	}
+	//! Two textures constructor
+	/*!
+	construct object with two textures
+	\param[in] toType is type of object
+	\param[in] fileName	is name of file containing vertices
+	\param[in] toTextureName is name of image which contains texture
+	\param[in] toDefaultPosition is position of the object in beginning
+	*/
 	CObject(EObjectType toType, std::string fileName, std::string toTextureName, glm::vec3 toDefaultPosition) {
 		defaultConstructor(toType, fileName, toTextureName);
 		objectPosition = toDefaultPosition;
 	}
+	//! Copy Constructor
+	/*!
+	\param[in] image is object which will be copied
+	*/
 	CObject(CObject * image);
+	//! get object type
+	/*!
+		\return type of object
+	*/
 	EObjectType getType() { return objectType; }
+	//! get position of object
+	/*!
+		\return position vector of object
+	*/
 	const glm::vec3 & getPosition() { return objectPosition; }
+	//! sets new position
+	/*!
+		if object type is ANANAS_PIECE it rotate in the direction of move
+		\param[in] newPos is new set position
+	*/
 	void changePosition(const glm::vec3 & newPos);
+	//! sets scale
+	/*!
+		\param[in] scale is new scale
+	*/
 	void setScale(float scale){
 		translateScale[0].x = scale;
 		translateScale[1].y = scale;
 		translateScale[2].z = scale;
 	}
-	//! Inicializace
+	//! init object rendering
 	/*!
-	incializuje objekt, nahraje jeho textury a vrcholy
-	\param[in] shaderProgram pro to aby mohl nabindovat objekty s promenymi v shaderech
+	init objects(vertices, uniforms, textures)
+	\param[in] shaderProgram is id of shaders 
 	*/
 	void init(GLuint shaderProgram);
-	//! Vykresleni souboru
-	/*!
-	vykresli objekt podle informaci co ma
-	*/
+	//! renders object
 	void draw();
+	//! rotate it by some const rotation in model coords
 	void modelRotate();
+	//! ads positive rotation in y axis
+	/*!
+	\param[in] angle by which is object rotated
+	*/
 	void rotate(float angle);
+	//! rotate it by some const rotation in world coors
 	void constRotate() { inWorldRotation = glm::rotate(glm::mat4(1.0f), glm::radians(0.5f), glm::vec3(0.0, 1.0, 0.0)) * inWorldRotation; }
+	//! get matrix of rotation in world coordinates
+	/*!
+		\return rotation matrix in world coordinates
+	*/
 	const glm::mat4 & getWorldRotation() { return inWorldRotation; }
+	//! set the right frame of dynamic texture
+	/*!
+	\param[in] frame is number of frame (modulo 16)
+	*/
 	void setTexFrame(int frame) { explosionAlpha = frame; return; }
 };
