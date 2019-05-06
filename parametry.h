@@ -29,3 +29,7 @@ const char freeCameraKey = '1';
 const char firstViewKey = '2';
 const char secondViewKey = '3';
 const char flashLightOnOff = 'l';
+const int crazyModKey1 = GLUT_KEY_F1;
+const int crazyModKey2 = GLUT_KEY_F2;
+const int crazyModKey3 = GLUT_KEY_F3;
+const int crazyModKey4 = GLUT_KEY_F4;

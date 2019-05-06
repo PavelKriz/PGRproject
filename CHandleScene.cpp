@@ -140,8 +140,8 @@ void CHandleScene::handleGameLife(unsigned int shaderProgram, double time) {
 		}
 	}
 
-	int born = std::rand() % 60;
-	if(born == 56){
+	int born = std::rand() % randomRange;
+	if(born == randomPick){
 		bornAnanasPiece(time);
 	}
 
@@ -174,6 +174,8 @@ void CHandleScene::handleGameLife(unsigned int shaderProgram, double time) {
 
 CHandleScene::CHandleScene(unsigned int maxCountOfLights) :light(glm::vec3(3.0, 1.0, 0.0), maxCountOfLights)
 {
+	randomRange = 60;
+	randomPick = 56;
 	aCounter = 0;
 	pizzaRotation = true;
 	objects = std::vector<CObject>();

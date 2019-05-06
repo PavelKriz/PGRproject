@@ -15,6 +15,14 @@ void CObject::setTransformMatrix()
 	translateScale[3].z = objectPosition.z;
 }
 
+const float skyboxVertices[]{
+	1 , 0 , 1 , 0 , 0 , 0 , 1 , 0 ,
+	-1 , 0 , -1 , 1 , 1 , 0 , 1 , 0 ,
+	-1 , 0 , 1 , 0 , 1 , 0 , 1 , 0 ,
+	1 , 0 , 1 , 0 , 0 , 0 , 1 , 0 ,
+	1 , 0 , -1 , 1 , 0 , 0 , 1 , 0 ,
+	-1 , 0 , -1 , 1 , 1 , 0 , 1 , 0 ,
+};
 
 void CObject::defaultConstructor(EObjectType toType, std::string fileName, std::string toTextureName)
 {
@@ -25,6 +33,12 @@ void CObject::defaultConstructor(EObjectType toType, std::string fileName, std::
 	inModelRotation = glm::mat4(1.0f);
 	vertices = std::vector<float>();
 	objectLoader(fileName.c_str(), vertices);
+	if (objectType == EXPLOSION) {
+		vertices.clear();
+		for (int i = 0; i < 48; ++i) {
+			vertices.push_back(skyboxVertices[i]);
+		}
+	}
 	textureName = toTextureName;
 	sizeOfVertices = vertices.size() * sizeof(float);
 	countOfVertices = vertices.size() / 8;

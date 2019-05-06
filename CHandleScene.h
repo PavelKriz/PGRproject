@@ -17,10 +17,13 @@ const std::string ananasPieceTEX = "ananasPiece.png";
 const std::string explosionOBJ = "explosion.obj";
 const std::string explosionTEX = "explosion2.png";
 
-const int ANANASPIECES_MAX_COUNT = 20;
+const int ANANASPIECES_MAX_COUNT = 50;
 
 class CHandleScene
 {
+	int randomRange;
+	int randomPick;
+
 	struct SAnanasPiece {
 		CObject piece;
 		bool alive;
@@ -74,5 +77,9 @@ public:
 	}
 
 	void enableDisableFlashLight() { light.enableDisableFlashLight(); }
+	void howCrazy(int toRandomRange,int toRandomPick) {
+		randomRange = toRandomRange;
+		randomPick = toRandomPick;
+	}
 };
 

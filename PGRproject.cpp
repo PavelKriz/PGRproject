@@ -151,15 +151,15 @@ void mouseClickMove( int xPos, int yPos)
 {
 
 	if (!mouseData.inUsing) {
-		mouseData.lastXPos = (float) xPos;
-		mouseData.lastYPos = (float) yPos;
-		mouseData.inUsing = true;
+mouseData.lastXPos = (float)xPos;
+mouseData.lastYPos = (float)yPos;
+mouseData.inUsing = true;
 	}
 
 	float xoffset = xPos - mouseData.lastXPos;
 	float yoffset = mouseData.lastYPos - yPos;
 
-	mouseData.lastXPos = (float) xPos;
+	mouseData.lastXPos = (float)xPos;
 	mouseData.lastYPos = (float)yPos;
 
 	float sensitivity = 0.5;
@@ -199,7 +199,7 @@ void onTimer(int) {
 	time = timeMs * 0.001f;
 
 	++frame;
-	if (timeMs - lastTime > 1000 ) {
+	if (timeMs - lastTime > 1000) {
 		fps = frame * 1000.0 / (timeMs - lastTime);
 		lastTime = timeMs;
 		frame = 0;
@@ -233,9 +233,6 @@ void onKey(unsigned char key, int, int) {
 	case moveDownKey:
 		camera.CameraMoveDown();
 		break;
-	case 'r':
-		loadShaders();
-		break;
 	case freeCameraKey:
 		camera.changeViewType(FREE, time);
 		break;
@@ -247,6 +244,53 @@ void onKey(unsigned char key, int, int) {
 		break;
 	case flashLightOnOff:
 		scene.enableDisableFlashLight();
+		break;
+	case crazyModKey1:
+		scene.howCrazy(60, 56);
+		break;
+	case crazyModKey2:
+		scene.howCrazy(35, 32);
+		break;
+	case crazyModKey3:
+		scene.howCrazy(10, 5);
+		break;
+	case crazyModKey4:
+		scene.howCrazy(6, 5);
+		break;
+	}
+}
+//================================================ON SPECIAL KEY================================================
+void onSpecialKey(int key, int, int){
+	switch (key) {
+	case crazyModKey1:
+		scene.howCrazy(60, 56);
+		break;
+	case crazyModKey2:
+		scene.howCrazy(35, 32);
+		break;
+	case crazyModKey3:
+		scene.howCrazy(10, 5);
+		break;
+	case crazyModKey4:
+		scene.howCrazy(6, 5);
+		break;
+	case moveBackwardKey:
+		camera.CameraMoveBackward();
+		break;
+	case moveLeftKey:
+		camera.CameraMoveLeft();
+		break;
+	case moveRightKey:
+		camera.CameraMoveRight();
+		break;
+	case moveForwardKey:
+		camera.CameraMoveForward();
+		break;
+	case moveUpKey:
+		camera.CameraMoveUp();
+		break;
+	case moveDownKey:
+		camera.CameraMoveDown();
 		break;
 	}
 }
@@ -264,6 +308,7 @@ int main(int argc, char** argv) {
 
 	/// nastaveni funkci v glutu
 	glutKeyboardFunc(onKey);
+	glutSpecialFunc(onSpecialKey);
 	glutMotionFunc(mouseClickMove);
 	glutMouseFunc(mouseClick);
 	glutTimerFunc(refreshTimeMs, onTimer, 0);
