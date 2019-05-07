@@ -146,8 +146,8 @@
     <Image Include="pizza2kb.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragmentShader.glsl" />
-    <None Include="vertexShader.glsl" />
+    <None Include="fragmentShader.frag" />
+    <None Include="vertexShader.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

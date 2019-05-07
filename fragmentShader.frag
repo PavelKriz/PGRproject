@@ -7,7 +7,7 @@ in vec3 cameraFragPos;
 uniform vec3 sunDirection;
 uniform int flashlight;
 uniform int countOflights;
-uniform vec3 lights[6];
+uniform vec4 lights[6];
 uniform int objectType;
 out vec4 color;
 uniform vec3 eyePos;
@@ -17,16 +17,17 @@ uniform sampler2D MTexture;
 uniform sampler2D skyboxSun;
 uniform float sunAlpha;
 uniform int explosionAlpha;
+uniform vec3 lightColor;
+uniform float ambientRegulator;
 
-//ENDTASK potreba udelat zde nejakou intovou alfu ktera bude blikat mezi framy
-//ENDTASK pridat velikost jednoho bloku 
+//================================================================================================
 
 float ambient = 0.5;
 float specularStrength = 0.8;
 float diffuseStrength = 0.8;
 float amplifie = 1.0;
-vec3 lightColor = vec3(1.0,0.9,0.9);
 
+//================================================================================================
 
 
 float getFlashlight(){
@@ -38,6 +39,8 @@ float getFlashlight(){
 	else
 		return pow(spotAngle , 102);
 }
+
+//================================================================================================
 
 float flashlighPhong(){
 	vec3 normalizedNormal = normalize(normal);
@@ -52,6 +55,8 @@ float flashlighPhong(){
 
 }
 
+//================================================================================================
+
 float directionPhong(){
 	vec3 normalizedNormal = normalize(normal);
 	vec3 lightDir = normalize(sunDirection);
@@ -62,6 +67,8 @@ float directionPhong(){
 	float diffuse = max(dot(normalizedNormal, lightDir), 0.0)  * diffuseStrength ;
 	return (diffuse + ambient  + specular);
 }
+
+//================================================================================================
 
 float pointPhong( vec3 lightPointPos){
 	vec3 normalizedNormal = normalize(normal);
@@ -76,12 +83,16 @@ float pointPhong( vec3 lightPointPos){
 	return (diffuse + specular) * attenuation;
 }
 
+//================================================================================================
+
 float  ananasPhong( vec3 lightPointPos){
 	float distance =length(vec3(0.0,0.0,0.0) - FragPos);
 	distance -= 0.7;
 	float attenuation = 1.0 / (0.6 * distance +  distance * distance * distance); 
 	return attenuation ;
 }
+
+//================================================================================================
 
 float lightFog(vec3 objPos){
 	float objDist = length(FragPos - objPos);
@@ -110,6 +121,7 @@ float lightFog(vec3 objPos){
 	}
 }
 
+//================================================================================================
 
 vec4 explosion(){
 		float iSize = 0.25;
@@ -123,6 +135,8 @@ vec4 explosion(){
 		return texture(MTexture, vec2(xC,yC));
 
 }
+
+//================================================================================================
 
 vec4 skybox(){
 	vec4 ret =  texture(MTexture, ShadertextureCoord);
@@ -139,12 +153,16 @@ vec4 skybox(){
 	return ret;
 }
 
+//================================================================================================
+
 void setupSKYBOX(){
 	ambient = 0.5;
 	specularStrength = 0.8;
 	diffuseStrength = 0.8;
 	amplifie = 1.0;
 }
+
+//================================================================================================
 
 void setupPIZZA(){
 	ambient = 0.5;
@@ -153,12 +171,16 @@ void setupPIZZA(){
 	amplifie = 1.0;
 }
 
+//================================================================================================
+
 void setupANANAS(){
 	ambient = 0.5;
 	specularStrength = 0.8;
 	diffuseStrength = 1.0;
 	amplifie = 1.0;
 }
+
+//================================================================================================
 
 void setupANANAS_PIECE(){
 	ambient = 0.5;
@@ -167,6 +189,8 @@ void setupANANAS_PIECE(){
 	amplifie = 1.0;
 }
 
+//================================================================================================
+
 void setupEXPLOSION(){
 	ambient = 0.5;
 	specularStrength = 0.8;
@@ -174,7 +198,7 @@ void setupEXPLOSION(){
 	amplifie = 1.0;
 }
 
-
+//================================================================================================
 
 void main() {
 	switch (objectType){
@@ -196,6 +220,8 @@ void main() {
 		default:
 			break;
 	}
+	ambient *= ambientRegulator;
+
 	if( objectType == 2){ 
 		color = skybox();
 	} else if (objectType == 5){
@@ -208,7 +234,7 @@ void main() {
 
 		lightning += directionPhong()  * lightColor;
 		for(int i = 0; i < countOflights; ++i){
-			lightning += pointPhong( lights[i]) * 0.2;
+			lightning += pointPhong( lights[i].xyz) * lights[i].w;
 		}
 
 		color =  vec4(lightning,1.0) * texture(MTexture, ShadertextureCoord);

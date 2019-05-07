@@ -142,10 +142,7 @@ glm::mat4 CCamera::GetViewProjection(double time)
 	 glm::vec3 tempUp;
 
 	 checkPosition();
-	 /*
-	 std::cout	<< "Position: x: " << vPosition.x << "y: " << vPosition.y << "z: " << vPosition.z 
-				<< "Distance: " << glm::distance(glm::vec3(0.0f,0.0f,0.0f), vPosition) <<std::endl;
-				*/
+
 	 switch (state) {
 	 case FREE:
 		 return mPerspective * glm::lookAt(vPosition, vPosition + vFront, vUp);
