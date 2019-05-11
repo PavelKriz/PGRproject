@@ -1,0 +1,271 @@
+\hypertarget{class_c_camera}{}\section{C\+Camera Class Reference}
+\label{class_c_camera}\index{CCamera@{CCamera}}
+
+
+\mbox{\hyperlink{class_c_camera}{C\+Camera}} class, controls the view.  
+
+
+
+
+{\ttfamily \#include $<$C\+Camera.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229}{E\+View\+State}} \{ \mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a32633cd46c45e3e2c25e9831710aa08e}{T\+R\+A\+N\+S\+I\+T\+I\+ON}}, 
+\mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a69f9afb475e63cea958e95a599137068}{F\+R\+EE}}, 
+\mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229ac76c288d800a888a8278325d16ee11f5}{L\+O\+C\+K\+\_\+\+O\+NE}}, 
+\mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a68b92d539034c7cbe151d1b90db4a2cc}{L\+O\+C\+K\+\_\+\+T\+WO}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_camera_a1bb48d7dc7a9db872ed7d0150d2849b6}{C\+Camera}} (const glm\+::vec3 \&to\+Position, float fov, float aspect, float z\+Near, float z\+Far, const float to\+Speed)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a6e9888c96a4bf36281ca773bd0d6c6f3}{init}} (G\+Luint shaders)
+\begin{DoxyCompactList}\small\item\em init camera in shaders \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_aaeaa97e8cd4d4a78020a8e403965f818}{draw}} (double time)
+\begin{DoxyCompactList}\small\item\em draw camera in shaders \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a9446bfa84185f4924bc0e518dd3dd766}{Camera\+Move\+Forward}} ()
+\begin{DoxyCompactList}\small\item\em camera move forward \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a9d498be899e2eee1479dfef542a63a04}{Camera\+Move\+Backward}} ()
+\begin{DoxyCompactList}\small\item\em camera move backward \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_aaaaf41a9e27b36f79174113636c39e51}{Camera\+Move\+Up}} ()
+\begin{DoxyCompactList}\small\item\em camera move up \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_aa89809272db834f406ce4453b4399eef}{Camera\+Move\+Down}} ()
+\begin{DoxyCompactList}\small\item\em camera move down \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a7649ce213b5baaae9dcb0d17776e8606}{Camera\+Move\+Left}} ()
+\begin{DoxyCompactList}\small\item\em camera move left \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_a80dc9119218e8f6fcd9c827a40c63e33}{Camera\+Move\+Right}} ()
+\begin{DoxyCompactList}\small\item\em camera move right \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_aecabdd595f7051f0780374f8970279ee}{set\+Front}} (const glm\+::vec3 \&to\+Front)
+\begin{DoxyCompactList}\small\item\em sets front \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_camera_af19e4ea1747a31e2b1d6c4a3432aea03}{change\+View\+Type}} (\mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229}{E\+View\+State}} which, double time)
+\begin{DoxyCompactList}\small\item\em change view method \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_c_camera_a0aeb916be4aa684dc2458a48ae22ff8d}{Get\+View\+Projection}} (double time)
+\begin{DoxyCompactList}\small\item\em getter for view projection \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_c_camera_a0a0488eeda9bcd1e4f9eff6d2029554a}{yaw}}
+\begin{DoxyCompactList}\small\item\em yaw of camera, with this (and with pitch) is in free camera calculated vfront \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_c_camera_aecb3cfc8655a1891fa67c037b34d7c8a}{pitch}}
+\begin{DoxyCompactList}\small\item\em pitch of camera, with this (and with yaw) is in free camera calculated vfront \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_c_camera}{C\+Camera}} class, controls the view. 
+
+Camera class, controls the view Handles view init and view updating according to keyboard actions and mouse movement. It provide projection matrix. 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_c_camera_ae03c923f302a1ff2a7f85044b7352229}\label{class_c_camera_ae03c923f302a1ff2a7f85044b7352229}} 
+\index{CCamera@{CCamera}!EViewState@{EViewState}}
+\index{EViewState@{EViewState}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{EViewState}{EViewState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229}{C\+Camera\+::\+E\+View\+State}}}
+
+states of camera \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRANSITION@{TRANSITION}!CCamera@{CCamera}}\index{CCamera@{CCamera}!TRANSITION@{TRANSITION}}}\mbox{\Hypertarget{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a32633cd46c45e3e2c25e9831710aa08e}\label{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a32633cd46c45e3e2c25e9831710aa08e}} 
+T\+R\+A\+N\+S\+I\+T\+I\+ON&state between other states \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FREE@{FREE}!CCamera@{CCamera}}\index{CCamera@{CCamera}!FREE@{FREE}}}\mbox{\Hypertarget{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a69f9afb475e63cea958e95a599137068}\label{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a69f9afb475e63cea958e95a599137068}} 
+F\+R\+EE&free camera state \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOCK\_ONE@{LOCK\_ONE}!CCamera@{CCamera}}\index{CCamera@{CCamera}!LOCK\_ONE@{LOCK\_ONE}}}\mbox{\Hypertarget{class_c_camera_ae03c923f302a1ff2a7f85044b7352229ac76c288d800a888a8278325d16ee11f5}\label{class_c_camera_ae03c923f302a1ff2a7f85044b7352229ac76c288d800a888a8278325d16ee11f5}} 
+L\+O\+C\+K\+\_\+\+O\+NE&first lock camera state \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOCK\_TWO@{LOCK\_TWO}!CCamera@{CCamera}}\index{CCamera@{CCamera}!LOCK\_TWO@{LOCK\_TWO}}}\mbox{\Hypertarget{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a68b92d539034c7cbe151d1b90db4a2cc}\label{class_c_camera_ae03c923f302a1ff2a7f85044b7352229a68b92d539034c7cbe151d1b90db4a2cc}} 
+L\+O\+C\+K\+\_\+\+T\+WO&second lock camera state \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_camera_a1bb48d7dc7a9db872ed7d0150d2849b6}\label{class_c_camera_a1bb48d7dc7a9db872ed7d0150d2849b6}} 
+\index{CCamera@{CCamera}!CCamera@{CCamera}}
+\index{CCamera@{CCamera}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CCamera()}{CCamera()}}
+{\footnotesize\ttfamily C\+Camera\+::\+C\+Camera (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{to\+Position,  }\item[{float}]{fov,  }\item[{float}]{aspect,  }\item[{float}]{z\+Near,  }\item[{float}]{z\+Far,  }\item[{const float}]{to\+Speed }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+inicialize camera 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em to\+Position} & position of camera in beginning \\
+\hline
+\mbox{\texttt{ in}}  & {\em fov} & set field of camera view \\
+\hline
+\mbox{\texttt{ in}}  & {\em aspect} & information about screen aspect ratio \\
+\hline
+\mbox{\texttt{ in}}  & {\em z\+Near} & zbuffer near distance \\
+\hline
+\mbox{\texttt{ in}}  & {\em z\+Far} & zbuffer far distance \\
+\hline
+\mbox{\texttt{ in}}  & {\em to\+Spead} & set default camera speed \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_camera_a9d498be899e2eee1479dfef542a63a04}\label{class_c_camera_a9d498be899e2eee1479dfef542a63a04}} 
+\index{CCamera@{CCamera}!CameraMoveBackward@{CameraMoveBackward}}
+\index{CameraMoveBackward@{CameraMoveBackward}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CameraMoveBackward()}{CameraMoveBackward()}}
+{\footnotesize\ttfamily void C\+Camera\+::\+Camera\+Move\+Backward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+camera move backward 
+
+\mbox{\Hypertarget{class_c_camera_aa89809272db834f406ce4453b4399eef}\label{class_c_camera_aa89809272db834f406ce4453b4399eef}} 
+\index{CCamera@{CCamera}!CameraMoveDown@{CameraMoveDown}}
+\index{CameraMoveDown@{CameraMoveDown}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CameraMoveDown()}{CameraMoveDown()}}
+{\footnotesize\ttfamily void C\+Camera\+::\+Camera\+Move\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+camera move down 
+
+\mbox{\Hypertarget{class_c_camera_a9446bfa84185f4924bc0e518dd3dd766}\label{class_c_camera_a9446bfa84185f4924bc0e518dd3dd766}} 
+\index{CCamera@{CCamera}!CameraMoveForward@{CameraMoveForward}}
+\index{CameraMoveForward@{CameraMoveForward}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CameraMoveForward()}{CameraMoveForward()}}
+{\footnotesize\ttfamily void C\+Camera\+::\+Camera\+Move\+Forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+camera move forward 
+
+\mbox{\Hypertarget{class_c_camera_a7649ce213b5baaae9dcb0d17776e8606}\label{class_c_camera_a7649ce213b5baaae9dcb0d17776e8606}} 
+\index{CCamera@{CCamera}!CameraMoveLeft@{CameraMoveLeft}}
+\index{CameraMoveLeft@{CameraMoveLeft}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CameraMoveLeft()}{CameraMoveLeft()}}
+{\footnotesize\ttfamily void C\+Camera\+::\+Camera\+Move\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+camera move left 
+
+\mbox{\Hypertarget{class_c_camera_a80dc9119218e8f6fcd9c827a40c63e33}\label{class_c_camera_a80dc9119218e8f6fcd9c827a40c63e33}} 
+\index{CCamera@{CCamera}!CameraMoveRight@{CameraMoveRight}}
+\index{CameraMoveRight@{CameraMoveRight}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CameraMoveRight()}{CameraMoveRight()}}
+{\footnotesize\ttfamily void C\+Camera\+::\+Camera\+Move\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+camera move right 
+
+\mbox{\Hypertarget{class_c_camera_aaaaf41a9e27b36f79174113636c39e51}\label{class_c_camera_aaaaf41a9e27b36f79174113636c39e51}} 
+\index{CCamera@{CCamera}!CameraMoveUp@{CameraMoveUp}}
+\index{CameraMoveUp@{CameraMoveUp}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{CameraMoveUp()}{CameraMoveUp()}}
+{\footnotesize\ttfamily void C\+Camera\+::\+Camera\+Move\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+camera move up 
+
+\mbox{\Hypertarget{class_c_camera_af19e4ea1747a31e2b1d6c4a3432aea03}\label{class_c_camera_af19e4ea1747a31e2b1d6c4a3432aea03}} 
+\index{CCamera@{CCamera}!changeViewType@{changeViewType}}
+\index{changeViewType@{changeViewType}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{changeViewType()}{changeViewType()}}
+{\footnotesize\ttfamily void C\+Camera\+::change\+View\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_c_camera_ae03c923f302a1ff2a7f85044b7352229}{E\+View\+State}}}]{which,  }\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+change view method 
+
+changes view method(camera states) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em which} & defines wanted state \\
+\hline
+\mbox{\texttt{ in}}  & {\em time} & information about time from start of program \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_camera_aaeaa97e8cd4d4a78020a8e403965f818}\label{class_c_camera_aaeaa97e8cd4d4a78020a8e403965f818}} 
+\index{CCamera@{CCamera}!draw@{draw}}
+\index{draw@{draw}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void C\+Camera\+::draw (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+draw camera in shaders 
+
+set values of camera uniforms in shaders \mbox{\Hypertarget{class_c_camera_a0aeb916be4aa684dc2458a48ae22ff8d}\label{class_c_camera_a0aeb916be4aa684dc2458a48ae22ff8d}} 
+\index{CCamera@{CCamera}!GetViewProjection@{GetViewProjection}}
+\index{GetViewProjection@{GetViewProjection}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{GetViewProjection()}{GetViewProjection()}}
+{\footnotesize\ttfamily glm\+::mat4 C\+Camera\+::\+Get\+View\+Projection (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+getter for view projection 
+
+according to camera state it return projection matrix \begin{DoxyReturn}{Returns}
+projection matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_camera_a6e9888c96a4bf36281ca773bd0d6c6f3}\label{class_c_camera_a6e9888c96a4bf36281ca773bd0d6c6f3}} 
+\index{CCamera@{CCamera}!init@{init}}
+\index{init@{init}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void C\+Camera\+::init (\begin{DoxyParamCaption}\item[{G\+Luint}]{shaders }\end{DoxyParamCaption})}
+
+
+
+init camera in shaders 
+
+set camera uniforms in shader \mbox{\Hypertarget{class_c_camera_aecabdd595f7051f0780374f8970279ee}\label{class_c_camera_aecabdd595f7051f0780374f8970279ee}} 
+\index{CCamera@{CCamera}!setFront@{setFront}}
+\index{setFront@{setFront}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{setFront()}{setFront()}}
+{\footnotesize\ttfamily void C\+Camera\+::set\+Front (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{to\+Front }\end{DoxyParamCaption})}
+
+
+
+sets front 
+
+sets front of camera 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em to\+Front} & is set as new front of camera \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_c_camera_aecb3cfc8655a1891fa67c037b34d7c8a}\label{class_c_camera_aecb3cfc8655a1891fa67c037b34d7c8a}} 
+\index{CCamera@{CCamera}!pitch@{pitch}}
+\index{pitch@{pitch}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{pitch}{pitch}}
+{\footnotesize\ttfamily float C\+Camera\+::pitch}
+
+
+
+pitch of camera, with this (and with yaw) is in free camera calculated vfront 
+
+\mbox{\Hypertarget{class_c_camera_a0a0488eeda9bcd1e4f9eff6d2029554a}\label{class_c_camera_a0a0488eeda9bcd1e4f9eff6d2029554a}} 
+\index{CCamera@{CCamera}!yaw@{yaw}}
+\index{yaw@{yaw}!CCamera@{CCamera}}
+\subsubsection{\texorpdfstring{yaw}{yaw}}
+{\footnotesize\ttfamily float C\+Camera\+::yaw}
+
+
+
+yaw of camera, with this (and with pitch) is in free camera calculated vfront 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_c_camera_8h}{C\+Camera.\+h}}\item 
+\mbox{\hyperlink{_c_camera_8cpp}{C\+Camera.\+cpp}}\end{DoxyCompactItemize}

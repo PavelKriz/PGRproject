@@ -1,0 +1,341 @@
+\hypertarget{classkrizpav6_1_1_c_object}{}\section{krizpav6\+::C\+Object Class Reference}
+\label{classkrizpav6_1_1_c_object}\index{krizpav6::CObject@{krizpav6::CObject}}
+
+
+Represents object in 3d world.  
+
+
+
+
+{\ttfamily \#include $<$C\+Object.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}} \{ \newline
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa70bc8296b78658bcf2f86484374a19be}{U\+N\+K\+N\+O\+WN}} = 0, 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa4f75fd2e4715235d623b3eb9402ea2fe}{P\+I\+Z\+ZA}} = 1, 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa4f83607fe6d7743596d3b37489f13436}{S\+K\+Y\+B\+OX}} = 2, 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fad1b6147c24112f6b5f9e4acdd174123c}{A\+N\+A\+N\+AS}} = 3, 
+\newline
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa6646e464fa4d9ec3e9e10ff4c00891a2}{A\+N\+A\+N\+A\+S\+\_\+\+P\+I\+E\+CE}} = 4, 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997faa97c4ef18714d1f1f5394854d6cd9712}{E\+X\+P\+L\+O\+S\+I\+ON}} = 5
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_acb2174ed42bcb9f05c3779456f73b5c6}{C\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor makes empty object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a43e1e9dcf69f2571502ea701031a1589}{C\+Object}} (\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}} to\+Type, std\+::string file\+Name, std\+::string to\+Texture\+Name)
+\begin{DoxyCompactList}\small\item\em Default non-\/empty constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a3968b61c37ac9bc582826b0f1c170703}{C\+Object}} (\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}} to\+Type, std\+::string file\+Name, std\+::string to\+Texture\+Name, std\+::string to\+Second\+Texture)
+\begin{DoxyCompactList}\small\item\em Two textures constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_aa142aa155c59f68e988a6315ad793d6d}{C\+Object}} (\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}} to\+Type, std\+::string file\+Name, std\+::string to\+Texture\+Name, glm\+::vec3 to\+Default\+Position)
+\begin{DoxyCompactList}\small\item\em Two textures constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a233da8b38ad40481a943e7380b13ed0d}{C\+Object}} (\mbox{\hyperlink{classkrizpav6_1_1_c_object}{C\+Object}} $\ast$image)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}} \mbox{\hyperlink{classkrizpav6_1_1_c_object_a401c450df550f3bf8bc89cd7d2d87999}{get\+Type}} ()
+\begin{DoxyCompactList}\small\item\em get object type \end{DoxyCompactList}\item 
+const glm\+::vec3 \& \mbox{\hyperlink{classkrizpav6_1_1_c_object_a1586d4e3d355cb0aad673782b759bfb1}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em get position of object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_a9c1b8830bfa5b82d30de2b3e2e868d7b}{change\+Position}} (const glm\+::vec3 \&new\+Pos)
+\begin{DoxyCompactList}\small\item\em sets new position \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_a6248c1eecf10994a08fd481a4ec865f4}{set\+Scale}} (float scale)
+\begin{DoxyCompactList}\small\item\em sets scale \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_a89b8ce0f8da3be70e99957510bb107b1}{init}} (G\+Luint \mbox{\hyperlink{namespacekrizpav6_a62f68ac39bd943907741993a8df24cfa}{shader\+Program}})
+\begin{DoxyCompactList}\small\item\em init object rendering \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_aad40c775a0dda47f425bcc38235019a0}{draw}} ()
+\begin{DoxyCompactList}\small\item\em renders object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_a379afd3ab5d07d506038390d50f526a2}{model\+Rotate}} ()
+\begin{DoxyCompactList}\small\item\em rotate it by some const rotation in model coords \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_a5ba3a425e887270b8ae5febac7d18c18}{rotate}} (float angle)
+\begin{DoxyCompactList}\small\item\em ads positive rotation in y axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_a11da6dc7d2bcbd967ea2cd1cd02a06cc}{const\+Rotate}} ()
+\begin{DoxyCompactList}\small\item\em rotate it by some const rotation in world coors \end{DoxyCompactList}\item 
+const glm\+::mat4 \& \mbox{\hyperlink{classkrizpav6_1_1_c_object_ab78fee9210bfd1f0fc68e3d0dbba44df}{get\+World\+Rotation}} ()
+\begin{DoxyCompactList}\small\item\em get matrix of rotation in world coordinates \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_object_af996825ef7e813590e811856aa6fccd3}{set\+Tex\+Frame}} (int \mbox{\hyperlink{namespacekrizpav6_a5f6efd918fbcd4a4055d6015bf9d4450}{frame}})
+\begin{DoxyCompactList}\small\item\em set the right frame of dynamic texture \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents object in 3d world. 
+
+Allows load object, init object in shaders and then render object 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!EObjectType@{EObjectType}}
+\index{EObjectType@{EObjectType}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{EObjectType}{EObjectType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{krizpav6\+::\+C\+Object\+::\+E\+Object\+Type}}}
+
+types of object \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!krizpav6::CObject@{krizpav6::CObject}}\index{krizpav6::CObject@{krizpav6::CObject}!UNKNOWN@{UNKNOWN}}}\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa70bc8296b78658bcf2f86484374a19be}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa70bc8296b78658bcf2f86484374a19be}} 
+U\+N\+K\+N\+O\+WN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIZZA@{PIZZA}!krizpav6::CObject@{krizpav6::CObject}}\index{krizpav6::CObject@{krizpav6::CObject}!PIZZA@{PIZZA}}}\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa4f75fd2e4715235d623b3eb9402ea2fe}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa4f75fd2e4715235d623b3eb9402ea2fe}} 
+P\+I\+Z\+ZA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SKYBOX@{SKYBOX}!krizpav6::CObject@{krizpav6::CObject}}\index{krizpav6::CObject@{krizpav6::CObject}!SKYBOX@{SKYBOX}}}\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa4f83607fe6d7743596d3b37489f13436}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa4f83607fe6d7743596d3b37489f13436}} 
+S\+K\+Y\+B\+OX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANANAS@{ANANAS}!krizpav6::CObject@{krizpav6::CObject}}\index{krizpav6::CObject@{krizpav6::CObject}!ANANAS@{ANANAS}}}\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fad1b6147c24112f6b5f9e4acdd174123c}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fad1b6147c24112f6b5f9e4acdd174123c}} 
+A\+N\+A\+N\+AS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANANAS\_PIECE@{ANANAS\_PIECE}!krizpav6::CObject@{krizpav6::CObject}}\index{krizpav6::CObject@{krizpav6::CObject}!ANANAS\_PIECE@{ANANAS\_PIECE}}}\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa6646e464fa4d9ec3e9e10ff4c00891a2}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997fa6646e464fa4d9ec3e9e10ff4c00891a2}} 
+A\+N\+A\+N\+A\+S\+\_\+\+P\+I\+E\+CE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPLOSION@{EXPLOSION}!krizpav6::CObject@{krizpav6::CObject}}\index{krizpav6::CObject@{krizpav6::CObject}!EXPLOSION@{EXPLOSION}}}\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997faa97c4ef18714d1f1f5394854d6cd9712}\label{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997faa97c4ef18714d1f1f5394854d6cd9712}} 
+E\+X\+P\+L\+O\+S\+I\+ON&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_acb2174ed42bcb9f05c3779456f73b5c6}\label{classkrizpav6_1_1_c_object_acb2174ed42bcb9f05c3779456f73b5c6}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!CObject@{CObject}}
+\index{CObject@{CObject}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{CObject()}{CObject()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Object\+::\+C\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor makes empty object. 
+
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a43e1e9dcf69f2571502ea701031a1589}\label{classkrizpav6_1_1_c_object_a43e1e9dcf69f2571502ea701031a1589}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!CObject@{CObject}}
+\index{CObject@{CObject}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{CObject()}{CObject()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Object\+::\+C\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}}}]{to\+Type,  }\item[{std\+::string}]{file\+Name,  }\item[{std\+::string}]{to\+Texture\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default non-\/empty constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em to\+Type} & is type of object \\
+\hline
+\mbox{\texttt{ in}}  & {\em file\+Name} & is name of file containing vertices \\
+\hline
+\mbox{\texttt{ in}}  & {\em to\+Texture\+Name} & is name of image which contains texture \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a3968b61c37ac9bc582826b0f1c170703}\label{classkrizpav6_1_1_c_object_a3968b61c37ac9bc582826b0f1c170703}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!CObject@{CObject}}
+\index{CObject@{CObject}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{CObject()}{CObject()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Object\+::\+C\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}}}]{to\+Type,  }\item[{std\+::string}]{file\+Name,  }\item[{std\+::string}]{to\+Texture\+Name,  }\item[{std\+::string}]{to\+Second\+Texture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Two textures constructor. 
+
+construct object with two textures 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em to\+Type} & is type of object \\
+\hline
+\mbox{\texttt{ in}}  & {\em file\+Name} & is name of file containing vertices \\
+\hline
+\mbox{\texttt{ in}}  & {\em to\+Texture\+Name} & is name of image which contains texture \\
+\hline
+\mbox{\texttt{ in}}  & {\em to\+Second\+Texture} & is name of image which contains second texture \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_aa142aa155c59f68e988a6315ad793d6d}\label{classkrizpav6_1_1_c_object_aa142aa155c59f68e988a6315ad793d6d}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!CObject@{CObject}}
+\index{CObject@{CObject}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{CObject()}{CObject()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Object\+::\+C\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}}}]{to\+Type,  }\item[{std\+::string}]{file\+Name,  }\item[{std\+::string}]{to\+Texture\+Name,  }\item[{glm\+::vec3}]{to\+Default\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Two textures constructor. 
+
+construct object with two textures 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em to\+Type} & is type of object \\
+\hline
+\mbox{\texttt{ in}}  & {\em file\+Name} & is name of file containing vertices \\
+\hline
+\mbox{\texttt{ in}}  & {\em to\+Texture\+Name} & is name of image which contains texture \\
+\hline
+\mbox{\texttt{ in}}  & {\em to\+Default\+Position} & is position of the object in beginning \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a233da8b38ad40481a943e7380b13ed0d}\label{classkrizpav6_1_1_c_object_a233da8b38ad40481a943e7380b13ed0d}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!CObject@{CObject}}
+\index{CObject@{CObject}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{CObject()}{CObject()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Object\+::\+C\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkrizpav6_1_1_c_object}{C\+Object}} $\ast$}]{image }\end{DoxyParamCaption})}
+
+
+
+Copy Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em image} & is object which will be copied \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a9c1b8830bfa5b82d30de2b3e2e868d7b}\label{classkrizpav6_1_1_c_object_a9c1b8830bfa5b82d30de2b3e2e868d7b}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!changePosition@{changePosition}}
+\index{changePosition@{changePosition}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{changePosition()}{changePosition()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::change\+Position (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{new\+Pos }\end{DoxyParamCaption})}
+
+
+
+sets new position 
+
+if object type is A\+N\+A\+N\+A\+S\+\_\+\+P\+I\+E\+CE it rotate in the direction of move 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em new\+Pos} & is new set position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a11da6dc7d2bcbd967ea2cd1cd02a06cc}\label{classkrizpav6_1_1_c_object_a11da6dc7d2bcbd967ea2cd1cd02a06cc}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!constRotate@{constRotate}}
+\index{constRotate@{constRotate}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{constRotate()}{constRotate()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::const\+Rotate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+rotate it by some const rotation in world coors 
+
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_aad40c775a0dda47f425bcc38235019a0}\label{classkrizpav6_1_1_c_object_aad40c775a0dda47f425bcc38235019a0}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!draw@{draw}}
+\index{draw@{draw}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+renders object 
+
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a1586d4e3d355cb0aad673782b759bfb1}\label{classkrizpav6_1_1_c_object_a1586d4e3d355cb0aad673782b759bfb1}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily const glm\+::vec3\& krizpav6\+::\+C\+Object\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get position of object 
+
+\begin{DoxyReturn}{Returns}
+position vector of object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a401c450df550f3bf8bc89cd7d2d87999}\label{classkrizpav6_1_1_c_object_a401c450df550f3bf8bc89cd7d2d87999}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!getType@{getType}}
+\index{getType@{getType}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkrizpav6_1_1_c_object_a54fa6c9a881bd5b3e1b4bc606444997f}{E\+Object\+Type}} krizpav6\+::\+C\+Object\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get object type 
+
+\begin{DoxyReturn}{Returns}
+type of object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_ab78fee9210bfd1f0fc68e3d0dbba44df}\label{classkrizpav6_1_1_c_object_ab78fee9210bfd1f0fc68e3d0dbba44df}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!getWorldRotation@{getWorldRotation}}
+\index{getWorldRotation@{getWorldRotation}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{getWorldRotation()}{getWorldRotation()}}
+{\footnotesize\ttfamily const glm\+::mat4\& krizpav6\+::\+C\+Object\+::get\+World\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get matrix of rotation in world coordinates 
+
+\begin{DoxyReturn}{Returns}
+rotation matrix in world coordinates 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a89b8ce0f8da3be70e99957510bb107b1}\label{classkrizpav6_1_1_c_object_a89b8ce0f8da3be70e99957510bb107b1}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!init@{init}}
+\index{init@{init}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::init (\begin{DoxyParamCaption}\item[{G\+Luint}]{shader\+Program }\end{DoxyParamCaption})}
+
+
+
+init object rendering 
+
+init objects(vertices, uniforms, textures) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em shader\+Program} & is id of shaders \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a379afd3ab5d07d506038390d50f526a2}\label{classkrizpav6_1_1_c_object_a379afd3ab5d07d506038390d50f526a2}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!modelRotate@{modelRotate}}
+\index{modelRotate@{modelRotate}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{modelRotate()}{modelRotate()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::model\+Rotate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+rotate it by some const rotation in model coords 
+
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a5ba3a425e887270b8ae5febac7d18c18}\label{classkrizpav6_1_1_c_object_a5ba3a425e887270b8ae5febac7d18c18}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!rotate@{rotate}}
+\index{rotate@{rotate}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::rotate (\begin{DoxyParamCaption}\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+ads positive rotation in y axis 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em angle} & by which is object rotated \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_a6248c1eecf10994a08fd481a4ec865f4}\label{classkrizpav6_1_1_c_object_a6248c1eecf10994a08fd481a4ec865f4}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!setScale@{setScale}}
+\index{setScale@{setScale}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::set\+Scale (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets scale 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em scale} & is new scale \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_object_af996825ef7e813590e811856aa6fccd3}\label{classkrizpav6_1_1_c_object_af996825ef7e813590e811856aa6fccd3}} 
+\index{krizpav6::CObject@{krizpav6::CObject}!setTexFrame@{setTexFrame}}
+\index{setTexFrame@{setTexFrame}!krizpav6::CObject@{krizpav6::CObject}}
+\subsubsection{\texorpdfstring{setTexFrame()}{setTexFrame()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Object\+::set\+Tex\+Frame (\begin{DoxyParamCaption}\item[{int}]{frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set the right frame of dynamic texture 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em frame} & is number of frame (modulo 16) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_c_object_8h}{C\+Object.\+h}}\item 
+\mbox{\hyperlink{_c_object_8cpp}{C\+Object.\+cpp}}\end{DoxyCompactItemize}

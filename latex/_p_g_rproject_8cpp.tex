@@ -1,0 +1,83 @@
+\hypertarget{_p_g_rproject_8cpp}{}\section{P\+G\+Rproject.\+cpp File Reference}
+\label{_p_g_rproject_8cpp}\index{PGRproject.cpp@{PGRproject.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$pgr.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}C\+Handle\+Scene.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structkrizpav6_1_1_s_mouse}{krizpav6\+::\+S\+Mouse}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacekrizpav6}{krizpav6}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_p_g_rproject_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{D\+E\+B\+UG}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a90d5cfc723ed2f9805870e7a0b6587cf}{krizpav6\+::print\+Error}} (const std\+::string \&message)
+\item 
+bool \mbox{\hyperlink{namespacekrizpav6_a83413961818b7cfa0c3ecf96ac0f3361}{krizpav6\+::load\+Shaders}} ()
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_accd659c04e11a41feef1fbbcc3389608}{krizpav6\+::init}} ()
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a652b6bbf940fd2a51e800a1dfd21c951}{krizpav6\+::draw}} ()
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a7e8813c4296f5da203be62fa2c5fc5e9}{krizpav6\+::mouse\+Click}} (int button, int state, int x, int y)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a3cefc706eb697de70b0db0598217f24c}{krizpav6\+::mouse\+Click\+Move}} (int x\+Pos, int y\+Pos)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a23bdf5027af84f3f40742a64f74744bb}{krizpav6\+::on\+Timer}} (int)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_accdafee6bcc481246d110e7a2023cad6}{krizpav6\+::on\+Key}} (unsigned char key, int, int)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_af94b0984a9318836f32a2438a711e8af}{krizpav6\+::on\+Special\+Key}} (int key, int, int)
+\item 
+int \mbox{\hyperlink{namespacekrizpav6_af875a38a617fab4f65c59bb5521112bc}{krizpav6\+::main2}} (int argc, char $\ast$$\ast$argv)
+\item 
+int \mbox{\hyperlink{_p_g_rproject_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_camera}{C\+Camera}} \mbox{\hyperlink{namespacekrizpav6_a29ec3a9ac3955a973f09e9c4afcf3efa}{krizpav6\+::camera}} (glm\+::vec3(0.\+0f, 1.\+0f, 10.\+0f), 70.\+0f,(float) W\+I\+N\+D\+O\+W\+\_\+\+W\+I\+D\+T\+H/(float) W\+I\+N\+D\+O\+W\+\_\+\+H\+E\+I\+G\+H\+T, 0.\+01f, 1000.\+0f, basic\+Camera\+Speed)
+\begin{DoxyCompactList}\small\item\em Instance kamery ve svete aplikace. \end{DoxyCompactList}\item 
+C\+Handle\+Scene \mbox{\hyperlink{namespacekrizpav6_acfe889a340fee22e70659028eaab6b3d}{krizpav6\+::scene}} (maximum\+Number\+Of\+Point\+Lights)
+\item 
+S\+Mouse \mbox{\hyperlink{namespacekrizpav6_afa928632c05804c44a91d715d320fb22}{krizpav6\+::mouse\+Data}}
+\begin{DoxyCompactList}\small\item\em inforamtions about mouse using \end{DoxyCompactList}\item 
+G\+Luint \mbox{\hyperlink{namespacekrizpav6_a62f68ac39bd943907741993a8df24cfa}{krizpav6\+::shader\+Program}} = 0
+\begin{DoxyCompactList}\small\item\em holds id of shaders \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacekrizpav6_a8891720fdfe0575d613886ce3cf96223}{krizpav6\+::time}} = 0.\+5
+\begin{DoxyCompactList}\small\item\em time from beginning of program \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacekrizpav6_a8e74308de74231b06383aae119225e80}{krizpav6\+::fps}} = 0
+\begin{DoxyCompactList}\small\item\em information about fps \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacekrizpav6_a5f6efd918fbcd4a4055d6015bf9d4450}{krizpav6\+::frame}} = 0
+\begin{DoxyCompactList}\small\item\em counter for calculating fps \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacekrizpav6_ab6e319d7be8daaf4ad161c0b83adf296}{krizpav6\+::last\+Time}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_p_g_rproject_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}\label{_p_g_rproject_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{PGRproject.cpp@{PGRproject.cpp}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!PGRproject.cpp@{PGRproject.cpp}}
+\subsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \#define D\+E\+B\+UG}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_p_g_rproject_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_p_g_rproject_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{PGRproject.cpp@{PGRproject.cpp}!main@{main}}
+\index{main@{main}!PGRproject.cpp@{PGRproject.cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+

@@ -1,0 +1,179 @@
+\hypertarget{classkrizpav6_1_1_c_lighting}{}\section{krizpav6\+::C\+Lighting Class Reference}
+\label{classkrizpav6_1_1_c_lighting}\index{krizpav6::CLighting@{krizpav6::CLighting}}
+
+
+Handles light.  
+
+
+
+
+{\ttfamily \#include $<$C\+Lighting.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_lighting_a662c0e5621bed293f611157a1c95a5aa}{C\+Lighting}} (glm\+::vec3 to\+Light\+Color, float to\+Ambient\+Refulator, glm\+::vec3 default\+Sun\+Direction, unsigned int set\+Max\+Of\+Point\+Lights)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_lighting_abf7694377690cd52bd174cdcf6e616c8}{$\sim$\+C\+Lighting}} ()
+\item 
+int \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_aa798ddfe29e22d7b02bdfe204857cdf2}{add\+Point\+Light}} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em add point light \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_a933ede72c1f0a6bd7ca8667100678dd2}{update\+Point\+Light}} (int id, glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em updates point light of given id \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_ae39cafa0adc788b27d5f675b2af1f7b1}{update\+Point\+Light}} (int id, float angle)
+\begin{DoxyCompactList}\small\item\em updates point light of given id \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_af08088f703aab3ea30c995619c033b40}{end\+Point\+Light}} (int id)
+\begin{DoxyCompactList}\small\item\em ends point light of given id \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_af451ddd4f4cf7460785a5a7ff32e34a6}{init}} (G\+Luint shaders)
+\begin{DoxyCompactList}\small\item\em init light in shaders \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_acf4b2db3db22750c3b21d18370df3436}{draw}} (double \mbox{\hyperlink{namespacekrizpav6_a8891720fdfe0575d613886ce3cf96223}{time}})
+\begin{DoxyCompactList}\small\item\em draw light in shaders \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classkrizpav6_1_1_c_lighting_a144ad5a2bfc5b79118ac17b356ac8550}{enable\+Disable\+Flash\+Light}} ()
+\begin{DoxyCompactList}\small\item\em enables or disables flashlight \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles light. 
+
+Camera class, controls the view Handles light init and light updates like point light handling and sun direction during day 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_a662c0e5621bed293f611157a1c95a5aa}\label{classkrizpav6_1_1_c_lighting_a662c0e5621bed293f611157a1c95a5aa}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!CLighting@{CLighting}}
+\index{CLighting@{CLighting}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{CLighting()}{CLighting()}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Lighting\+::\+C\+Lighting (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{to\+Light\+Color,  }\item[{float}]{to\+Ambient\+Refulator,  }\item[{glm\+::vec3}]{default\+Sun\+Direction,  }\item[{unsigned int}]{set\+Max\+Of\+Point\+Lights }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+inicialize light 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em default\+Sun\+Direction} & position of sun in the beginning \\
+\hline
+\mbox{\texttt{ in}}  & {\em set\+Max\+Of\+Point\+Lights} & sets max count of point lights \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_abf7694377690cd52bd174cdcf6e616c8}\label{classkrizpav6_1_1_c_lighting_abf7694377690cd52bd174cdcf6e616c8}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!````~CLighting@{$\sim$CLighting}}
+\index{````~CLighting@{$\sim$CLighting}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{$\sim$CLighting()}{~CLighting()}}
+{\footnotesize\ttfamily krizpav6\+::\+C\+Lighting\+::$\sim$\+C\+Lighting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_aa798ddfe29e22d7b02bdfe204857cdf2}\label{classkrizpav6_1_1_c_lighting_aa798ddfe29e22d7b02bdfe204857cdf2}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!addPointLight@{addPointLight}}
+\index{addPointLight@{addPointLight}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{addPointLight()}{addPointLight()}}
+{\footnotesize\ttfamily int krizpav6\+::\+C\+Lighting\+::add\+Point\+Light (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{position }\end{DoxyParamCaption})}
+
+
+
+add point light 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em position} & sets position of point light in the beginning \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if point\+Light wasnt added, or id of point light which was added 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_acf4b2db3db22750c3b21d18370df3436}\label{classkrizpav6_1_1_c_lighting_acf4b2db3db22750c3b21d18370df3436}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!draw@{draw}}
+\index{draw@{draw}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Lighting\+::draw (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+draw light in shaders 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em time} & information about time from the beginning of program \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_a144ad5a2bfc5b79118ac17b356ac8550}\label{classkrizpav6_1_1_c_lighting_a144ad5a2bfc5b79118ac17b356ac8550}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!enableDisableFlashLight@{enableDisableFlashLight}}
+\index{enableDisableFlashLight@{enableDisableFlashLight}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{enableDisableFlashLight()}{enableDisableFlashLight()}}
+{\footnotesize\ttfamily bool krizpav6\+::\+C\+Lighting\+::enable\+Disable\+Flash\+Light (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+enables or disables flashlight 
+
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_af08088f703aab3ea30c995619c033b40}\label{classkrizpav6_1_1_c_lighting_af08088f703aab3ea30c995619c033b40}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!endPointLight@{endPointLight}}
+\index{endPointLight@{endPointLight}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{endPointLight()}{endPointLight()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Lighting\+::end\+Point\+Light (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+ends point light of given id 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & sets which point light will be deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_af451ddd4f4cf7460785a5a7ff32e34a6}\label{classkrizpav6_1_1_c_lighting_af451ddd4f4cf7460785a5a7ff32e34a6}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!init@{init}}
+\index{init@{init}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Lighting\+::init (\begin{DoxyParamCaption}\item[{G\+Luint}]{shaders }\end{DoxyParamCaption})}
+
+
+
+init light in shaders 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em shaders} & information about id of shaders \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_a933ede72c1f0a6bd7ca8667100678dd2}\label{classkrizpav6_1_1_c_lighting_a933ede72c1f0a6bd7ca8667100678dd2}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!updatePointLight@{updatePointLight}}
+\index{updatePointLight@{updatePointLight}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{updatePointLight()}{updatePointLight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Lighting\+::update\+Point\+Light (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{glm\+::vec3}]{position }\end{DoxyParamCaption})}
+
+
+
+updates point light of given id 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & sets which point light will be updated \\
+\hline
+\mbox{\texttt{ in}}  & {\em position} & sets position of point light \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkrizpav6_1_1_c_lighting_ae39cafa0adc788b27d5f675b2af1f7b1}\label{classkrizpav6_1_1_c_lighting_ae39cafa0adc788b27d5f675b2af1f7b1}} 
+\index{krizpav6::CLighting@{krizpav6::CLighting}!updatePointLight@{updatePointLight}}
+\index{updatePointLight@{updatePointLight}!krizpav6::CLighting@{krizpav6::CLighting}}
+\subsubsection{\texorpdfstring{updatePointLight()}{updatePointLight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void krizpav6\+::\+C\+Lighting\+::update\+Point\+Light (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+updates point light of given id 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & sets which point light will be updated \\
+\hline
+\mbox{\texttt{ in}}  & {\em angle} & rotate point light by given angle \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_c_lighting_8h}{C\+Lighting.\+h}}\item 
+\mbox{\hyperlink{_c_lighting_8cpp}{C\+Lighting.\+cpp}}\end{DoxyCompactItemize}

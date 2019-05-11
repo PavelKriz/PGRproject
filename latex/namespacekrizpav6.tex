@@ -1,0 +1,749 @@
+\hypertarget{namespacekrizpav6}{}\section{krizpav6 Namespace Reference}
+\label{namespacekrizpav6}\index{krizpav6@{krizpav6}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classkrizpav6_1_1_c_handle_scene}{C\+Handle\+Scene}}
+\item 
+class \mbox{\hyperlink{classkrizpav6_1_1_c_lighting}{C\+Lighting}}
+\begin{DoxyCompactList}\small\item\em Handles light. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkrizpav6_1_1_c_object}{C\+Object}}
+\begin{DoxyCompactList}\small\item\em Represents object in 3d world. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structkrizpav6_1_1_s_mouse}{S\+Mouse}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a90d5cfc723ed2f9805870e7a0b6587cf}{print\+Error}} (const std\+::string \&message)
+\item 
+bool \mbox{\hyperlink{namespacekrizpav6_a83413961818b7cfa0c3ecf96ac0f3361}{load\+Shaders}} ()
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_accd659c04e11a41feef1fbbcc3389608}{init}} ()
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a652b6bbf940fd2a51e800a1dfd21c951}{draw}} ()
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a7e8813c4296f5da203be62fa2c5fc5e9}{mouse\+Click}} (int button, int state, int x, int y)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a3cefc706eb697de70b0db0598217f24c}{mouse\+Click\+Move}} (int x\+Pos, int y\+Pos)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_a23bdf5027af84f3f40742a64f74744bb}{on\+Timer}} (int)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_accdafee6bcc481246d110e7a2023cad6}{on\+Key}} (unsigned char key, int, int)
+\item 
+void \mbox{\hyperlink{namespacekrizpav6_af94b0984a9318836f32a2438a711e8af}{on\+Special\+Key}} (int key, int, int)
+\item 
+int \mbox{\hyperlink{namespacekrizpav6_af875a38a617fab4f65c59bb5521112bc}{main2}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{namespacekrizpav6_ac0b7dc3c1575364991659301e93ac917}{skybox\+Vertices}} \mbox{[}$\,$\mbox{]}
+\item 
+const int \mbox{\hyperlink{namespacekrizpav6_ac1e06653bf2ce46f48d6eb481d133cf7}{W\+I\+N\+D\+O\+W\+\_\+\+W\+I\+D\+TH}} = 1440
+\begin{DoxyCompactList}\small\item\em sirka oknna pro glut \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_a2313e1f501c5b7fb52ad5829054c4c50}{W\+I\+N\+D\+O\+W\+\_\+\+H\+E\+I\+G\+HT}} = 900
+\begin{DoxyCompactList}\small\item\em vyska oknna pro glut \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a3478998e0f4100e6f5aaf6f26180004a}{W\+I\+N\+D\+O\+W\+\_\+\+T\+I\+T\+LE}} = \char`\"{}P\+GR project x\char`\"{}
+\begin{DoxyCompactList}\small\item\em nazev vyskakovaciho okna \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_a66babf7c7765b82dbcea7471e2455f19}{refresh\+Time\+Ms}} = 33
+\begin{DoxyCompactList}\small\item\em jak rychly ma byt refresh \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a4f2044c6c1b0a084461ed44c4e5fb4ee}{vertex\+Shader}} = \char`\"{}vertex\+Shader.\+frag\char`\"{}
+\begin{DoxyCompactList}\small\item\em jmeno souboru s vertex shaderem \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a50e22c82dc47d9874f8c3e68494c937d}{fragment\+Shader}} = \char`\"{}fragment\+Shader.\+frag\char`\"{}
+\item 
+const float \mbox{\hyperlink{namespacekrizpav6_a121fd2aa12343a58b6ef6013ce3e2e13}{basic\+Camera\+Speed}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em jmeno souboru s fragment shaderem \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_a5de8451389cb23317a51c171c120ed5b}{maximum\+Number\+Of\+Point\+Lights}} = 6
+\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a4044bd03f694ff2f9ecbdea75fba2aea}{move\+Forward\+Key}} = \textquotesingle{}w\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_ae222a923d22151701fb89a4d25a23337}{move\+Forward\+Key2}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+UP
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a6e61ed596737de937f88fa1b0d618afb}{move\+Backward\+Key}} = \textquotesingle{}s\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a5aeb8eabf0e13a5ba428678d299d1c70}{move\+Backward\+Key2}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+D\+O\+WN
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a3936abec48cb9be3d7ea82b9cac4b4a5}{move\+Up\+Key}} = \textquotesingle{}q\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a964e59a7d1b558f3b3bd0b307327272b}{move\+Down\+Key}} = \textquotesingle{}e\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a651dbd85da2f6308c50087734ddb66d4}{move\+Left\+Key}} = \textquotesingle{}a\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a5f59a15014e49aead3c2c2949c6c35c2}{move\+Left\+Key2}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+FT
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a3147174db24345f76955dd666cf94991}{move\+Right\+Key}} = \textquotesingle{}d\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a3e77a9228006135a04b435c77178af26}{move\+Right\+Key2}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+R\+I\+G\+HT
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a6da036bf12a0083d00955577300e1b17}{free\+Camera\+Key}} = \textquotesingle{}1\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_af56fde22fb7f76af98ad64308d0c5be4}{first\+View\+Key}} = \textquotesingle{}2\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a8b32ae658845e7457189efe25826c6da}{second\+View\+Key}} = \textquotesingle{}3\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{namespacekrizpav6_a3b8eb3d67a4a849b0ba3e8f3ff05a201}{flash\+Light\+On\+Off}} = \textquotesingle{}l\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em normal key only \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_af7426813619adcf1bf06ea1aad6047cf}{crazy\+Mod\+Key1}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F1
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_ad48c2439fa0c82463864ed1bcff4f40e}{crazy\+Mod\+Key2}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F2
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_a43aaafe544f5bfc95f60837f766a575c}{crazy\+Mod\+Key3}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F3
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_ab797d7d4d2f5f018ca3847126c8ec899}{crazy\+Mod\+Key4}} = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F4
+\begin{DoxyCompactList}\small\item\em special key only \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_ae82fd1b60a54fc4f52cd6dc4136a1a55}{pizza\+O\+BJ}} = \char`\"{}data/pizza.\+obj\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_aa8ed1c4d17d6d0e20156f492a95d36dc}{pizza\+T\+EX}} = \char`\"{}data/pizza2kb.\+png\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a24081d2a485474536a25a8fc42a0907e}{skybox\+O\+BJ}} = \char`\"{}data/space\+Box.\+obj\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a3ddb1812e5410279d7e2d9b1bb3f95a1}{skybox\+T\+EX}} = \char`\"{}data/big\+Space\+No\+Sun.\+jpg\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a136e474c0dc7ff6b349b5c546aae9205}{skybox\+T\+E\+X2}} = \char`\"{}data/sun\+In\+Space.\+png\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a6cd2a4963dfe1413e1289e6b093c605e}{ananas\+O\+BJ}} = \char`\"{}data/ananas.\+obj\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_a3e2dda818b75b6fb31f3d912e2c59303}{ananas\+T\+EX}} = \char`\"{}data/ananas4k.\+png\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_aa94b393937884856818345ad128069ad}{ananas\+Piece\+O\+BJ}} = \char`\"{}data/ananas\+Piece.\+obj\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_aea90a116fb5bd0f2c6f5e74473580a46}{ananas\+Piece\+T\+EX}} = \char`\"{}data/ananas\+Piece.\+png\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_abd5253522f18fe58220d9d16f2e07391}{explosion\+O\+BJ}} = \char`\"{}data/explosion.\+obj\char`\"{}
+\item 
+const std\+::string \mbox{\hyperlink{namespacekrizpav6_ad6695222990cdf5657755383ca1d728b}{explosion\+T\+EX}} = \char`\"{}data/explosion2.\+png\char`\"{}
+\item 
+const float \mbox{\hyperlink{namespacekrizpav6_adab0bf8d246a67b02ae41afb73c3e097}{lightR}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em R\+GB light -\/ R. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{namespacekrizpav6_aa2313319fc9d05cc922097b3b37763b0}{lightG}} = 0.\+9f
+\begin{DoxyCompactList}\small\item\em R\+GB light -\/ G. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{namespacekrizpav6_a112b1f1367a7d4b3753573ab1d3a27c6}{lightB}} = 0.\+9f
+\begin{DoxyCompactList}\small\item\em R\+GB light -\/ B. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{namespacekrizpav6_afb15791f5e8e6465d001c4f31b465bb5}{A\+M\+B\+I\+E\+N\+T\+\_\+\+R\+E\+G\+U\+L\+A\+T\+OR}} = 0.\+8f
+\begin{DoxyCompactList}\small\item\em lower or higher ambient \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacekrizpav6_a6da7ffd420b1d3b42349d28d68850520}{A\+N\+A\+N\+A\+S\+P\+I\+E\+C\+E\+S\+\_\+\+M\+A\+X\+\_\+\+C\+O\+U\+NT}} = 150
+\begin{DoxyCompactList}\small\item\em max count of ananases \end{DoxyCompactList}\item 
+const glm\+::vec3 \mbox{\hyperlink{namespacekrizpav6_add565cdbdac84919dfd3ecc10ed27502}{bezier\+Control\+Point4}} = glm\+::vec3(0.\+0f, -\/0.\+23f, 2.\+5f)
+\begin{DoxyCompactList}\small\item\em bezier control point 4 \end{DoxyCompactList}\item 
+const glm\+::vec3 \mbox{\hyperlink{namespacekrizpav6_aed8a4be355e210b8bb7b23d0b2ef8355}{bezier\+Control\+Point3}} = glm\+::vec3(0.\+0f, 2.\+0f, 2.\+5f)
+\begin{DoxyCompactList}\small\item\em bezier control point 3 \end{DoxyCompactList}\item 
+const glm\+::vec3 \mbox{\hyperlink{namespacekrizpav6_a54b795bfc7a32943c80e912cba91c335}{bezier\+Control\+Point2}} = glm\+::vec3(0.\+0f, 2.\+0f, 1.\+5f)
+\begin{DoxyCompactList}\small\item\em bezier control point 2 \end{DoxyCompactList}\item 
+const glm\+::vec3 \mbox{\hyperlink{namespacekrizpav6_a213943a0ef62f1dd281b843bafcea43e}{bezier\+Control\+Point1}} = glm\+::vec3(0.\+0f, 0.\+7f, 0.\+7f)
+\begin{DoxyCompactList}\small\item\em bezier control point 1 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_camera}{C\+Camera}} \mbox{\hyperlink{namespacekrizpav6_a29ec3a9ac3955a973f09e9c4afcf3efa}{camera}} (glm\+::vec3(0.\+0f, 1.\+0f, 10.\+0f), 70.\+0f,(float) W\+I\+N\+D\+O\+W\+\_\+\+W\+I\+D\+T\+H/(float) W\+I\+N\+D\+O\+W\+\_\+\+H\+E\+I\+G\+H\+T, 0.\+01f, 1000.\+0f, basic\+Camera\+Speed)
+\begin{DoxyCompactList}\small\item\em Instance kamery ve svete aplikace. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkrizpav6_1_1_c_handle_scene}{C\+Handle\+Scene}} \mbox{\hyperlink{namespacekrizpav6_acfe889a340fee22e70659028eaab6b3d}{scene}} (\mbox{\hyperlink{namespacekrizpav6_a5de8451389cb23317a51c171c120ed5b}{maximum\+Number\+Of\+Point\+Lights}})
+\item 
+\mbox{\hyperlink{structkrizpav6_1_1_s_mouse}{S\+Mouse}} \mbox{\hyperlink{namespacekrizpav6_afa928632c05804c44a91d715d320fb22}{mouse\+Data}}
+\begin{DoxyCompactList}\small\item\em inforamtions about mouse using \end{DoxyCompactList}\item 
+G\+Luint \mbox{\hyperlink{namespacekrizpav6_a62f68ac39bd943907741993a8df24cfa}{shader\+Program}} = 0
+\begin{DoxyCompactList}\small\item\em holds id of shaders \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacekrizpav6_a8891720fdfe0575d613886ce3cf96223}{time}} = 0.\+5
+\begin{DoxyCompactList}\small\item\em time from beginning of program \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacekrizpav6_a8e74308de74231b06383aae119225e80}{fps}} = 0
+\begin{DoxyCompactList}\small\item\em information about fps \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacekrizpav6_a5f6efd918fbcd4a4055d6015bf9d4450}{frame}} = 0
+\begin{DoxyCompactList}\small\item\em counter for calculating fps \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacekrizpav6_ab6e319d7be8daaf4ad161c0b83adf296}{last\+Time}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacekrizpav6_a652b6bbf940fd2a51e800a1dfd21c951}\label{namespacekrizpav6_a652b6bbf940fd2a51e800a1dfd21c951}} 
+\index{krizpav6@{krizpav6}!draw@{draw}}
+\index{draw@{draw}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void krizpav6\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+main draw of program draws all on display \mbox{\Hypertarget{namespacekrizpav6_accd659c04e11a41feef1fbbcc3389608}\label{namespacekrizpav6_accd659c04e11a41feef1fbbcc3389608}} 
+\index{krizpav6@{krizpav6}!init@{init}}
+\index{init@{init}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void krizpav6\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+main init of program initializes buffers, textures, etc. \mbox{\Hypertarget{namespacekrizpav6_a83413961818b7cfa0c3ecf96ac0f3361}\label{namespacekrizpav6_a83413961818b7cfa0c3ecf96ac0f3361}} 
+\index{krizpav6@{krizpav6}!loadShaders@{loadShaders}}
+\index{loadShaders@{loadShaders}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{loadShaders()}{loadShaders()}}
+{\footnotesize\ttfamily bool krizpav6\+::load\+Shaders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Load shaders from constant strings vertex\+Shader, fragment\+Shader (parameters of program). \begin{DoxyReturn}{Returns}
+true if shaders were loaded or false when they werent loaded 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacekrizpav6_af875a38a617fab4f65c59bb5521112bc}\label{namespacekrizpav6_af875a38a617fab4f65c59bb5521112bc}} 
+\index{krizpav6@{krizpav6}!main2@{main2}}
+\index{main2@{main2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{main2()}{main2()}}
+{\footnotesize\ttfamily int krizpav6\+::main2 (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+main2 is main function of program nastaveni funkci v glutu \mbox{\Hypertarget{namespacekrizpav6_a7e8813c4296f5da203be62fa2c5fc5e9}\label{namespacekrizpav6_a7e8813c4296f5da203be62fa2c5fc5e9}} 
+\index{krizpav6@{krizpav6}!mouseClick@{mouseClick}}
+\index{mouseClick@{mouseClick}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{mouseClick()}{mouseClick()}}
+{\footnotesize\ttfamily void krizpav6\+::mouse\+Click (\begin{DoxyParamCaption}\item[{int}]{button,  }\item[{int}]{state,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Used for capture if is mouse clicked 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em button} & defines which mouse button was pressed \\
+\hline
+\mbox{\texttt{ in}}  & {\em state} & clicked(down) or end of clicked(up) \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & mouse coordinate \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & mouse coordinate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacekrizpav6_a3cefc706eb697de70b0db0598217f24c}\label{namespacekrizpav6_a3cefc706eb697de70b0db0598217f24c}} 
+\index{krizpav6@{krizpav6}!mouseClickMove@{mouseClickMove}}
+\index{mouseClickMove@{mouseClickMove}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{mouseClickMove()}{mouseClickMove()}}
+{\footnotesize\ttfamily void krizpav6\+::mouse\+Click\+Move (\begin{DoxyParamCaption}\item[{int}]{x\+Pos,  }\item[{int}]{y\+Pos }\end{DoxyParamCaption})}
+
+recognize where is mouse, when mouse is clicked it serve to move view around the world 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & mouse coordinate \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & mouse coordinate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacekrizpav6_accdafee6bcc481246d110e7a2023cad6}\label{namespacekrizpav6_accdafee6bcc481246d110e7a2023cad6}} 
+\index{krizpav6@{krizpav6}!onKey@{onKey}}
+\index{onKey@{onKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{onKey()}{onKey()}}
+{\footnotesize\ttfamily void krizpav6\+::on\+Key (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+bind functions for keys 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em key} & which key was pressed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacekrizpav6_af94b0984a9318836f32a2438a711e8af}\label{namespacekrizpav6_af94b0984a9318836f32a2438a711e8af}} 
+\index{krizpav6@{krizpav6}!onSpecialKey@{onSpecialKey}}
+\index{onSpecialKey@{onSpecialKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{onSpecialKey()}{onSpecialKey()}}
+{\footnotesize\ttfamily void krizpav6\+::on\+Special\+Key (\begin{DoxyParamCaption}\item[{int}]{key,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+bind functions for special keys 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em key} & which key was pressed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacekrizpav6_a23bdf5027af84f3f40742a64f74744bb}\label{namespacekrizpav6_a23bdf5027af84f3f40742a64f74744bb}} 
+\index{krizpav6@{krizpav6}!onTimer@{onTimer}}
+\index{onTimer@{onTimer}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{onTimer()}{onTimer()}}
+{\footnotesize\ttfamily void krizpav6\+::on\+Timer (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacekrizpav6_a90d5cfc723ed2f9805870e7a0b6587cf}\label{namespacekrizpav6_a90d5cfc723ed2f9805870e7a0b6587cf}} 
+\index{krizpav6@{krizpav6}!printError@{printError}}
+\index{printError@{printError}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{printError()}{printError()}}
+{\footnotesize\ttfamily void krizpav6\+::print\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})}
+
+Prints error in format 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & Message for error print \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacekrizpav6_afb15791f5e8e6465d001c4f31b465bb5}\label{namespacekrizpav6_afb15791f5e8e6465d001c4f31b465bb5}} 
+\index{krizpav6@{krizpav6}!AMBIENT\_REGULATOR@{AMBIENT\_REGULATOR}}
+\index{AMBIENT\_REGULATOR@{AMBIENT\_REGULATOR}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{AMBIENT\_REGULATOR}{AMBIENT\_REGULATOR}}
+{\footnotesize\ttfamily const float krizpav6\+::\+A\+M\+B\+I\+E\+N\+T\+\_\+\+R\+E\+G\+U\+L\+A\+T\+OR = 0.\+8f}
+
+
+
+lower or higher ambient 
+
+\mbox{\Hypertarget{namespacekrizpav6_a6cd2a4963dfe1413e1289e6b093c605e}\label{namespacekrizpav6_a6cd2a4963dfe1413e1289e6b093c605e}} 
+\index{krizpav6@{krizpav6}!ananasOBJ@{ananasOBJ}}
+\index{ananasOBJ@{ananasOBJ}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{ananasOBJ}{ananasOBJ}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::ananas\+O\+BJ = \char`\"{}data/ananas.\+obj\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_aa94b393937884856818345ad128069ad}\label{namespacekrizpav6_aa94b393937884856818345ad128069ad}} 
+\index{krizpav6@{krizpav6}!ananasPieceOBJ@{ananasPieceOBJ}}
+\index{ananasPieceOBJ@{ananasPieceOBJ}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{ananasPieceOBJ}{ananasPieceOBJ}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::ananas\+Piece\+O\+BJ = \char`\"{}data/ananas\+Piece.\+obj\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a6da7ffd420b1d3b42349d28d68850520}\label{namespacekrizpav6_a6da7ffd420b1d3b42349d28d68850520}} 
+\index{krizpav6@{krizpav6}!ANANASPIECES\_MAX\_COUNT@{ANANASPIECES\_MAX\_COUNT}}
+\index{ANANASPIECES\_MAX\_COUNT@{ANANASPIECES\_MAX\_COUNT}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{ANANASPIECES\_MAX\_COUNT}{ANANASPIECES\_MAX\_COUNT}}
+{\footnotesize\ttfamily const int krizpav6\+::\+A\+N\+A\+N\+A\+S\+P\+I\+E\+C\+E\+S\+\_\+\+M\+A\+X\+\_\+\+C\+O\+U\+NT = 150}
+
+
+
+max count of ananases 
+
+\mbox{\Hypertarget{namespacekrizpav6_aea90a116fb5bd0f2c6f5e74473580a46}\label{namespacekrizpav6_aea90a116fb5bd0f2c6f5e74473580a46}} 
+\index{krizpav6@{krizpav6}!ananasPieceTEX@{ananasPieceTEX}}
+\index{ananasPieceTEX@{ananasPieceTEX}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{ananasPieceTEX}{ananasPieceTEX}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::ananas\+Piece\+T\+EX = \char`\"{}data/ananas\+Piece.\+png\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a3e2dda818b75b6fb31f3d912e2c59303}\label{namespacekrizpav6_a3e2dda818b75b6fb31f3d912e2c59303}} 
+\index{krizpav6@{krizpav6}!ananasTEX@{ananasTEX}}
+\index{ananasTEX@{ananasTEX}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{ananasTEX}{ananasTEX}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::ananas\+T\+EX = \char`\"{}data/ananas4k.\+png\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a121fd2aa12343a58b6ef6013ce3e2e13}\label{namespacekrizpav6_a121fd2aa12343a58b6ef6013ce3e2e13}} 
+\index{krizpav6@{krizpav6}!basicCameraSpeed@{basicCameraSpeed}}
+\index{basicCameraSpeed@{basicCameraSpeed}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{basicCameraSpeed}{basicCameraSpeed}}
+{\footnotesize\ttfamily const float krizpav6\+::basic\+Camera\+Speed = 0.\+1f}
+
+
+
+jmeno souboru s fragment shaderem 
+
+slouzi pro incializaci rychlosti kamery \mbox{\Hypertarget{namespacekrizpav6_a213943a0ef62f1dd281b843bafcea43e}\label{namespacekrizpav6_a213943a0ef62f1dd281b843bafcea43e}} 
+\index{krizpav6@{krizpav6}!bezierControlPoint1@{bezierControlPoint1}}
+\index{bezierControlPoint1@{bezierControlPoint1}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{bezierControlPoint1}{bezierControlPoint1}}
+{\footnotesize\ttfamily const glm\+::vec3 krizpav6\+::bezier\+Control\+Point1 = glm\+::vec3(0.\+0f, 0.\+7f, 0.\+7f)}
+
+
+
+bezier control point 1 
+
+\mbox{\Hypertarget{namespacekrizpav6_a54b795bfc7a32943c80e912cba91c335}\label{namespacekrizpav6_a54b795bfc7a32943c80e912cba91c335}} 
+\index{krizpav6@{krizpav6}!bezierControlPoint2@{bezierControlPoint2}}
+\index{bezierControlPoint2@{bezierControlPoint2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{bezierControlPoint2}{bezierControlPoint2}}
+{\footnotesize\ttfamily const glm\+::vec3 krizpav6\+::bezier\+Control\+Point2 = glm\+::vec3(0.\+0f, 2.\+0f, 1.\+5f)}
+
+
+
+bezier control point 2 
+
+\mbox{\Hypertarget{namespacekrizpav6_aed8a4be355e210b8bb7b23d0b2ef8355}\label{namespacekrizpav6_aed8a4be355e210b8bb7b23d0b2ef8355}} 
+\index{krizpav6@{krizpav6}!bezierControlPoint3@{bezierControlPoint3}}
+\index{bezierControlPoint3@{bezierControlPoint3}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{bezierControlPoint3}{bezierControlPoint3}}
+{\footnotesize\ttfamily const glm\+::vec3 krizpav6\+::bezier\+Control\+Point3 = glm\+::vec3(0.\+0f, 2.\+0f, 2.\+5f)}
+
+
+
+bezier control point 3 
+
+\mbox{\Hypertarget{namespacekrizpav6_add565cdbdac84919dfd3ecc10ed27502}\label{namespacekrizpav6_add565cdbdac84919dfd3ecc10ed27502}} 
+\index{krizpav6@{krizpav6}!bezierControlPoint4@{bezierControlPoint4}}
+\index{bezierControlPoint4@{bezierControlPoint4}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{bezierControlPoint4}{bezierControlPoint4}}
+{\footnotesize\ttfamily const glm\+::vec3 krizpav6\+::bezier\+Control\+Point4 = glm\+::vec3(0.\+0f, -\/0.\+23f, 2.\+5f)}
+
+
+
+bezier control point 4 
+
+\mbox{\Hypertarget{namespacekrizpav6_a29ec3a9ac3955a973f09e9c4afcf3efa}\label{namespacekrizpav6_a29ec3a9ac3955a973f09e9c4afcf3efa}} 
+\index{krizpav6@{krizpav6}!camera@{camera}}
+\index{camera@{camera}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{camera}{camera}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_c_camera}{C\+Camera}} krizpav6\+::camera(glm\+::vec3(0.\+0f, 1.\+0f, 10.\+0f), 70.\+0f,(float) W\+I\+N\+D\+O\+W\+\_\+\+W\+I\+D\+T\+H/(float) W\+I\+N\+D\+O\+W\+\_\+\+H\+E\+I\+G\+H\+T, 0.\+01f, 1000.\+0f, basic\+Camera\+Speed)}
+
+
+
+Instance kamery ve svete aplikace. 
+
+\mbox{\Hypertarget{namespacekrizpav6_af7426813619adcf1bf06ea1aad6047cf}\label{namespacekrizpav6_af7426813619adcf1bf06ea1aad6047cf}} 
+\index{krizpav6@{krizpav6}!crazyModKey1@{crazyModKey1}}
+\index{crazyModKey1@{crazyModKey1}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{crazyModKey1}{crazyModKey1}}
+{\footnotesize\ttfamily const int krizpav6\+::crazy\+Mod\+Key1 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F1}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_ad48c2439fa0c82463864ed1bcff4f40e}\label{namespacekrizpav6_ad48c2439fa0c82463864ed1bcff4f40e}} 
+\index{krizpav6@{krizpav6}!crazyModKey2@{crazyModKey2}}
+\index{crazyModKey2@{crazyModKey2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{crazyModKey2}{crazyModKey2}}
+{\footnotesize\ttfamily const int krizpav6\+::crazy\+Mod\+Key2 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F2}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a43aaafe544f5bfc95f60837f766a575c}\label{namespacekrizpav6_a43aaafe544f5bfc95f60837f766a575c}} 
+\index{krizpav6@{krizpav6}!crazyModKey3@{crazyModKey3}}
+\index{crazyModKey3@{crazyModKey3}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{crazyModKey3}{crazyModKey3}}
+{\footnotesize\ttfamily const int krizpav6\+::crazy\+Mod\+Key3 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F3}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_ab797d7d4d2f5f018ca3847126c8ec899}\label{namespacekrizpav6_ab797d7d4d2f5f018ca3847126c8ec899}} 
+\index{krizpav6@{krizpav6}!crazyModKey4@{crazyModKey4}}
+\index{crazyModKey4@{crazyModKey4}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{crazyModKey4}{crazyModKey4}}
+{\footnotesize\ttfamily const int krizpav6\+::crazy\+Mod\+Key4 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+F4}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_abd5253522f18fe58220d9d16f2e07391}\label{namespacekrizpav6_abd5253522f18fe58220d9d16f2e07391}} 
+\index{krizpav6@{krizpav6}!explosionOBJ@{explosionOBJ}}
+\index{explosionOBJ@{explosionOBJ}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{explosionOBJ}{explosionOBJ}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::explosion\+O\+BJ = \char`\"{}data/explosion.\+obj\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_ad6695222990cdf5657755383ca1d728b}\label{namespacekrizpav6_ad6695222990cdf5657755383ca1d728b}} 
+\index{krizpav6@{krizpav6}!explosionTEX@{explosionTEX}}
+\index{explosionTEX@{explosionTEX}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{explosionTEX}{explosionTEX}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::explosion\+T\+EX = \char`\"{}data/explosion2.\+png\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_af56fde22fb7f76af98ad64308d0c5be4}\label{namespacekrizpav6_af56fde22fb7f76af98ad64308d0c5be4}} 
+\index{krizpav6@{krizpav6}!firstViewKey@{firstViewKey}}
+\index{firstViewKey@{firstViewKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{firstViewKey}{firstViewKey}}
+{\footnotesize\ttfamily const char krizpav6\+::first\+View\+Key = \textquotesingle{}2\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a3b8eb3d67a4a849b0ba3e8f3ff05a201}\label{namespacekrizpav6_a3b8eb3d67a4a849b0ba3e8f3ff05a201}} 
+\index{krizpav6@{krizpav6}!flashLightOnOff@{flashLightOnOff}}
+\index{flashLightOnOff@{flashLightOnOff}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{flashLightOnOff}{flashLightOnOff}}
+{\footnotesize\ttfamily const char krizpav6\+::flash\+Light\+On\+Off = \textquotesingle{}l\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a8e74308de74231b06383aae119225e80}\label{namespacekrizpav6_a8e74308de74231b06383aae119225e80}} 
+\index{krizpav6@{krizpav6}!fps@{fps}}
+\index{fps@{fps}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily double krizpav6\+::fps = 0}
+
+
+
+information about fps 
+
+\mbox{\Hypertarget{namespacekrizpav6_a50e22c82dc47d9874f8c3e68494c937d}\label{namespacekrizpav6_a50e22c82dc47d9874f8c3e68494c937d}} 
+\index{krizpav6@{krizpav6}!fragmentShader@{fragmentShader}}
+\index{fragmentShader@{fragmentShader}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{fragmentShader}{fragmentShader}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::fragment\+Shader = \char`\"{}fragment\+Shader.\+frag\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a5f6efd918fbcd4a4055d6015bf9d4450}\label{namespacekrizpav6_a5f6efd918fbcd4a4055d6015bf9d4450}} 
+\index{krizpav6@{krizpav6}!frame@{frame}}
+\index{frame@{frame}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily int krizpav6\+::frame = 0}
+
+
+
+counter for calculating fps 
+
+\mbox{\Hypertarget{namespacekrizpav6_a6da036bf12a0083d00955577300e1b17}\label{namespacekrizpav6_a6da036bf12a0083d00955577300e1b17}} 
+\index{krizpav6@{krizpav6}!freeCameraKey@{freeCameraKey}}
+\index{freeCameraKey@{freeCameraKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{freeCameraKey}{freeCameraKey}}
+{\footnotesize\ttfamily const char krizpav6\+::free\+Camera\+Key = \textquotesingle{}1\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_ab6e319d7be8daaf4ad161c0b83adf296}\label{namespacekrizpav6_ab6e319d7be8daaf4ad161c0b83adf296}} 
+\index{krizpav6@{krizpav6}!lastTime@{lastTime}}
+\index{lastTime@{lastTime}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{lastTime}{lastTime}}
+{\footnotesize\ttfamily int krizpav6\+::last\+Time = 0}
+
+Get the time elapsed from begining and get fps \mbox{\Hypertarget{namespacekrizpav6_a112b1f1367a7d4b3753573ab1d3a27c6}\label{namespacekrizpav6_a112b1f1367a7d4b3753573ab1d3a27c6}} 
+\index{krizpav6@{krizpav6}!lightB@{lightB}}
+\index{lightB@{lightB}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{lightB}{lightB}}
+{\footnotesize\ttfamily const float krizpav6\+::lightB = 0.\+9f}
+
+
+
+R\+GB light -\/ B. 
+
+\mbox{\Hypertarget{namespacekrizpav6_aa2313319fc9d05cc922097b3b37763b0}\label{namespacekrizpav6_aa2313319fc9d05cc922097b3b37763b0}} 
+\index{krizpav6@{krizpav6}!lightG@{lightG}}
+\index{lightG@{lightG}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{lightG}{lightG}}
+{\footnotesize\ttfamily const float krizpav6\+::lightG = 0.\+9f}
+
+
+
+R\+GB light -\/ G. 
+
+\mbox{\Hypertarget{namespacekrizpav6_adab0bf8d246a67b02ae41afb73c3e097}\label{namespacekrizpav6_adab0bf8d246a67b02ae41afb73c3e097}} 
+\index{krizpav6@{krizpav6}!lightR@{lightR}}
+\index{lightR@{lightR}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{lightR}{lightR}}
+{\footnotesize\ttfamily const float krizpav6\+::lightR = 1.\+0f}
+
+
+
+R\+GB light -\/ R. 
+
+\mbox{\Hypertarget{namespacekrizpav6_a5de8451389cb23317a51c171c120ed5b}\label{namespacekrizpav6_a5de8451389cb23317a51c171c120ed5b}} 
+\index{krizpav6@{krizpav6}!maximumNumberOfPointLights@{maximumNumberOfPointLights}}
+\index{maximumNumberOfPointLights@{maximumNumberOfPointLights}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{maximumNumberOfPointLights}{maximumNumberOfPointLights}}
+{\footnotesize\ttfamily const int krizpav6\+::maximum\+Number\+Of\+Point\+Lights = 6}
+
+\mbox{\Hypertarget{namespacekrizpav6_afa928632c05804c44a91d715d320fb22}\label{namespacekrizpav6_afa928632c05804c44a91d715d320fb22}} 
+\index{krizpav6@{krizpav6}!mouseData@{mouseData}}
+\index{mouseData@{mouseData}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{mouseData}{mouseData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structkrizpav6_1_1_s_mouse}{S\+Mouse}} krizpav6\+::mouse\+Data}
+
+
+
+inforamtions about mouse using 
+
+\mbox{\Hypertarget{namespacekrizpav6_a6e61ed596737de937f88fa1b0d618afb}\label{namespacekrizpav6_a6e61ed596737de937f88fa1b0d618afb}} 
+\index{krizpav6@{krizpav6}!moveBackwardKey@{moveBackwardKey}}
+\index{moveBackwardKey@{moveBackwardKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveBackwardKey}{moveBackwardKey}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Backward\+Key = \textquotesingle{}s\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a5aeb8eabf0e13a5ba428678d299d1c70}\label{namespacekrizpav6_a5aeb8eabf0e13a5ba428678d299d1c70}} 
+\index{krizpav6@{krizpav6}!moveBackwardKey2@{moveBackwardKey2}}
+\index{moveBackwardKey2@{moveBackwardKey2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveBackwardKey2}{moveBackwardKey2}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Backward\+Key2 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+D\+O\+WN}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a964e59a7d1b558f3b3bd0b307327272b}\label{namespacekrizpav6_a964e59a7d1b558f3b3bd0b307327272b}} 
+\index{krizpav6@{krizpav6}!moveDownKey@{moveDownKey}}
+\index{moveDownKey@{moveDownKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveDownKey}{moveDownKey}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Down\+Key = \textquotesingle{}e\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a4044bd03f694ff2f9ecbdea75fba2aea}\label{namespacekrizpav6_a4044bd03f694ff2f9ecbdea75fba2aea}} 
+\index{krizpav6@{krizpav6}!moveForwardKey@{moveForwardKey}}
+\index{moveForwardKey@{moveForwardKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveForwardKey}{moveForwardKey}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Forward\+Key = \textquotesingle{}w\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_ae222a923d22151701fb89a4d25a23337}\label{namespacekrizpav6_ae222a923d22151701fb89a4d25a23337}} 
+\index{krizpav6@{krizpav6}!moveForwardKey2@{moveForwardKey2}}
+\index{moveForwardKey2@{moveForwardKey2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveForwardKey2}{moveForwardKey2}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Forward\+Key2 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+UP}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a651dbd85da2f6308c50087734ddb66d4}\label{namespacekrizpav6_a651dbd85da2f6308c50087734ddb66d4}} 
+\index{krizpav6@{krizpav6}!moveLeftKey@{moveLeftKey}}
+\index{moveLeftKey@{moveLeftKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveLeftKey}{moveLeftKey}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Left\+Key = \textquotesingle{}a\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a5f59a15014e49aead3c2c2949c6c35c2}\label{namespacekrizpav6_a5f59a15014e49aead3c2c2949c6c35c2}} 
+\index{krizpav6@{krizpav6}!moveLeftKey2@{moveLeftKey2}}
+\index{moveLeftKey2@{moveLeftKey2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveLeftKey2}{moveLeftKey2}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Left\+Key2 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+FT}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a3147174db24345f76955dd666cf94991}\label{namespacekrizpav6_a3147174db24345f76955dd666cf94991}} 
+\index{krizpav6@{krizpav6}!moveRightKey@{moveRightKey}}
+\index{moveRightKey@{moveRightKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveRightKey}{moveRightKey}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Right\+Key = \textquotesingle{}d\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a3e77a9228006135a04b435c77178af26}\label{namespacekrizpav6_a3e77a9228006135a04b435c77178af26}} 
+\index{krizpav6@{krizpav6}!moveRightKey2@{moveRightKey2}}
+\index{moveRightKey2@{moveRightKey2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveRightKey2}{moveRightKey2}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Right\+Key2 = G\+L\+U\+T\+\_\+\+K\+E\+Y\+\_\+\+R\+I\+G\+HT}
+
+
+
+special key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a3936abec48cb9be3d7ea82b9cac4b4a5}\label{namespacekrizpav6_a3936abec48cb9be3d7ea82b9cac4b4a5}} 
+\index{krizpav6@{krizpav6}!moveUpKey@{moveUpKey}}
+\index{moveUpKey@{moveUpKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{moveUpKey}{moveUpKey}}
+{\footnotesize\ttfamily const char krizpav6\+::move\+Up\+Key = \textquotesingle{}q\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_ae82fd1b60a54fc4f52cd6dc4136a1a55}\label{namespacekrizpav6_ae82fd1b60a54fc4f52cd6dc4136a1a55}} 
+\index{krizpav6@{krizpav6}!pizzaOBJ@{pizzaOBJ}}
+\index{pizzaOBJ@{pizzaOBJ}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{pizzaOBJ}{pizzaOBJ}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::pizza\+O\+BJ = \char`\"{}data/pizza.\+obj\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_aa8ed1c4d17d6d0e20156f492a95d36dc}\label{namespacekrizpav6_aa8ed1c4d17d6d0e20156f492a95d36dc}} 
+\index{krizpav6@{krizpav6}!pizzaTEX@{pizzaTEX}}
+\index{pizzaTEX@{pizzaTEX}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{pizzaTEX}{pizzaTEX}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::pizza\+T\+EX = \char`\"{}data/pizza2kb.\+png\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a66babf7c7765b82dbcea7471e2455f19}\label{namespacekrizpav6_a66babf7c7765b82dbcea7471e2455f19}} 
+\index{krizpav6@{krizpav6}!refreshTimeMs@{refreshTimeMs}}
+\index{refreshTimeMs@{refreshTimeMs}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{refreshTimeMs}{refreshTimeMs}}
+{\footnotesize\ttfamily const int krizpav6\+::refresh\+Time\+Ms = 33}
+
+
+
+jak rychly ma byt refresh 
+
+\mbox{\Hypertarget{namespacekrizpav6_acfe889a340fee22e70659028eaab6b3d}\label{namespacekrizpav6_acfe889a340fee22e70659028eaab6b3d}} 
+\index{krizpav6@{krizpav6}!scene@{scene}}
+\index{scene@{scene}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{scene}{scene}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkrizpav6_1_1_c_handle_scene}{C\+Handle\+Scene}} krizpav6\+::scene(\mbox{\hyperlink{namespacekrizpav6_a5de8451389cb23317a51c171c120ed5b}{maximum\+Number\+Of\+Point\+Lights}})}
+
+\mbox{\Hypertarget{namespacekrizpav6_a8b32ae658845e7457189efe25826c6da}\label{namespacekrizpav6_a8b32ae658845e7457189efe25826c6da}} 
+\index{krizpav6@{krizpav6}!secondViewKey@{secondViewKey}}
+\index{secondViewKey@{secondViewKey}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{secondViewKey}{secondViewKey}}
+{\footnotesize\ttfamily const char krizpav6\+::second\+View\+Key = \textquotesingle{}3\textquotesingle{}}
+
+
+
+normal key only 
+
+\mbox{\Hypertarget{namespacekrizpav6_a62f68ac39bd943907741993a8df24cfa}\label{namespacekrizpav6_a62f68ac39bd943907741993a8df24cfa}} 
+\index{krizpav6@{krizpav6}!shaderProgram@{shaderProgram}}
+\index{shaderProgram@{shaderProgram}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{shaderProgram}{shaderProgram}}
+{\footnotesize\ttfamily G\+Luint krizpav6\+::shader\+Program = 0}
+
+
+
+holds id of shaders 
+
+\mbox{\Hypertarget{namespacekrizpav6_a24081d2a485474536a25a8fc42a0907e}\label{namespacekrizpav6_a24081d2a485474536a25a8fc42a0907e}} 
+\index{krizpav6@{krizpav6}!skyboxOBJ@{skyboxOBJ}}
+\index{skyboxOBJ@{skyboxOBJ}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{skyboxOBJ}{skyboxOBJ}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::skybox\+O\+BJ = \char`\"{}data/space\+Box.\+obj\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a3ddb1812e5410279d7e2d9b1bb3f95a1}\label{namespacekrizpav6_a3ddb1812e5410279d7e2d9b1bb3f95a1}} 
+\index{krizpav6@{krizpav6}!skyboxTEX@{skyboxTEX}}
+\index{skyboxTEX@{skyboxTEX}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{skyboxTEX}{skyboxTEX}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::skybox\+T\+EX = \char`\"{}data/big\+Space\+No\+Sun.\+jpg\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_a136e474c0dc7ff6b349b5c546aae9205}\label{namespacekrizpav6_a136e474c0dc7ff6b349b5c546aae9205}} 
+\index{krizpav6@{krizpav6}!skyboxTEX2@{skyboxTEX2}}
+\index{skyboxTEX2@{skyboxTEX2}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{skyboxTEX2}{skyboxTEX2}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::skybox\+T\+E\+X2 = \char`\"{}data/sun\+In\+Space.\+png\char`\"{}}
+
+\mbox{\Hypertarget{namespacekrizpav6_ac0b7dc3c1575364991659301e93ac917}\label{namespacekrizpav6_ac0b7dc3c1575364991659301e93ac917}} 
+\index{krizpav6@{krizpav6}!skyboxVertices@{skyboxVertices}}
+\index{skyboxVertices@{skyboxVertices}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{skyboxVertices}{skyboxVertices}}
+{\footnotesize\ttfamily const float krizpav6\+::skybox\+Vertices\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        1 , 0 , 1 , 0 , 0 , 0 , 1 , 0 ,}
+\DoxyCodeLine{        -1 , 0 , -1 , 1 , 1 , 0 , 1 , 0 ,}
+\DoxyCodeLine{        -1 , 0 , 1 , 0 , 1 , 0 , 1 , 0 ,}
+\DoxyCodeLine{        1 , 0 , 1 , 0 , 0 , 0 , 1 , 0 ,}
+\DoxyCodeLine{        1 , 0 , -1 , 1 , 0 , 0 , 1 , 0 ,}
+\DoxyCodeLine{        -1 , 0 , -1 , 1 , 1 , 0 , 1 , 0 ,}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacekrizpav6_a8891720fdfe0575d613886ce3cf96223}\label{namespacekrizpav6_a8891720fdfe0575d613886ce3cf96223}} 
+\index{krizpav6@{krizpav6}!time@{time}}
+\index{time@{time}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily double krizpav6\+::time = 0.\+5}
+
+
+
+time from beginning of program 
+
+\mbox{\Hypertarget{namespacekrizpav6_a4f2044c6c1b0a084461ed44c4e5fb4ee}\label{namespacekrizpav6_a4f2044c6c1b0a084461ed44c4e5fb4ee}} 
+\index{krizpav6@{krizpav6}!vertexShader@{vertexShader}}
+\index{vertexShader@{vertexShader}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{vertexShader}{vertexShader}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::vertex\+Shader = \char`\"{}vertex\+Shader.\+frag\char`\"{}}
+
+
+
+jmeno souboru s vertex shaderem 
+
+\mbox{\Hypertarget{namespacekrizpav6_a2313e1f501c5b7fb52ad5829054c4c50}\label{namespacekrizpav6_a2313e1f501c5b7fb52ad5829054c4c50}} 
+\index{krizpav6@{krizpav6}!WINDOW\_HEIGHT@{WINDOW\_HEIGHT}}
+\index{WINDOW\_HEIGHT@{WINDOW\_HEIGHT}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{WINDOW\_HEIGHT}{WINDOW\_HEIGHT}}
+{\footnotesize\ttfamily const int krizpav6\+::\+W\+I\+N\+D\+O\+W\+\_\+\+H\+E\+I\+G\+HT = 900}
+
+
+
+vyska oknna pro glut 
+
+\mbox{\Hypertarget{namespacekrizpav6_a3478998e0f4100e6f5aaf6f26180004a}\label{namespacekrizpav6_a3478998e0f4100e6f5aaf6f26180004a}} 
+\index{krizpav6@{krizpav6}!WINDOW\_TITLE@{WINDOW\_TITLE}}
+\index{WINDOW\_TITLE@{WINDOW\_TITLE}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{WINDOW\_TITLE}{WINDOW\_TITLE}}
+{\footnotesize\ttfamily const std\+::string krizpav6\+::\+W\+I\+N\+D\+O\+W\+\_\+\+T\+I\+T\+LE = \char`\"{}P\+GR project x\char`\"{}}
+
+
+
+nazev vyskakovaciho okna 
+
+\mbox{\Hypertarget{namespacekrizpav6_ac1e06653bf2ce46f48d6eb481d133cf7}\label{namespacekrizpav6_ac1e06653bf2ce46f48d6eb481d133cf7}} 
+\index{krizpav6@{krizpav6}!WINDOW\_WIDTH@{WINDOW\_WIDTH}}
+\index{WINDOW\_WIDTH@{WINDOW\_WIDTH}!krizpav6@{krizpav6}}
+\subsubsection{\texorpdfstring{WINDOW\_WIDTH}{WINDOW\_WIDTH}}
+{\footnotesize\ttfamily const int krizpav6\+::\+W\+I\+N\+D\+O\+W\+\_\+\+W\+I\+D\+TH = 1440}
+
+
+
+sirka oknna pro glut 
+

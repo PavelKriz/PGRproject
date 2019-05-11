@@ -258,13 +258,13 @@ namespace krizpav6 {
 			scene.howCrazy(60, 56);
 			break;
 		case crazyModKey2:
-			scene.howCrazy(35, 32);
+			scene.howCrazy(25, 24);
 			break;
 		case crazyModKey3:
-			scene.howCrazy(10, 5);
+			scene.howCrazy(7, 5);
 			break;
 		case crazyModKey4:
-			scene.howCrazy(6, 5);
+			scene.howCrazy(1, 0);
 			break;
 		}
 	}
@@ -279,13 +279,13 @@ namespace krizpav6 {
 			scene.howCrazy(60, 56);
 			break;
 		case crazyModKey2:
-			scene.howCrazy(35, 32);
+			scene.howCrazy(25, 24);
 			break;
 		case crazyModKey3:
-			scene.howCrazy(10, 5);
+			scene.howCrazy(7, 5);
 			break;
 		case crazyModKey4:
-			scene.howCrazy(6, 5);
+			scene.howCrazy(1, 0);
 			break;
 		case moveBackwardKey2:
 			camera.CameraMoveBackward();

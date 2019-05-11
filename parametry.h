@@ -12,8 +12,8 @@
 
 #pragma once
 namespace krizpav6 {
-	const int WINDOW_WIDTH = 1024;					//!< sirka oknna pro glut
-	const int WINDOW_HEIGHT = 1024;					//!< vyska oknna pro glut
+	const int WINDOW_WIDTH = 1440;					//!< sirka oknna pro glut
+	const int WINDOW_HEIGHT = 900;					//!< vyska oknna pro glut
 	const std::string WINDOW_TITLE = "PGR project x";	//!< nazev vyskakovaciho okna
 	const int refreshTimeMs = 33;					//!< jak rychly ma byt refresh
 	const std::string vertexShader = "vertexShader.frag";	//!< jmeno souboru s vertex shaderem
@@ -56,7 +56,7 @@ namespace krizpav6 {
 	const float lightB = 0.9f;	//!< RGB light - B
 	const float AMBIENT_REGULATOR = 0.8f;	//!< lower or higher ambient
 
-	const int ANANASPIECES_MAX_COUNT = 50;	//!< max count of ananases
+	const int ANANASPIECES_MAX_COUNT = 150;	//!< max count of ananases
 
 	const glm::vec3 bezierControlPoint4 = glm::vec3(0.0f, -0.23f, 2.5f); //!< bezier control point 4
 	const glm::vec3 bezierControlPoint3 = glm::vec3(0.0f, 2.0f, 2.5f);	//!< bezier control point 3

@@ -1,0 +1,45 @@
+\hypertarget{_object_loader_8h}{}\section{Object\+Loader.\+h File Reference}
+\label{_object_loader_8h}\index{ObjectLoader.h@{ObjectLoader.h}}
+
+
+Parsuje .obj (Wavefront) soubory.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$pgr.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_object_loader_8h_ab8f9239023ade2bad7f60bd4257c64ee}{object\+Loader}} (const char $\ast$path, std\+::vector$<$ float $>$ \&return\+Vector)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Parsuje .obj (Wavefront) soubory. 
+
+\begin{DoxyAuthor}{Author}
+Pavel Kriz 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2019 Umi nacist z .obj (Wavefront) pozice vrcholu, jejich texturovaci souradnice a jejich normaly. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_object_loader_8h_ab8f9239023ade2bad7f60bd4257c64ee}\label{_object_loader_8h_ab8f9239023ade2bad7f60bd4257c64ee}} 
+\index{ObjectLoader.h@{ObjectLoader.h}!objectLoader@{objectLoader}}
+\index{objectLoader@{objectLoader}!ObjectLoader.h@{ObjectLoader.h}}
+\subsubsection{\texorpdfstring{objectLoader()}{objectLoader()}}
+{\footnotesize\ttfamily bool object\+Loader (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{std\+::vector$<$ float $>$ \&}]{return\+Vector }\end{DoxyParamCaption})}
+
+Umi nacist z .obj (Wavefront) pozice vrcholu, jejich texturovaci souradnice a jejich normaly. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & cesta k .obj souboru \\
+\hline
+\mbox{\texttt{ out}}  & {\em return\+Vector} & vektor do ktereho se nastrkaji vrcholy a jejich informace z .obj souboru \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+povedlo se/nepovedlo se 
+\end{DoxyReturn}
