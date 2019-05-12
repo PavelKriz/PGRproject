@@ -10,39 +10,39 @@ Kolem planety se dá libovolně pohybovat, nikdy se však nedostanete daleko do 
 
 ## Ovladani
 
-W / Sipka nahoru - posun diváka kupředu za nosem
+**W / Sipka nahoru** - posun diváka kupředu za nosem
 
-S / Sipka dolu - odsun diváka přímo v opačném směru než za nosem
+**S / Sipka dolu** - odsun diváka přímo v opačném směru než za nosem
 
-A / Sipka doleva - odsun diváka doleva
+**A / Sipka doleva** - odsun diváka doleva
 
-D / Sipka doprava - odsun diváka doprava
+**D / Sipka doprava** - odsun diváka doprava
 
-Q - vzestup diváka vzhůru
+**Q** - vzestup diváka vzhůru
 
-E - sestup diváka dolů
+**E** - sestup diváka dolů
 
-1 - volný pohled
+**1** - volný pohled
 
-2 - 1. statický uzamknutý pohled
+**2** - 1. statický uzamknutý pohled
 
-3 - 2. statický uzamknutý pohled
+**3** - 2. statický uzamknutý pohled
 
-F1 až F4 - rychlost generace kousků ananasů - od nejpomalejší F1 k nejrychlejší F4
+**F1 až F4** - rychlost generace kousků ananasů - od nejpomalejší F1 k nejrychlejší F4
 
-l - zapnutí baterky(reflektoru)
+**l** - zapnutí baterky(reflektoru)
 
-Klikání a drag probíhá jakýmkoliv ze tří hlavních tlačítek myši.
+**Klikání a drag probíhá jakýmkoliv ze tří hlavních tlačítek myši.**
 
-Drag a pohyb myší - rozhlížení se kolem
+**Drag a pohyb myší** - rozhlížení se kolem
 
-Kliknutí myší na Ananas - ananas vygeneruje kousek ananasu
+**Kliknutí myší na Ananas** - ananas vygeneruje kousek ananasu
 
-Kliknutí myší na pizzu - zastaví nebo roztočí pizzu
+**Kliknutí myší na pizzu** - zastaví nebo roztočí pizzu
 
-Kliknutí myší na kousek ananasu - odstraní kousek ananasu
+**Kliknutí myší na kousek ananasu** - odstraní kousek ananasu
 
-ESC - ukončení programu
+**ESC** - ukončení programu
 
 
 ## Technologie
