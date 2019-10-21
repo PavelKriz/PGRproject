@@ -1,7 +1,9 @@
-﻿  CHandleScene.cpp
-  Vytváří se kód.
-  3 of 965 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+﻿  Vytváří se kód.
+  All 965 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Vytváření kódu se dokončilo.
+pgr.lib(gl_core_4_4.obj) : warning LNK4099: Soubor .pdb pgr-lib.pdb se nenašel s pgr.lib(gl_core_4_4.obj) nebo na C:\Users\Pavel\source\repos\PGRproject\Release\pgr-lib.pdb. Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+pgr.lib(pgr.obj) : warning LNK4099: Soubor .pdb pgr-lib.pdb se nenašel s pgr.lib(pgr.obj) nebo na C:\Users\Pavel\source\repos\PGRproject\Release\pgr-lib.pdb. Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+pgr.lib(Image.obj) : warning LNK4099: Soubor .pdb pgr-lib.pdb se nenašel s pgr.lib(Image.obj) nebo na C:\Users\Pavel\source\repos\PGRproject\Release\pgr-lib.pdb. Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+pgr.lib(Shader.obj) : warning LNK4099: Soubor .pdb pgr-lib.pdb se nenašel s pgr.lib(Shader.obj) nebo na C:\Users\Pavel\source\repos\PGRproject\Release\pgr-lib.pdb. Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+pgr.lib(gldebug.obj) : warning LNK4099: Soubor .pdb pgr-lib.pdb se nenašel s pgr.lib(gldebug.obj) nebo na C:\Users\Pavel\source\repos\PGRproject\Release\pgr-lib.pdb. Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
   PGRproject.vcxproj -> C:\Users\Pavel\source\repos\PGRproject\Release\PGRproject.exe
